@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardviewReceipt"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:layout_margin="10dp"
+
+    android:background="#ffff"
+    android:orientation="vertical"
+    android:padding="10dp"
+    app:cardBackgroundColor="#68E66D"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="8dp">
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="start|center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:id="@+id/receiptbussinesname"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginHorizontal="10dp"
+            android:text="@string/test1"
+            android:textSize="25sp">
+        </TextView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:id="@+id/receiptDate"
+            android:layout_marginHorizontal="10dp"
+            android:text="@string/test1"
+            android:textSize="25sp">
+        </TextView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="end|center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:id="@+id/recieptPrice"
+            android:layout_marginHorizontal="10dp"
+            android:text="@string/test1"
+            android:textSize="25sp">
+        </TextView>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "204368115247",
+    "firebase_url": "https://billbox-b8db0.firebaseio.com",
+    "project_id": "billbox-b8db0",
+    "storage_bucket": "billbox-b8db0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:204368115247:android:11e02bac52b22e78ecf8da",
+        "android_client_info": {
+          "package_name": "com.example.BillBox"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "204368115247-pv6gjoeer9f7hb5tr4r688qdfdcnve8t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKGBFxUKGoYFZQUqv7NAAGDa691sVEG1E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "204368115247-pv6gjoeer9f7hb5tr4r688qdfdcnve8t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

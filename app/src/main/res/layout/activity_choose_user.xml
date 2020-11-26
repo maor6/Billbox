@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.myapplication.ChooseUserActivity"
+    android:background="@drawable/login_background_2"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/billbox"
+        android:textSize="25sp"
+        android:textColor="#FFF"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"/>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/customerbt"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="180dp"
+        android:layout_marginBottom="35dp"
+        app:cardBackgroundColor="#FFFFFF"
+        app:cardCornerRadius="25dp"
+        app:cardElevation="10dp">
+
+
+        <TextView
+            android:id="@+id/customer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:text="@string/im_customer"
+            android:textColor="#332B2B"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/customeric"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            tools:srcCompat="@drawable/customers" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/bussinesbt"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        app:cardBackgroundColor="#FFFFFF"
+        app:cardCornerRadius="25dp"
+        app:cardElevation="10dp">
+
+        <TextView
+            android:id="@+id/bussines"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:text="@string/im_bussines"
+            android:textColor="#3A3232"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/bussinesic"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            tools:srcCompat="@drawable/bussines" />
+
+
+    </androidx.cardview.widget.CardView>
+</LinearLayout>

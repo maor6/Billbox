@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#9FC177">
+
+    <Button
+        android:id="@+id/refund_btn"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:layout_marginStart="58dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginBottom="195dp"
+        android:background="#77A640"
+        android:text="Refund"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/replace_btn"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="163dp"
+        android:text="Billbox"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toTopOf="@+id/receipt_btn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/replace_btn"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:layout_marginEnd="83dp"
+        android:layout_marginBottom="195dp"
+        android:background="#77A640"
+        android:text="Replacement"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+    <Button
+        android:id="@+id/warranty_btn"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+
+        android:layout_marginEnd="80dp"
+        android:layout_marginBottom="20dp"
+        android:background="#77A640"
+        android:text="Warranty"
+        app:layout_constraintBottom_toTopOf="@+id/replace_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/receipt_btn"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/receipt_btn"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:layout_marginStart="65dp"
+        android:layout_marginEnd="46dp"
+        android:layout_marginBottom="323dp"
+        android:background="#77A640"
+        android:text="Receipt"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/warranty_btn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

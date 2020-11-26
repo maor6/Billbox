@@ -2,9 +2,13 @@ package com.example.myapplication;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -19,8 +23,10 @@ import java.util.ArrayList;
 
 public class SearchProductActivity extends AppCompatActivity {
 
+    FirebaseDatabase firebaseDatabase;
     DatabaseReference ref;
     FirebaseAuth firebaseAuth;
+    ProductAdapter productAdapter;
     ArrayList<Product> products;
     RecyclerView recyclerView;
     SearchView searchView;
@@ -30,59 +36,92 @@ public class SearchProductActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_product);
 
+        firebaseDatabase = FirebaseDatabase.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
         ref = FirebaseDatabase.getInstance().getReference().child("Stock").child(firebaseAuth.getUid());
         recyclerView = findViewById(R.id.recycler);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         searchView = findViewById(R.id.searchView);
-    }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        if(ref != null){
+        productAdapter = new ProductAdapter(this, products);
+        productAdapter.setOnItemClickListener(new ProductAdapter.OnItemClickListener() {
+            @Override
+            public void OnItemClick(int position) {
+//                //TODO back to CreatBIillActivity with the product
+//                startActivity(new Intent(SearchProductActivity.this, CreateBillActivity.class));
+            }
+        });
+        recyclerView.setAdapter(productAdapter);
+
+
+        if (ref != null) {
             ref.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if(dataSnapshot.exists()){
-                        products = new ArrayList<Product>();
-                        for(DataSnapshot ds : dataSnapshot.getChildren()){
-                            products.add(ds.getValue(Product.class));
-                        }
-                        ProductAdapter productAdapter = new ProductAdapter(products);
-                        recyclerView.setAdapter(productAdapter);
+                    products.clear();
+                    for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                        Log.d("mytag", dataSnapshot.getValue().toString());
+                        Product product = dataSnapshot1.getValue(Product.class);
+                        products.add(product);
                     }
+                    productAdapter.notifyDataSetChanged();
                 }
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
-                    Toast.makeText(SearchProductActivity.this, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(SearchProductActivity.this, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
-        }
-        if(searchView != null){
-            searchView.setOnQueryTextListener((new SearchView.OnQueryTextListener() {
-                @Override
-                public boolean onQueryTextSubmit(String s) {
-                    return false;
-                }
 
-                @Override
-                public boolean onQueryTextChange(String s) {
-                    search(s);
-                    return true;
-                }
-            }));
         }
     }
 
-    private void search(String s){
-        ArrayList<Product> myProducts = new ArrayList<Product>();
-        for(Product p : products){
-            if(p.getName().toLowerCase().contains(s.toLowerCase())){
-                myProducts.add(p);
-            }
-        }
-        ProductAdapter productAdapter = new ProductAdapter(myProducts);
-        recyclerView.setAdapter(productAdapter);
-    }
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        if(ref != null){
+//            ref.addValueEventListener(new ValueEventListener() {
+//                @Override
+//                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                    products.clear();
+//                    for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+//                        Product product = dataSnapshot1.getValue(Product.class);
+//                        products.add(product);
+//                    }
+//                    productAdapter.notifyDataSetChanged();
+//                }
+//
+//                @Override
+//                public void onCancelled(@NonNull DatabaseError databaseError) {
+////                    Toast.makeText(SearchProductActivity.this, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+//                }
+//            });
+//        }
+//        if(searchView != null){
+//            searchView.setOnQueryTextListener((new SearchView.OnQueryTextListener() {
+//                @Override
+//                public boolean onQueryTextSubmit(String s) {
+//                    return false;
+//                }
+//
+//                @Override
+//                public boolean onQueryTextChange(String s) {
+//                    search(s);
+//                    return true;
+//                }
+//            }));
+//        }
+//    }
+
+//    private void search(String s){
+//        ArrayList<Product> myProducts = new ArrayList<Product>();
+//        for(Product p : products){
+//            if(p.getName().toLowerCase().contains(s.toLowerCase())){
+//                myProducts.add(p);
+//            }
+//        }
+//        productAdapter.notifyDataSetChanged();
+//        recyclerView.setAdapter(productAdapter);
+//    }
 }

@@ -27,10 +27,7 @@ import java.util.ArrayList;
 public class CreateBillActivity extends AppCompatActivity {
 
     CardView search;
-    ArrayList<Product> products;
     Button finishBt;
-    ProductAdapter productAddapter;
-    receipt receipt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,12 +45,12 @@ public class CreateBillActivity extends AppCompatActivity {
         finishBt.setOnClickListener(new View.OnClickListener() { // on "סיים" clicked
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CreateBillActivity.this, NFCBussinesActivity.class);
-                receipt reciept = new receipt();
-                //TODO change the reciept fields by the textViews
-                Log.d("mytag", "i got here");
-                intent.putExtra("receipt", reciept.toString());
-                startActivity(intent);
+//                Intent intent = new Intent(CreateBillActivity.this, NFCBussinesActivity.class);
+//                Product product = new Product();
+//                //TODO change the reciept fields by the textViews
+//                Log.d("mytag", "i got here");
+//                intent.putExtra("product", (Parcelable) product); //????? problem here
+//                startActivity(intent);
             }
         });
     }

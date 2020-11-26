@@ -14,9 +14,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name="Activities.CreateDocsActivity">
-
-        </activity>
+        <activity
+            android:name=".WarrantyActivity"
+            android:label="@string/title_activity_warranty"
+            android:theme="@style/AppTheme.NoActionBar.NoActionBar"></activity>
+        <activity android:name="Activities.CreateDocsActivity"></activity>
         <activity android:name="Activities.SearchProductActivity" />
         <activity
             android:name="Activities.NFCDisplayActivity"

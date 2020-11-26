@@ -110,14 +110,20 @@
     </string>
     <string name="finishBill">סיים</string>
     <string name="bill">חשבונית מס-קבלה</string>
+    <string name="purchaseDate">תאריך רכישה</string>
+    <string name="warrantyDuration">משך האחריות</string>
+    <string name="warranty">תעודת אחריות</string>
     <string name="openAccount">פתיחת חשבון</string>
+    <string name="address">כתובת</string>
     <string name="test1">test1</string>
     <string name="NavigationDrawerOpen">openNavDrawer</string>
     <string name="closeNavDrawer">closeNavDrawer</string>
-    <string name="total">סה\"כ</string>
+    <string name="total">סה"כ</string>
     <string name="cost">מחיר</string>
     <string name="amount">כמות</string>
+    <string name="businessName">שם עסק</string>
     <string name="description">תיאור</string>
     <string name="findP">חפש מוצר</string>
     <string name="enter_phone">הכנס מספר טלפון</string>
+    <string name="title_activity_warranty">WarrantyActivity</string>
 </resources>

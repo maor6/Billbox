@@ -14,12 +14,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".CreateDocsActivity">
+        <activity android:name="Activities.CreateDocsActivity">
 
         </activity>
-        <activity android:name=".SearchProductActivity" />
+        <activity android:name="Activities.SearchProductActivity" />
         <activity
-            android:name=".NFCDisplayActivity"
+            android:name="Activities.NFCDisplayActivity"
             android:label="NFC Data Display">
             <intent-filter>
                 <action android:name="android.nfc.action.NDEF_DISCOVERED" />
@@ -30,28 +30,28 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".NFCBussinesActivity"
+            android:name="Activities.NFCBussinesActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".CreateBillActivity"
+            android:name="Activities.CreateBillActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Register_Bussines_Activity"
+            android:name="Activities.Register_Bussines_Activity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Register_Customer_Activity"
+            android:name="Activities.Register_Customer_Activity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ChooseUserActivity"
+            android:name="Activities.ChooseUserActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Business_HomeActivity"
+            android:name="Activities.Business_HomeActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Customer_HomeActivity"
+            android:name="Activities.Customer_HomeActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Login_Activity"
+            android:name="Activities.Login_Activity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>

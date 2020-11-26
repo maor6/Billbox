@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package DataStructures;
 
 /**
  * This class represent a user in the Billbox app

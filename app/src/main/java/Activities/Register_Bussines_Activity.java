@@ -1,10 +1,9 @@
-package com.example.myapplication;
+package Activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.os.Debug;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -12,6 +11,9 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import DataStructures.Business;
+import com.example.myapplication.R;
+import DataStructures.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;

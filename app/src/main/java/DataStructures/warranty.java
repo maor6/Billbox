@@ -1,10 +1,10 @@
-package com.example.myapplication;
+package DataStructures;
 
 import java.util.ArrayList;
 import java.util.Date;
 
 /**
- * This class represent com.example.myapplication.warranty com.example.myapplication.document.
+ * This class represent DataStructures.warranty DataStructures.document.
  */
 public class warranty extends document {
 
@@ -19,8 +19,8 @@ public class warranty extends document {
      * @param customer name as string
      * @param date purchase date
      * @param item name as string
-     * @param expiration date which the item loses its com.example.myapplication.warranty
-     * @param rules paragraph which set the com.example.myapplication.warranty rules as array list of string.
+     * @param expiration date which the item loses its DataStructures.warranty
+     * @param rules paragraph which set the DataStructures.warranty rules as array list of string.
      */
     public warranty(String business, String customer, Date date, String item, Date expiration, ArrayList<String> rules)
     {

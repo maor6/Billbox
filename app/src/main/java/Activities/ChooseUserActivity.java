@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -6,7 +6,8 @@ import androidx.cardview.widget.CardView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+
+import com.example.myapplication.R;
 
 public class ChooseUserActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -28,12 +29,12 @@ public class ChooseUserActivity extends AppCompatActivity implements View.OnClic
     @Override
     public void onClick(View view) {
         if (view == imCus) {
-            Intent intent=new Intent(this,Register_Customer_Activity.class);
+            Intent intent=new Intent(this, Register_Customer_Activity.class);
             startActivity(intent);
         }
 
         else if (view == imBus) {
-            Intent intent = new Intent(this,Register_Bussines_Activity.class);
+            Intent intent = new Intent(this, Register_Bussines_Activity.class);
             startActivity(intent);
         }
     }

@@ -7,7 +7,7 @@
     android:background="#9FC177"
     android:foreground="@color/material_on_background_disabled"
     tools:visibility="visible"
-    tools:context=".Business_HomeActivity"><![CDATA[>
+    tools:context="Activities.Business_HomeActivity"><![CDATA[>
 
 
     ]]>

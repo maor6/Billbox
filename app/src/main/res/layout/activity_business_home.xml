@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#9FC177"
-    tools:context=".Business_HomeActivity"
+    tools:context="Activities.Business_HomeActivity"
     tools:visibility="visible">
 
 

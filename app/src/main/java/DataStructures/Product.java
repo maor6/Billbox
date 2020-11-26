@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package DataStructures;
 
 public class Product {
     String name;

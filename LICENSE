@@ -3,7 +3,7 @@
 
  Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>
  Everyone is permitted to copy and distribute verbatim copies
- of this license com.example.myapplication.document, but changing it is not allowed.
+ of this license DataStructures.document, but changing it is not allowed.
 
                             Preamble
 
@@ -42,7 +42,7 @@ know their rights.
 giving you legal permission to copy, distribute and/or modify it.
 
   For the developers' and authors' protection, the GPL clearly explains
-that there is no com.example.myapplication.warranty for this free software.  For both users' and
+that there is no DataStructures.warranty for this free software.  For both users' and
 authors' sake, the GPL requires that modified versions be marked as
 changed, so that their problems will not be attributed erroneously to
 authors of previous versions.
@@ -103,7 +103,7 @@ a computer network, with no transfer of a copy, is not conveying.
   An interactive user interface displays "Appropriate Legal Notices"
 to the extent that it includes a convenient and prominently visible
 feature that (1) displays an appropriate copyright notice, and (2)
-tells the user that there is no com.example.myapplication.warranty for the work (except to the
+tells the user that there is no DataStructures.warranty for the work (except to the
 extent that warranties are provided), that licensees may convey the
 work under this License, and how to view a copy of this License.  If
 the interface presents a list of user commands or options, such as a
@@ -199,11 +199,11 @@ receive it, in any medium, provided that you conspicuously and
 appropriately publish on each copy an appropriate copyright notice;
 keep intact all notices stating that this License and any
 non-permissive terms added in accord with section 7 apply to the code;
-keep intact all notices of the absence of any com.example.myapplication.warranty; and give all
+keep intact all notices of the absence of any DataStructures.warranty; and give all
 recipients a copy of this License along with the Program.
 
   You may charge any price or no price for each copy that you convey,
-and you may offer support or com.example.myapplication.warranty protection for a fee.
+and you may offer support or DataStructures.warranty protection for a fee.
 
   5. Conveying Modified Source Versions.
 
@@ -294,7 +294,7 @@ in one of these ways:
 from the Corresponding Source as a System Library, need not be
 included in conveying the object code work.
 
-  A "com.example.myapplication.User Product" is either (1) a "consumer product", which means any
+  A "DataStructures.User Product" is either (1) a "consumer product", which means any
 tangible personal property which is normally used for personal, family,
 or household purposes, or (2) anything designed or sold for incorporation
 into a dwelling.  In determining whether a product is a consumer product,
@@ -307,29 +307,29 @@ is a consumer product regardless of whether the product has substantial
 commercial, industrial or non-consumer uses, unless such uses represent
 the only significant mode of use of the product.
 
-  "Installation Information" for a com.example.myapplication.User Product means any methods,
+  "Installation Information" for a DataStructures.User Product means any methods,
 procedures, authorization keys, or other information required to install
-and execute modified versions of a covered work in that com.example.myapplication.User Product from
+and execute modified versions of a covered work in that DataStructures.User Product from
 a modified version of its Corresponding Source.  The information must
 suffice to ensure that the continued functioning of the modified object
 code is in no case prevented or interfered with solely because
 modification has been made.
 
   If you convey an object code work under this section in, or with, or
-specifically for use in, a com.example.myapplication.User Product, and the conveying occurs as
+specifically for use in, a DataStructures.User Product, and the conveying occurs as
 part of a transaction in which the right of possession and use of the
-com.example.myapplication.User Product is transferred to the recipient in perpetuity or for a
+DataStructures.User Product is transferred to the recipient in perpetuity or for a
 fixed term (regardless of how the transaction is characterized), the
 Corresponding Source conveyed under this section must be accompanied
 by the Installation Information.  But this requirement does not apply
 if neither you nor any third party retains the ability to install
-modified object code on the com.example.myapplication.User Product (for example, the work has
+modified object code on the DataStructures.User Product (for example, the work has
 been installed in ROM).
 
   The requirement to provide Installation Information does not include a
-requirement to continue to provide support service, com.example.myapplication.warranty, or updates
+requirement to continue to provide support service, DataStructures.warranty, or updates
 for a work that has been modified or installed by the recipient, or for
-the com.example.myapplication.User Product in which it has been modified or installed.  Access to a
+the DataStructures.User Product in which it has been modified or installed.  Access to a
 network may be denied when the modification itself materially and
 adversely affects the operation of the network or violates the rules and
 protocols for communication across the network.
@@ -362,7 +362,7 @@ for which you have or can give appropriate copyright permission.
 add to a covered work, you may (if authorized by the copyright holders of
 that material) supplement the terms of this License with terms:
 
-    a) Disclaiming com.example.myapplication.warranty or limiting liability differently from the
+    a) Disclaiming DataStructures.warranty or limiting liability differently from the
     terms of sections 15 and 16 of this License; or
 
     b) Requiring preservation of specified reasonable legal notices or
@@ -389,10 +389,10 @@ that material) supplement the terms of this License with terms:
 restrictions" within the meaning of section 10.  If the Program as you
 received it, or any part of it, contains a notice stating that it is
 governed by this License along with a term that is a further
-restriction, you may remove that term.  If a license com.example.myapplication.document contains
+restriction, you may remove that term.  If a license DataStructures.document contains
 a further restriction but permits relicensing or conveying under this
 License, you may add to a covered work material governed by the terms
-of that license com.example.myapplication.document, provided that the further restriction does
+of that license DataStructures.document, provided that the further restriction does
 not survive such relicensing or conveying.
 
   If you add terms to a covered work in accord with this section, you
@@ -424,7 +424,7 @@ reinstated permanently if the copyright holder notifies you of the
 violation by some reasonable means, this is the first time you have
 received notice of violation of this License (for any work) from that
 copyright holder, and you cure the violation prior to 30 days after
-your com.example.myapplication.receipt of the notice.
+your DataStructures.receipt of the notice.
 
   Termination of your rights under this section does not terminate the
 licenses of parties who have received copies or rights from you under
@@ -611,11 +611,11 @@ SUCH DAMAGES.
 
   17. Interpretation of Sections 15 and 16.
 
-  If the disclaimer of com.example.myapplication.warranty and limitation of liability provided
+  If the disclaimer of DataStructures.warranty and limitation of liability provided
 above cannot be given local legal effect according to their terms,
 reviewing courts shall apply local law that most closely approximates
 an absolute waiver of all civil liability in connection with the
-Program, unless a com.example.myapplication.warranty or assumption of liability accompanies a
+Program, unless a DataStructures.warranty or assumption of liability accompanies a
 copy of the Program in return for a fee.
 
                      END OF TERMS AND CONDITIONS
@@ -628,7 +628,7 @@ free software which everyone can redistribute and change under these terms.
 
   To do so, attach the following notices to the program.  It is safest
 to attach them to the start of each source file to most effectively
-state the exclusion of com.example.myapplication.warranty; and each file should have at least
+state the exclusion of DataStructures.warranty; and each file should have at least
 the "copyright" line and a pointer to where the full notice is found.
 
     <one line to give the program's name and a brief idea of what it does.>
@@ -640,7 +640,7 @@ the "copyright" line and a pointer to where the full notice is found.
     (at your option) any later version.
 
     This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied com.example.myapplication.warranty of
+    but WITHOUT ANY WARRANTY; without even the implied DataStructures.warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
 

@@ -1,8 +1,8 @@
-package com.example.myapplication;
+package DataStructures;
 
 import java.util.Date;
 /**
- * This class represent com.example.myapplication.replacement com.example.myapplication.document.
+ * This class represent DataStructures.replacement DataStructures.document.
  */
 public class replacement extends refund{
 

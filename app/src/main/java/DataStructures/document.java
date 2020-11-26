@@ -1,9 +1,9 @@
-package com.example.myapplication;
+package DataStructures;
 
 import java.util.*;
 
 /**
- * This class represent a standard requirements in any Billbox com.example.myapplication.document.
+ * This class represent a standard requirements in any Billbox DataStructures.document.
  */
 public abstract class document {
 
@@ -57,7 +57,7 @@ public abstract class document {
     }
 /*
     public String toString(){
-        return "This com.example.myapplication.document is between "+this.business+" and "+this.customer+" at "+this.date);
+        return "This DataStructures.document is between "+this.business+" and "+this.customer+" at "+this.date);
     }*/
 }
 

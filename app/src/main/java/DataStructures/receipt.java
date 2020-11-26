@@ -1,11 +1,11 @@
-package com.example.myapplication;
+package DataStructures;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
 /**
- * This class is Billbox com.example.myapplication.receipt format data type.
+ * This class is Billbox DataStructures.receipt format data type.
  */
 public class receipt {//extends document{ TODO why the extends coolapse the app???
     private ArrayList<String> items;
@@ -58,8 +58,8 @@ public class receipt {//extends document{ TODO why the extends coolapse the app?
     }
 
 //    /**
-//     * Constructor with com.example.myapplication.document
-//     * @param document  basic com.example.myapplication.document fields
+//     * Constructor with DataStructures.document
+//     * @param document  basic DataStructures.document fields
 //     * @param total_price total deal cost as double
 //     * @param left_over left over in double in case of cash.
 //     * @param total_items number of items that was purchased

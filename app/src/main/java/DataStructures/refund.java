@@ -1,8 +1,8 @@
-package com.example.myapplication;
+package DataStructures;
 
 import java.util.Date;
 /**
- * This class represent com.example.myapplication.refund com.example.myapplication.document.
+ * This class represent DataStructures.refund DataStructures.document.
  */
 public class refund extends receipt {
 

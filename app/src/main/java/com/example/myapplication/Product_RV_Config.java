@@ -9,10 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.myapplication.Product;
-import com.example.myapplication.R;
-import com.example.myapplication.RecyclerView_Config;
-import com.example.myapplication.receipt;
+import DataStructures.Product;
 
 import java.util.List;
 

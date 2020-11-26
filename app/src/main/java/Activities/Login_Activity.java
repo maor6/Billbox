@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package Activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,9 +14,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.myapplication.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.ActionCodeSettings;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -69,7 +69,7 @@ public class Login_Activity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View view) {
         if(view.getId() == registerbt.getId()){ // press the register button
-            startActivity(new Intent(Login_Activity.this,ChooseUserActivity.class));
+            startActivity(new Intent(Login_Activity.this, ChooseUserActivity.class));
         }
 
         if (view.getId() == loginbt.getId()) { // press the login button

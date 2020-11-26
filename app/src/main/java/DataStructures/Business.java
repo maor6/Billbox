@@ -1,7 +1,9 @@
-package com.example.myapplication;
+package DataStructures;
 
 import java.util.LinkedList;
 import java.util.ArrayList;
+
+import DataStructures.User;
 
 /**
  * this class represent a business user in Billbox app

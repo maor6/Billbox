@@ -13,7 +13,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
+
 import DataStructures.Product;
 
 public class SearchProductActivity extends AppCompatActivity {
@@ -23,7 +25,7 @@ public class SearchProductActivity extends AppCompatActivity {
     ArrayList<Product> products;
     RecyclerView recyclerView;
     SearchView searchView;
-    ProductAdapter adapter;
+    ProductAdapter productAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,46 +38,23 @@ public class SearchProductActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         products = new ArrayList<Product>();
         //searchView = findViewById(R.id.searchProduct); // here is the problem
-        
+
         adapt();
-
-//        productAdapter.setOnItemClickListener(new ProductAdapter.OnItemClickListener() {
-//            @Override
-//            public void OnItemClick(int position) {
-//
-//            }
-//        });
-//        recyclerView.setAdapter(productAdapter);
-//
-//        if(ref != null) {
-//            ref.addValueEventListener(new ValueEventListener() {
-//                @Override
-//                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                    if(dataSnapshot.exists()){
-//                        for(DataSnapshot ds : dataSnapshot.getChildren()){
-//                            products.add(ds.getValue(Product.class));
-//                        }
-//                        productAdapter.notifyDataSetChanged();
-//                    }
-//                }
-//                @Override
-//                public void onCancelled(@NonNull DatabaseError databaseError) {
-//                    Toast.makeText(SearchProductActivity.this, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
-//                }
-//            });
-//        }
-
     }
 
+    /*
+        this function get all the products from the database
+        and put it to recycler view
+    */
     private void adapt() {
-        adapter = new ProductAdapter(this, products);
-        adapter.setOnItemClickListener(new ProductAdapter.OnItemClickListener() {
+        productAdapter = new ProductAdapter(this, products);
+        productAdapter.setOnItemClickListener(new ProductAdapter.OnItemClickListener(){
             @Override
             public void OnItemClick(int position) {
 
             }
         });
-        recyclerView.setAdapter(adapter);
+        recyclerView.setAdapter(productAdapter);
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -84,7 +63,7 @@ public class SearchProductActivity extends AppCompatActivity {
                     Product product = dataSnapshot1.getValue(Product.class);
                     products.add(product);
                 }
-                adapter.notifyDataSetChanged();
+                productAdapter.notifyDataSetChanged();
             }
 
             @Override

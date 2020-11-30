@@ -5,10 +5,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import Activities.R;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.ArrayList;
+
+import Activities.R;
 import DataStructures.Product;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHolder> {
@@ -16,11 +19,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
     ArrayList<Product> products;
     Context context;
     private OnItemClickListener mListener;
-
-    public ProductAdapter(Context context, ArrayList<Product> products) {
-        this.context = context;
-        this.products = products;
-    }
 
     @NonNull
     @Override
@@ -49,6 +47,10 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
         mListener = listener;
     }
 
+    public ProductAdapter(Context context, ArrayList<Product> products) {
+        this.context = context;
+        this.products = products;
+    }
 
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {

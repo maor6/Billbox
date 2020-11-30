@@ -17,7 +17,6 @@
         <activity android:name=".InfoEditActivity"></activity>
         <activity android:name=".WarrantyActivity" />
         <activity android:name=".CreateDocsActivity" />
-        <activity android:name=".SearchProductActivity" />
         <activity
             android:name=".NFCDisplayActivity"
             android:label="NFC Data Display">

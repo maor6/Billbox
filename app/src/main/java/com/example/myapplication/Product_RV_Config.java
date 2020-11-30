@@ -31,7 +31,7 @@ public class Product_RV_Config {
 
         public ProductItemView(ViewGroup parent) {
             super(LayoutInflater.from(context).inflate(R.layout.product_list_item, parent, false));
-            product_name = (TextView) itemView.findViewById(R.id.Pname);
+            product_name = (TextView) itemView.findViewById(R.id.productName);
             barcode = (TextView) itemView.findViewById(R.id.barcode);
         }
 

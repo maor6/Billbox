@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
+import DataStructures.Product;
+
 public class adapter extends RecyclerView.Adapter<adapter.MyViewHolder> {
 
     ArrayList<Product> products;

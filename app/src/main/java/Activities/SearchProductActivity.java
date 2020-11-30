@@ -34,16 +34,14 @@ public class SearchProductActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_product);
-
         firebaseAuth = FirebaseAuth.getInstance();
         ref = FirebaseDatabase.getInstance().getReference().child("Stock").child(firebaseAuth.getUid());
         recyclerView = findViewById(R.id.recycler);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        Log.d("maytag", "i got here");
         products = new ArrayList<Product>();
         //searchView = findViewById(R.id.searchProduct); // here is the problem
-
+        
         adapt();
     }
 

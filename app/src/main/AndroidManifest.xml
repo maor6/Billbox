@@ -51,6 +51,9 @@
             android:name=".Customer_HomeActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name=".SearchProductActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
             android:name=".Login_Activity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
@@ -61,5 +64,4 @@
             </intent-filter>
         </activity>
     </application>
-
 </manifest>

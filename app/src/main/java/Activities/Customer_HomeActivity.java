@@ -67,15 +67,25 @@ public class Customer_HomeActivity extends AppCompatActivity implements Navigati
 
         //TODO use this ->FirebaseDatabaseHelper firebaseDatabaseHelper = new FirebaseDatabaseHelper();
 
+        getReceipts();
+
+    }
+
+    /*
+    this method will get the receipt from the database
+    and put it in the recycler view
+     */
+
+    private void getReceipts() {
         recyclerView = (RecyclerView) findViewById(R.id.recyclerview_reciepts);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         receipts = new ArrayList<>();
         myAddapter = new MyAddapter(this, receipts);
-        myAddapter.setOnItemClickListener(new MyAddapter.OnItemClickListener() {
+        myAddapter.setOnItemClickListener(new MyAddapter.OnItemClickListener() { // listen when clicked on receipt
             @Override
             public void OnItemClick(int position) {
-                //TODO open activity that open the full receipt
+                //TODO open activity that open the full receipt info
                 startActivity(new Intent(Customer_HomeActivity.this, Business_HomeActivity.class));
             }
         });

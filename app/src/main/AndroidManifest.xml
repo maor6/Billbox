@@ -14,14 +14,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name=".InfoEditActivity"></activity>
+        <activity android:name=".WarrantyActivity" />
+        <activity android:name=".CreateDocsActivity" />
+        <activity android:name=".SearchProductActivity" />
         <activity
-            android:name=".WarrantyActivity"
-            android:label="@string/title_activity_warranty"
-            android:theme="@style/AppTheme.NoActionBar.NoActionBar"></activity>
-        <activity android:name="Activities.CreateDocsActivity"></activity>
-        <activity android:name="Activities.SearchProductActivity" />
-        <activity
-            android:name="Activities.NFCDisplayActivity"
+            android:name=".NFCDisplayActivity"
             android:label="NFC Data Display">
             <intent-filter>
                 <action android:name="android.nfc.action.NDEF_DISCOVERED" />
@@ -32,28 +30,28 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="Activities.NFCBussinesActivity"
+            android:name=".NFCBussinesActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="Activities.CreateBillActivity"
+            android:name=".CreateBillActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="Activities.Register_Bussines_Activity"
+            android:name=".Register_Bussines_Activity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="Activities.Register_Customer_Activity"
+            android:name=".Register_Customer_Activity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="Activities.ChooseUserActivity"
+            android:name=".ChooseUserActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="Activities.Business_HomeActivity"
+            android:name=".Business_HomeActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="Activities.Customer_HomeActivity"
+            android:name=".Customer_HomeActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="Activities.Login_Activity"
+            android:name=".Login_Activity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>

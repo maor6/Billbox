@@ -4,21 +4,16 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.SearchView;
-
-import com.example.myapplication.adapter;
+import com.example.myapplication.ProductAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
 import java.util.ArrayList;
-
 import DataStructures.Product;
 
 public class SearchProductActivity extends AppCompatActivity {
@@ -28,7 +23,7 @@ public class SearchProductActivity extends AppCompatActivity {
     ArrayList<Product> products;
     RecyclerView recyclerView;
     SearchView searchView;
-    com.example.myapplication.adapter adapter;
+    ProductAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,20 +35,42 @@ public class SearchProductActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recycler);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        Log.d("maytag", "i got here");
         products = new ArrayList<Product>();
         //searchView = findViewById(R.id.searchProduct); // here is the problem
 
         adapt();
+
+//        productAdapter.setOnItemClickListener(new ProductAdapter.OnItemClickListener() {
+//            @Override
+//            public void OnItemClick(int position) {
+//
+//            }
+//        });
+//        recyclerView.setAdapter(productAdapter);
+//
+//        if(ref != null) {
+//            ref.addValueEventListener(new ValueEventListener() {
+//                @Override
+//                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                    if(dataSnapshot.exists()){
+//                        for(DataSnapshot ds : dataSnapshot.getChildren()){
+//                            products.add(ds.getValue(Product.class));
+//                        }
+//                        productAdapter.notifyDataSetChanged();
+//                    }
+//                }
+//                @Override
+//                public void onCancelled(@NonNull DatabaseError databaseError) {
+//                    Toast.makeText(SearchProductActivity.this, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+//                }
+//            });
+//        }
+
     }
 
-    /*
-        this function get all the products from the database
-        and put it to recycler view
-    */
     private void adapt() {
-        adapter = new adapter(this, products);
-        adapter.setOnItemClickListener(new adapter.OnItemClickListener() {
+        adapter = new ProductAdapter(this, products);
+        adapter.setOnItemClickListener(new ProductAdapter.OnItemClickListener() {
             @Override
             public void OnItemClick(int position) {
 

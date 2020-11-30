@@ -33,6 +33,9 @@
             android:name=".NFCBussinesActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name=".SearchProductActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".CreateBillActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

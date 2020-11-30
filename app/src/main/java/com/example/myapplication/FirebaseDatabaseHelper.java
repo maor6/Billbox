@@ -1,5 +1,11 @@
 package com.example.myapplication;
 
+/*
+    this class manage our database
+    read, write and create account
+ */
+
+
 import androidx.annotation.NonNull;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -11,8 +17,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import DataStructures.receipt;
 
 public class FirebaseDatabaseHelper {
     private FirebaseDatabase mDatabase;

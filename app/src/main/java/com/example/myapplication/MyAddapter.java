@@ -18,6 +18,7 @@ public class MyAddapter extends RecyclerView.Adapter<MyAddapter.MyViewHolder> {
     ArrayList<receipt> receipts;
     Context context;
     private OnItemClickListener mListener;
+
     public interface OnItemClickListener {
         void OnItemClick(int position);
     }
@@ -53,6 +54,7 @@ public class MyAddapter extends RecyclerView.Adapter<MyAddapter.MyViewHolder> {
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         TextView bussinesname, date, price;
+
         public MyViewHolder(@NonNull View itemView, OnItemClickListener listener) {
             super(itemView);
             bussinesname = (TextView) itemView.findViewById(R.id.receiptbussinesname);

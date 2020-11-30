@@ -4,10 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    tools:context="Activities.CreateBillActivity">
+    android:orientation="vertical">
     <androidx.appcompat.widget.SearchView
-        android:id="@+id/searchView"
+        android:id="@+id/searchProduct"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:padding="10dp"
@@ -15,10 +14,9 @@
         android:layout_margin="5dp"/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler"
-        style="?android:attr/listSeparatorTextViewStyle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        style="?android:attr/listSeparatorTextViewStyle"
         android:scrollbarStyle="insideOverlay"
         android:scrollbars="vertical"/>
-
 </LinearLayout>

@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <item name="purchaseDate" type="id">puchaseDate</item>
-    <item name="warrantyDuration" type="id">warrantyDuration</item>
-    <item name="dateValues" type="id">dateValues</item>
-    <item name="bussinesInfo" type="id">bussinesInfo</item>
-    <item name="bussinesAddress" type="id">bussinesAddress</item>
-    <item name="bussinesName" type="id">bussinesName</item>
-</resources>

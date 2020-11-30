@@ -18,6 +18,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import DataStructures.receipt;
+
 public class FirebaseDatabaseHelper {
     private FirebaseDatabase mDatabase;
     private FirebaseAuth mAuth;

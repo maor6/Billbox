@@ -23,6 +23,11 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import Activities.NFCBussinesActivity;
+import Activities.SearchProductActivity;
+import DataStructures.Product;
+import DataStructures.receipt;
+
 
 public class CreateBillActivity extends AppCompatActivity {
 
@@ -39,7 +44,7 @@ public class CreateBillActivity extends AppCompatActivity {
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(CreateBillActivity.this,SearchProductActivity.class);
+                Intent intent=new Intent(CreateBillActivity.this, SearchProductActivity.class);
                 startActivity(intent);
             }
         });
@@ -48,7 +53,7 @@ public class CreateBillActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(CreateBillActivity.this, NFCBussinesActivity.class);
-                receipt reciept = new receipt();
+                DataStructures.receipt reciept = new receipt();
                 //TODO change the reciept fields by the textViews
                 Log.d("mytag", "i got here");
                 intent.putExtra("receipt", reciept.toString());

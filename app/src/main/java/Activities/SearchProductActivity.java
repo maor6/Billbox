@@ -4,12 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.SearchView;
-
-import com.example.myapplication.adapter;
+import com.example.myapplication.ProductAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -28,7 +25,7 @@ public class SearchProductActivity extends AppCompatActivity {
     ArrayList<Product> products;
     RecyclerView recyclerView;
     SearchView searchView;
-    com.example.myapplication.adapter adapter;
+    ProductAdapter productAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +38,7 @@ public class SearchProductActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         products = new ArrayList<Product>();
         //searchView = findViewById(R.id.searchProduct); // here is the problem
-        
+
         adapt();
     }
 
@@ -50,14 +47,14 @@ public class SearchProductActivity extends AppCompatActivity {
         and put it to recycler view
     */
     private void adapt() {
-        adapter = new adapter(this, products);
-        adapter.setOnItemClickListener(new adapter.OnItemClickListener() {
+        productAdapter = new ProductAdapter(this, products);
+        productAdapter.setOnItemClickListener(new ProductAdapter.OnItemClickListener(){
             @Override
             public void OnItemClick(int position) {
 
             }
         });
-        recyclerView.setAdapter(adapter);
+        recyclerView.setAdapter(productAdapter);
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -66,7 +63,7 @@ public class SearchProductActivity extends AppCompatActivity {
                     Product product = dataSnapshot1.getValue(Product.class);
                     products.add(product);
                 }
-                adapter.notifyDataSetChanged();
+                productAdapter.notifyDataSetChanged();
             }
 
             @Override

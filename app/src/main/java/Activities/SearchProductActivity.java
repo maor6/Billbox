@@ -29,7 +29,6 @@ public class SearchProductActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_product);
-
         firebaseAuth = FirebaseAuth.getInstance();
         ref = FirebaseDatabase.getInstance().getReference().child("Stock").child(firebaseAuth.getUid());
         recyclerView = findViewById(R.id.recycler);
@@ -37,7 +36,7 @@ public class SearchProductActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         products = new ArrayList<Product>();
         //searchView = findViewById(R.id.searchProduct); // here is the problem
-
+        
         adapt();
 
 //        productAdapter.setOnItemClickListener(new ProductAdapter.OnItemClickListener() {

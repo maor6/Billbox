@@ -15,7 +15,6 @@ import android.view.View;
 import android.widget.ProgressBar;
 
 import com.example.myapplication.MyAddapter;
-import com.example.myapplication.R;
 import DataStructures.receipt;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;

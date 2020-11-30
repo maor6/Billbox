@@ -5,13 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.SearchView;
-import android.widget.Toast;
 
-import com.example.myapplication.R;
 import com.example.myapplication.adapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -43,18 +40,17 @@ public class SearchProductActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recycler);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        Log.d("maytag", "i got here");
         products = new ArrayList<Product>();
         //searchView = findViewById(R.id.searchProduct); // here is the problem
 
         adapt();
-
-
     }
+
     /*
         this function get all the products from the database
         and put it to recycler view
     */
-
     private void adapt() {
         adapter = new adapter(this, products);
         adapter.setOnItemClickListener(new adapter.OnItemClickListener() {

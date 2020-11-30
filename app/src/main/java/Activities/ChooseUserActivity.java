@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.myapplication.R;
 
 public class ChooseUserActivity extends AppCompatActivity implements View.OnClickListener {
 

@@ -16,7 +16,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.myapplication.R;
 import DataStructures.receipt;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

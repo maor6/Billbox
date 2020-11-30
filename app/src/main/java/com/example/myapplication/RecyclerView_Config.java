@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import Activities.R;
 import DataStructures.receipt;
 
 public class RecyclerView_Config {

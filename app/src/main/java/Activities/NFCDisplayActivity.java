@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.widget.TextView;
 
-import com.example.myapplication.R;
 
 public class NFCDisplayActivity extends AppCompatActivity {
 

@@ -8,7 +8,6 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
-import com.example.myapplication.R;
 
 
 public class CreateBillActivity extends AppCompatActivity {
@@ -32,12 +31,12 @@ public class CreateBillActivity extends AppCompatActivity {
         finishBt.setOnClickListener(new View.OnClickListener() { // on "סיים" clicked
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(CreateBillActivity.this, NFCBussinesActivity.class);
+                Intent intent = new Intent(CreateBillActivity.this, NFCBussinesActivity.class);
 //                Product product = new Product();
 //                //TODO change the reciept fields by the textViews
 //                Log.d("mytag", "i got here");
 //                intent.putExtra("product", (Parcelable) product); //????? problem here
-//                startActivity(intent);
+                startActivity(intent);
             }
         });
     }

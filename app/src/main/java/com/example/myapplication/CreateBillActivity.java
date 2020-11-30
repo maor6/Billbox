@@ -24,6 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 import Activities.NFCBussinesActivity;
+import Activities.R;
 import Activities.SearchProductActivity;
 import DataStructures.Product;
 import DataStructures.receipt;

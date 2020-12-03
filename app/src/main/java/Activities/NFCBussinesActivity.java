@@ -10,6 +10,7 @@ import android.nfc.NfcAdapter;
 import android.nfc.NfcEvent;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -57,7 +58,7 @@ public class NFCBussinesActivity extends AppCompatActivity implements NfcAdapter
             return;
         }
 
-        if (!mAdapter.isEnabled()) {
+        if (!mAdapter.isEnabled()) { // go to NFC phone settings
             Toast.makeText(this, "Please enable NFC via Settings.", Toast.LENGTH_LONG).show();
             startActivity(new Intent(Settings.ACTION_NFC_SETTINGS));
         }
@@ -73,31 +74,36 @@ public class NFCBussinesActivity extends AppCompatActivity implements NfcAdapter
     }
 
 
-    public void pushReceipt(String phone) {
+    /*
+        this method search the correct customer from the DB
+        and push the receipt to the customer DB
+     */
+    public void pushReceipt(String phoneToSearch) {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String uid = "";
                 String currentPhone = "";
                 boolean found = false;
-                for (DataSnapshot id : dataSnapshot.getChildren()) {
+                for (DataSnapshot id : dataSnapshot.getChildren()) { // search the correct user
                     uid = id.getKey(); // get the UID of the customer
                     currentPhone = id.child("phoneNumber").getValue().toString();
-                    if (phone.equals(phoneNumber)) { // found the currect customer by phone
+                    if (phoneToSearch.equals(currentPhone)) { // found the correct customer by phone
                         found = true;
                         break;
                     }
                 }
-                if (found) { // Add the receipt to the currect customer
+
+                if (found) { // Add the receipt to the correct customer by phone number
                     DatabaseReference ReferenceCustomer = firebaseDatabase.getReference("Documents")
-                            .child("Receipt").child(uid); // get the referense of thr currect customer to push hin the receipt
-                    receipt = new receipt(" ,1000, , , ,pizza,25/11/2020");
+                            .child("Receipt").child(uid); // get the referense of the currect customer
+                    receipt = new receipt(" ,1000, , , ,pizza,25/11/2020"); //TODO get the actual receipt
                     ReferenceCustomer.push().setValue(receipt);
                     Toast.makeText(NFCBussinesActivity.this, "Send Complete.",
                             Toast.LENGTH_SHORT).show();
                     finish();
                 }
-                else {
+                else { // we don't find the phoneNumber of the customer
                     Toast.makeText(NFCBussinesActivity.this, "Send Faild.",
                             Toast.LENGTH_SHORT).show();
                 }

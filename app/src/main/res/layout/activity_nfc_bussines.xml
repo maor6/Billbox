@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.myapplication.Activities.NFCBussinesActivity">
+    tools:context="Activities.NFCBussinesActivity">
 
     <TextView
         android:id="@+id/textView7"
@@ -33,7 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="13dp"
-        android:text="המשך"
+        android:text="@string/countinue"
         app:layout_constraintBaseline_toBaselineOf="@+id/NFCBussinesPhoneNumber"
         app:layout_constraintEnd_toStartOf="@+id/NFCBussinesPhoneNumber">
 

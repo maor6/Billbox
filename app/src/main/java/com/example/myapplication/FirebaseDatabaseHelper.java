@@ -18,17 +18,17 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import DataStructures.receipt;
+import DataStructures.Receipt;
 
 public class FirebaseDatabaseHelper {
     private FirebaseDatabase mDatabase;
     private FirebaseAuth mAuth;
     private DatabaseReference mReferenceUser;
     private DatabaseReference mReferenceDoc;
-    private List<receipt> receipts = new ArrayList<>();
+    private List<Receipt> receipts = new ArrayList<>();
 
     public interface DataStatus {
-        void DataIsLoaded(List<receipt> receipt);
+        void DataIsLoaded(List<Receipt> receipt);
         void DataIsInserted();
         void DataIsUpdated();
         void DataIsDeleted();
@@ -46,7 +46,7 @@ public class FirebaseDatabaseHelper {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 receipts.clear();
                 for (DataSnapshot key : dataSnapshot.getChildren()) { //TODO fix the null in the list
-                    receipt doc = key.getValue(receipt.class);
+                    Receipt doc = key.getValue(Receipt.class);
                     receipts.add(doc);
                 }
                 dataStatus.DataIsLoaded(receipts);

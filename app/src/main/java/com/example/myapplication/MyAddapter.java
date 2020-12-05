@@ -12,11 +12,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import Activities.R;
-import DataStructures.receipt;
+import DataStructures.Receipt;
 
 public class MyAddapter extends RecyclerView.Adapter<MyAddapter.MyViewHolder> {
 
-    ArrayList<receipt> receipts;
+    ArrayList<Receipt> receipts;
     Context context;
     private OnItemClickListener mListener;
 
@@ -28,7 +28,7 @@ public class MyAddapter extends RecyclerView.Adapter<MyAddapter.MyViewHolder> {
         mListener = listener;
     }
 
-    public MyAddapter(Context context, ArrayList<receipt> receipts) {
+    public MyAddapter(Context context, ArrayList<Receipt> receipts) {
         this.receipts = receipts;
         this.context = context;
     }
@@ -42,7 +42,7 @@ public class MyAddapter extends RecyclerView.Adapter<MyAddapter.MyViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        receipt receipt = receipts.get(position);
+        Receipt receipt = receipts.get(position);
         holder.price.setText(receipt.getTotal_price() + "");
         holder.date.setText(receipt.getDate() + "");
         holder.bussinesname.setText(receipt.getBusiness());

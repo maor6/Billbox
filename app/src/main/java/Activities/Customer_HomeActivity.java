@@ -15,7 +15,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 
 import com.example.myapplication.MyAddapter;
-import DataStructures.receipt;
+import DataStructures.Receipt;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -34,7 +34,7 @@ public class Customer_HomeActivity extends AppCompatActivity implements Navigati
     RecyclerView recyclerView;
     ProgressBar progressBar;
     MyAddapter myAddapter;
-    ArrayList<receipt> receipts;
+    ArrayList<Receipt> receipts;
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     DatabaseReference databaseReference = firebaseDatabase.getReference().child("Documents").child("Receipt").child(firebaseAuth.getUid());
@@ -96,7 +96,7 @@ public class Customer_HomeActivity extends AppCompatActivity implements Navigati
                 receipts.clear();
                 progressBar.setVisibility(View.GONE);
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-                    receipt receipt = dataSnapshot1.getValue(receipt.class);
+                    Receipt receipt = dataSnapshot1.getValue(Receipt.class);
                     receipts.add(receipt);
                 }
                 myAddapter.notifyDataSetChanged();

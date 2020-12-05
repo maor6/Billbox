@@ -11,13 +11,14 @@ import android.nfc.NfcEvent;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import DataStructures.receipt;
+import DataStructures.Receipt;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,9 +28,9 @@ import com.google.firebase.database.ValueEventListener;
 
 public class NFCBussinesActivity extends AppCompatActivity implements NfcAdapter.CreateNdefMessageCallback {
 
-    DataStructures.receipt receipt;
+    DataStructures.Receipt receipt;
     TextView mEditText;
-    String rec;
+    String receiptString;
     Button enter;
     EditText phoneNumber;
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
@@ -41,16 +42,18 @@ public class NFCBussinesActivity extends AppCompatActivity implements NfcAdapter
         setContentView(R.layout.activity_nfc_bussines);
         phoneNumber = (EditText) findViewById(R.id.NFCBussinesPhoneNumber);
         enter = (Button) findViewById(R.id.NFC_bussines_continue);
+        mEditText = (TextView) findViewById(R.id.test1);
         enter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 pushReceipt(phoneNumber.getText().toString());
             }
         });
+
         Bundle extras = getIntent().getExtras(); // get the receipt
         if (extras != null) {
-            rec = extras.getString("receipt");
-            receipt = new receipt(rec);
+            receiptString = extras.getString("receipt");
+            receipt = new Receipt(receiptString);
         }
         NfcAdapter mAdapter = NfcAdapter.getDefaultAdapter(this);
         if (mAdapter == null) {
@@ -66,11 +69,10 @@ public class NFCBussinesActivity extends AppCompatActivity implements NfcAdapter
     }
 
     @Override
-    public NdefMessage createNdefMessage(NfcEvent nfcEvent) { // call when android beam invoked
+    public NdefMessage createNdefMessage(NfcEvent nfcEvent) { // called when android beam invoked
         String message = mEditText.getText().toString();
-        NdefRecord ndefRecord = NdefRecord.createMime("text/plain", rec.getBytes());
-        NdefMessage ndefMessage = new NdefMessage(ndefRecord);
-        return ndefMessage;
+        NdefRecord ndefRecord = NdefRecord.createMime("text/plain", message.getBytes());
+        return new NdefMessage(ndefRecord);
     }
 
 
@@ -96,15 +98,15 @@ public class NFCBussinesActivity extends AppCompatActivity implements NfcAdapter
 
                 if (found) { // Add the receipt to the correct customer by phone number
                     DatabaseReference ReferenceCustomer = firebaseDatabase.getReference("Documents")
-                            .child("Receipt").child(uid); // get the referense of the currect customer
-                    receipt = new receipt(" ,1000, , , ,pizza,25/11/2020"); //TODO get the actual receipt
+                            .child("Receipt").child(uid); // get the reference of the correct customer
+                    receipt = new Receipt(" ,1000, , , ,pizza,25/11/2020"); //TODO get the actual receipt
                     ReferenceCustomer.push().setValue(receipt);
                     Toast.makeText(NFCBussinesActivity.this, "Send Complete.",
                             Toast.LENGTH_SHORT).show();
                     finish();
                 }
                 else { // we don't find the phoneNumber of the customer
-                    Toast.makeText(NFCBussinesActivity.this, "Send Faild.",
+                    Toast.makeText(NFCBussinesActivity.this, "Send Failed.",
                             Toast.LENGTH_SHORT).show();
                 }
 

@@ -12,13 +12,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import Activities.R;
-import DataStructures.receipt;
+import DataStructures.Receipt;
 
 public class RecyclerView_Config {
     private Context context;
     private docAddapter docAddapter;
 
-    public void setConfig(RecyclerView recyclerView, Context context, List<receipt> receipts) {
+    public void setConfig(RecyclerView recyclerView, Context context, List<Receipt> receipts) {
         this.context = context;
         docAddapter = new docAddapter(receipts);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
@@ -37,7 +37,7 @@ public class RecyclerView_Config {
             price = (TextView) itemView.findViewById(R.id.recieptPrice);
         }
 
-        public void bind(receipt doc) {
+        public void bind(Receipt doc) {
             this.bussines_name.setText(doc.getBusiness());
             this.date.setText(doc.getBusiness());
             this.price.setText(price + "");
@@ -45,8 +45,8 @@ public class RecyclerView_Config {
     }
 
     class docAddapter extends RecyclerView.Adapter<ReceiptItemView> {
-        List<receipt> documentList;
-        public docAddapter(List<receipt> documentList) {
+        List<Receipt> documentList;
+        public docAddapter(List<Receipt> documentList) {
             this.documentList = documentList;
         }
 

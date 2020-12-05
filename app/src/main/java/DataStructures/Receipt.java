@@ -7,7 +7,7 @@ import java.util.Date;
 /**
  * This class is Billbox DataStructures.receipt format data type.
  */
-public class receipt {//extends document{ TODO why the extends coolapse the app???
+public class Receipt {//extends document{ TODO why the extends coolapse the app???
     private ArrayList<String> items;
     private double total_price;
     private double left_over;
@@ -31,7 +31,7 @@ public class receipt {//extends document{ TODO why the extends coolapse the app?
      * @param four_digits last 4 digits of credit card in case of credit.
      */
     //TODO Insert paying method to constructor as enum.
-  public receipt(String business, String customer, String date, double total_price, double left_over , int total_items, int four_digits)
+  public Receipt(String business, String customer, String date, double total_price, double left_over , int total_items, int four_digits)
   {
       //super(business, customer, date);
       this.four_digits = four_digits;
@@ -42,14 +42,14 @@ public class receipt {//extends document{ TODO why the extends coolapse the app?
       this.total_price = total_price;
   }
 
-  public receipt(String business, String date, double total_price) {
+  public Receipt(String business, String date, double total_price) {
       this.business = business;
       this.date = date;
       this.total_price = total_price;
   }
 
 
-    public receipt(String rec) { // constructor with String TODO set all the variables
+    public Receipt(String rec) { // constructor with String TODO set all the variables
         String[] s = rec.split(",");
         //this.items = s[0];
         this.total_price = Double.parseDouble(s[1]);
@@ -76,7 +76,7 @@ public class receipt {//extends document{ TODO why the extends coolapse the app?
         return date;
     }
 
-    public receipt() {
+    public Receipt() {
         super();
     }
 

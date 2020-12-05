@@ -4,7 +4,7 @@ import java.util.Date;
 /**
  * This class represent DataStructures.replacement DataStructures.document.
  */
-public class replacement extends refund{
+public class replacement extends Refund{
 
     private String new_item;             //TODO change it to item data type.
 

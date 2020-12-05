@@ -26,7 +26,7 @@
         android:hint="@string/enter_phone"
         android:inputType="phone"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+        app:layout_constraintTop_toBottomOf="@+id/test1" />
 
     <Button
         android:id="@+id/NFC_bussines_continue"

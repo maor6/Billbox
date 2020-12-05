@@ -1,13 +1,16 @@
 package DataStructures;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
 /**
- * This class is Billbox DataStructures.receipt format data type.
+ * This class is Billbox DataStructures.Receipt format data type.
  */
-public class Receipt {//extends document{ TODO why the extends coolapse the app???
+public class Receipt implements Parcelable {//extends document{ TODO why the extends coolapse the app???
     private ArrayList<String> items;
     private double total_price;
     private double left_over;
@@ -66,6 +69,44 @@ public class Receipt {//extends document{ TODO why the extends coolapse the app?
 //     * @param four_digits last 4 digits of credit card in case of credit
 //     */
 
+
+    protected Receipt(Parcel in) {
+        items = in.createStringArrayList();
+        total_price = in.readDouble();
+        left_over = in.readDouble();
+        total_items = in.readInt();
+        four_digits = in.readInt();
+        business = in.readString();
+        date = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeStringList(items);
+        dest.writeDouble(total_price);
+        dest.writeDouble(left_over);
+        dest.writeInt(total_items);
+        dest.writeInt(four_digits);
+        dest.writeString(business);
+        dest.writeString(date);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Receipt> CREATOR = new Creator<Receipt>() {
+        @Override
+        public Receipt createFromParcel(Parcel in) {
+            return new Receipt(in);
+        }
+
+        @Override
+        public Receipt[] newArray(int size) {
+            return new Receipt[size];
+        }
+    };
 
     public String getBusiness() {
         return business;

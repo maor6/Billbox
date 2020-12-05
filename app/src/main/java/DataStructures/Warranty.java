@@ -6,7 +6,7 @@ import java.util.Date;
 /**
  * This class represent DataStructures.warranty DataStructures.document.
  */
-public class warranty extends document {
+public class Warranty extends Document {
 
 
     private String item;  //TODO change it to item data type.
@@ -22,7 +22,7 @@ public class warranty extends document {
      * @param expiration date which the item loses its DataStructures.warranty
      * @param rules paragraph which set the DataStructures.warranty rules as array list of string.
      */
-    public warranty(String business, String customer, Date date, String item, Date expiration, ArrayList<String> rules)
+    public Warranty(String business, String customer, Date date, String item, Date expiration, ArrayList<String> rules)
     {
         super(business, customer, date);
         this.expiration = expiration;

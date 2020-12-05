@@ -5,13 +5,13 @@ import java.util.*;
 /**
  * This class represent a standard requirements in any Billbox DataStructures.document.
  */
-public abstract class document {
+public abstract class Document {
 
     private String business;
     private String customer;
     private Date date;
 
-    public document(String business, String customer, Date date)
+    public Document(String business, String customer, Date date)
     {
         this.business = "" + business;
         this.customer = "" + customer;
@@ -22,14 +22,14 @@ public abstract class document {
      * Copy constructor
      * @param document
      */
-    public document(document document)
+    public Document(Document document)
     {
        this.date = document.date;
        this.business = "" + document.business;
        this.customer = "" + document.customer;
     }
 
-    public document() {
+    public Document() {
     }
 
     public String getCustomer() {

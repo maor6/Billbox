@@ -14,7 +14,7 @@ public class Refund extends Receipt {
         this.original_deal_date = original_deal_date;
     }
 
-    public Refund(Date original_deal_date, document document, double total_price, double left_over, int total_items, int four_digits) {
+    public Refund(Date original_deal_date, Document document, double total_price, double left_over, int total_items, int four_digits) {
         //super(document, total_price, left_over, total_items, four_digits);
         this.original_deal_date = original_deal_date;
     }

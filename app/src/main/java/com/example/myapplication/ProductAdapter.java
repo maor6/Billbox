@@ -5,12 +5,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.ArrayList;
-
 import Activities.R;
 import DataStructures.Product;
 
@@ -19,6 +16,12 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
     ArrayList<Product> products;
     Context context;
     private OnItemClickListener mListener;
+
+
+    public ProductAdapter(Context context, ArrayList<Product> products) {
+        this.context = context;
+        this.products = products;
+    }
 
     @NonNull
     @Override
@@ -39,6 +42,11 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
         return products.size();
     }
 
+    public void filterList(ArrayList<Product> filteredList){
+        products = filteredList;
+        notifyDataSetChanged();
+    }
+
     public interface OnItemClickListener {
         void OnItemClick(int position);
     }
@@ -46,12 +54,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
     public void setOnItemClickListener(OnItemClickListener listener) {
         mListener = listener;
     }
-
-    public ProductAdapter(Context context, ArrayList<Product> products) {
-        this.context = context;
-        this.products = products;
-    }
-
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
@@ -72,11 +74,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
                     }
                 }
             });
-
-
         }
     }
-
-
-
 }

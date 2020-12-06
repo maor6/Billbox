@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
-import android.widget.SearchView;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.widget.EditText;
 import com.example.myapplication.ProductAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -13,9 +15,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
 import java.util.ArrayList;
-
 import DataStructures.Product;
 
 public class SearchProductActivity extends AppCompatActivity {
@@ -24,22 +24,50 @@ public class SearchProductActivity extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     ArrayList<Product> products;
     RecyclerView recyclerView;
-    SearchView searchView;
+//    SearchView searchView;
+    EditText searchView;
     ProductAdapter productAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_product);
+
         firebaseAuth = FirebaseAuth.getInstance();
         ref = FirebaseDatabase.getInstance().getReference().child("Stock").child(firebaseAuth.getUid());
-        recyclerView = findViewById(R.id.recycler);
+        recyclerView = findViewById(R.id.productsRecycler);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         products = new ArrayList<Product>();
-        //searchView = findViewById(R.id.searchProduct); // here is the problem
+        searchView = findViewById(R.id.search); // here is the problem
+        searchView.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                filter(s.toString());
+            }
+        });
 
         adapt();
+    }
+
+    private void filter(String s){
+        ArrayList<Product> filteredList = new ArrayList<>();
+        for (Product item : products){
+            if(item.getName().toLowerCase().contains(s.toLowerCase())){
+                filteredList.add(item);
+            }
+        }
+        productAdapter.filterList(filteredList);
     }
 
     /*
@@ -73,7 +101,7 @@ public class SearchProductActivity extends AppCompatActivity {
         });
     }
 
-//    @Override
+    //    @Override
 //    protected void onStart() {
 //        super.onStart();
 //        if(searchView != null){

@@ -7,11 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
-import android.widget.SearchView;
 import com.example.myapplication.ProductAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -19,9 +15,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
 import java.util.ArrayList;
-
 import DataStructures.Product;
 
 public class SearchProductActivity extends AppCompatActivity {
@@ -41,11 +35,10 @@ public class SearchProductActivity extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
         ref = FirebaseDatabase.getInstance().getReference().child("Stock").child(firebaseAuth.getUid());
-        recyclerView = findViewById(R.id.recycle);
+        recyclerView = findViewById(R.id.productsRecycler);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         products = new ArrayList<Product>();
-
         searchView = findViewById(R.id.search); // here is the problem
         searchView.addTextChangedListener(new TextWatcher() {
             @Override

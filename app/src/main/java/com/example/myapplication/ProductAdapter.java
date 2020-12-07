@@ -35,6 +35,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
         Product product = products.get(position);
         holder.productName.setText(product.getName());
         holder.barcode.setText(product.getBarCode()+ "");
+        holder.price.setText(product.getPrice()+"");
     }
 
     @Override
@@ -57,11 +58,12 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView productName, barcode;
+        TextView productName, barcode, price;
         public MyViewHolder(@NonNull View itemView, OnItemClickListener listener) {
             super(itemView);
             productName = (TextView) itemView.findViewById(R.id.productName);
             barcode = (TextView) itemView.findViewById(R.id.barcode);
+            price = (TextView) itemView.findViewById(R.id.product_price);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

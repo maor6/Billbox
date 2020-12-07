@@ -7,7 +7,10 @@ import android.nfc.NdefMessage;
 import android.nfc.NfcAdapter;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.util.Log;
 import android.widget.TextView;
+
+import DataStructures.Receipt;
 
 
 public class NFCDisplayActivity extends AppCompatActivity {
@@ -28,8 +31,11 @@ public class NFCDisplayActivity extends AppCompatActivity {
             Parcelable[] rawMessages = intent.getParcelableArrayExtra(
                     NfcAdapter.EXTRA_NDEF_MESSAGES);
 
+
             NdefMessage message = (NdefMessage) rawMessages[0]; // only one message transferred
+
             mTextView.setText(new String(message.getRecords()[0].getPayload()));
+
         } else
             mTextView.setText("Waiting for NDEF Message");
 

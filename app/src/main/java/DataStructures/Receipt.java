@@ -3,6 +3,12 @@ package DataStructures;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -11,17 +17,15 @@ import java.util.Date;
  * This class is Billbox DataStructures.Receipt format data type.
  */
 public class Receipt implements Parcelable {//extends document{ TODO why the extends coolapse the app???
+
     private ArrayList<String> items;
     private double total_price;
     private double left_over;
     private int total_items;
     private int four_digits;
-
-
-    private enum paying_method {CREDIT ,CASH ,TRANSFER ,CHEQUE};
+     private enum paying_method {CREDIT ,CASH ,TRANSFER ,CHEQUE};
     private String business;
     private String date;
-
 
     /**
      * Constructor
@@ -108,10 +112,15 @@ public class Receipt implements Parcelable {//extends document{ TODO why the ext
         }
     };
 
+
+
+
+  /*
+  ---------------Getters and Setters---------------
+   */
     public String getBusiness() {
         return business;
     }
-
 
     public String getDate() {
         return date;
@@ -155,7 +164,7 @@ public class Receipt implements Parcelable {//extends document{ TODO why the ext
 
     @Override
     public String toString() {
-        return "" + items +
+        return "" +// items +
                 "," + total_price +
                 "," + left_over +
                 "," + total_items +

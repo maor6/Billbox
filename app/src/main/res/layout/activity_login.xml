@@ -66,7 +66,7 @@
 <!--        android:textColor="#FFF"-->
 <!--        android:textSize="15dp" />-->
     <CheckBox
-        android:id="@+id/checkBox"
+        android:id="@+id/rememberMELogin"
         android:layout_width="wrap_content"
         android:layout_height="60dp"
         android:layout_above="@+id/cardLogin"
@@ -74,7 +74,7 @@
         android:layout_marginBottom="10dp"
         android:buttonTint="@color/cardview_light_background"
         android:textColor="#FFF"
-        android:text="זכור אותי" />
+        android:text="@string/rememberME" />
 
 
     <androidx.cardview.widget.CardView

@@ -5,10 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -35,6 +38,7 @@ public class Login_Activity extends AppCompatActivity implements View.OnClickLis
     CardView loginbt;
     CardView cardGoogle;
     ProgressBar progressBar;
+    CheckBox rememberMe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,13 +53,34 @@ public class Login_Activity extends AppCompatActivity implements View.OnClickLis
         cardGoogle = (CardView) findViewById(R.id.cardGoogle);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         progressBar.setVisibility(View.GONE);
+        rememberMe = (CheckBox) findViewById(R.id.rememberMELogin);
+
+        rememberMe.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+
+                if (buttonView.isChecked()) {
+                    editor.putBoolean("rememberLogin", true);
+                    editor.putString("mail", editEmail.getText().toString());
+                    editor.putString("password", editPass.getText().toString());
+                }
+                else {
+                    editor.putBoolean("rememberLogin", false);
+
+                }
+                editor.apply();
+            }
+        }); // listen to checkbox
 
         registerbt.setOnClickListener(this);
         loginbt.setOnClickListener(this);
         cardGoogle.setOnClickListener(this);
 
-        //TODO if the current user already signin
+        checkCheckBox();
     }
+
 
     @Override
     public void onStart() {
@@ -64,6 +89,7 @@ public class Login_Activity extends AppCompatActivity implements View.OnClickLis
         FirebaseUser currentUser = mAuth.getCurrentUser();
 //        updateUI(currentUser);
     }
+
 
     @Override
     public void onClick(View view) {
@@ -79,19 +105,43 @@ public class Login_Activity extends AppCompatActivity implements View.OnClickLis
                         Toast.LENGTH_SHORT).show();
             }
             else {
-                progressBar.setVisibility(View.VISIBLE);
                 LogIn(email,pass); // sign in with firebase
             }
         }
 
+        //TODO implement sign in with google
         if (view.getId() == cardGoogle.getId()) { // sign in with google
 
         }
     }
 
+       /*
+        this method will check if the "remember me" CheckBox is on,
+        and if it is, it will logIn automatically
+     */
+
+    private void checkCheckBox() {
+        SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
+        if (preferences.getBoolean("rememberLogin", false)) {
+            String mail = preferences.getString("mail", "");
+            String password =  preferences.getString("password", "");
+            editEmail.setText(mail);
+            editPass.setText(password);
+            rememberMe.setChecked(true);
+            LogIn(mail, password);
+        }
+    }
+
+
+    /*
+        this method will log in the system'
+        and check which activity to open business or customer
+     */
+
     private void LogIn (String email, String pass) {
+        progressBar.setVisibility(View.VISIBLE);
         mAuth.signInWithEmailAndPassword(email, pass)
-                .addOnCompleteListener(Login_Activity.this,  new OnCompleteListener<AuthResult>() {
+                .addOnCompleteListener(Login_Activity.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {

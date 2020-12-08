@@ -1,6 +1,9 @@
 package DataStructures;
 
-public class Product {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Product implements Parcelable {
     String name;
     int barCode;
     double price;
@@ -14,6 +17,25 @@ public class Product {
         this.price = price;
         this.amount = amount;
     }
+
+    protected Product(Parcel in) {
+        name = in.readString();
+        barCode = in.readInt();
+        price = in.readDouble();
+        amount = in.readInt();
+    }
+
+    public static final Creator<Product> CREATOR = new Creator<Product>() {
+        @Override
+        public Product createFromParcel(Parcel in) {
+            return new Product(in);
+        }
+
+        @Override
+        public Product[] newArray(int size) {
+            return new Product[size];
+        }
+    };
 
     public String getName() {
         return name;
@@ -48,4 +70,16 @@ public class Product {
     }
 
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(name);
+        parcel.writeInt(barCode);
+        parcel.writeDouble(price);
+        parcel.writeInt(amount);
+    }
 }

@@ -114,10 +114,6 @@
     <string name="test1">test1</string>
     <string name="NavigationDrawerOpen">openNavDrawer</string>
     <string name="closeNavDrawer">closeNavDrawer</string>
-    <string name="total">סה\"כ</string>
-    <string name="cost">מחיר</string>
-    <string name="amount">כמות</string>
-    <string name="description">תיאור</string>
     <string name="findP">חפש מוצר</string>
     <string name="enter_phone">הכנס מספר טלפון</string>
     <string name="warranty">תעודת אחריות</string>
@@ -128,4 +124,10 @@
     <string name="ok">אישור</string>
     <string name="countinue">המשך</string>
     <string name="rememberME">זכור אותי</string>
+    <string name="total">סה"כ</string>
+    <string name="price">מחיר</string>
+    <string name="amount">כמות</string>
+    <string name="description">תיאור</string>
+    <string name="cost">cost</string>
+    <string name="total_to_pay">סהכ לתשלום:</string>
 </resources>

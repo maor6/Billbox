@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -45,18 +47,15 @@ public class SearchProductActivity extends AppCompatActivity {
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
             }
-
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
             }
-
             @Override
             public void afterTextChanged(Editable s) {
                 filter(s.toString());
             }
         });
-
         adapt();
     }
 
@@ -79,7 +78,10 @@ public class SearchProductActivity extends AppCompatActivity {
         productAdapter.setOnItemClickListener(new ProductAdapter.OnItemClickListener(){
             @Override
             public void OnItemClick(int position) {
-
+                Intent intent = new Intent();
+                intent.putExtra("product", products.get(position));
+                setResult(RESULT_OK, intent);
+                finish();
             }
         });
         recyclerView.setAdapter(productAdapter);
@@ -93,7 +95,6 @@ public class SearchProductActivity extends AppCompatActivity {
                 }
                 productAdapter.notifyDataSetChanged();
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 

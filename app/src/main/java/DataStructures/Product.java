@@ -3,7 +3,9 @@ package DataStructures;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Product implements Parcelable {
+import java.io.Serializable;
+
+public class Product implements Serializable {
     String name;
     int barCode;
     double price;
@@ -25,17 +27,8 @@ public class Product implements Parcelable {
         amount = in.readInt();
     }
 
-    public static final Creator<Product> CREATOR = new Creator<Product>() {
-        @Override
-        public Product createFromParcel(Parcel in) {
-            return new Product(in);
-        }
 
-        @Override
-        public Product[] newArray(int size) {
-            return new Product[size];
-        }
-    };
+    /*--------------Getters and Setters--------------*/
 
     public String getName() {
         return name;
@@ -67,19 +60,5 @@ public class Product implements Parcelable {
 
     public void setAmount(int amount) {
         this.amount = amount;
-    }
-
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(name);
-        parcel.writeInt(barCode);
-        parcel.writeDouble(price);
-        parcel.writeInt(amount);
     }
 }

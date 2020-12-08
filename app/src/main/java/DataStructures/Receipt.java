@@ -16,21 +16,20 @@ import java.util.Date;
 /**
  * This class is Billbox DataStructures.Receipt format data type.
  */
-public class Receipt implements Parcelable {//extends document{ TODO why the extends coolapse the app???
+public class Receipt implements Serializable {//extends document{ TODO why the extends coolapse the app???
 
-    private ArrayList<String> items;
+    private ArrayList<Product> items;
     private double total_price;
     private double left_over;
     private int total_items;
     private int four_digits;
-     private enum paying_method {CREDIT ,CASH ,TRANSFER ,CHEQUE};
+    private enum paying_method {CREDIT ,CASH ,TRANSFER ,CHEQUE};
     private String business;
     private String date;
 
     /**
      * Constructor
      * @param business name as string
-     * @param customer name as string
      * @param date purchase date
      * @param total_price total deal cost as double
      * @param left_over left over in double in case of cash.
@@ -38,8 +37,7 @@ public class Receipt implements Parcelable {//extends document{ TODO why the ext
      * @param four_digits last 4 digits of credit card in case of credit.
      */
     //TODO Insert paying method to constructor as enum.
-  public Receipt(String business, String customer, String date, double total_price, double left_over , int total_items, int four_digits)
-  {
+  public Receipt(String business, String date, double total_price, double left_over, int total_items, int four_digits) {
       //super(business, customer, date);
       this.four_digits = four_digits;
       this.total_items = total_items;
@@ -49,10 +47,11 @@ public class Receipt implements Parcelable {//extends document{ TODO why the ext
       this.total_price = total_price;
   }
 
-  public Receipt(String business, String date, double total_price) {
+  public Receipt(String business, String date, double total_price, int total_items) {
       this.business = business;
       this.date = date;
       this.total_price = total_price;
+      this.total_items = total_items;
   }
 
 
@@ -74,50 +73,10 @@ public class Receipt implements Parcelable {//extends document{ TODO why the ext
 //     */
 
 
-    protected Receipt(Parcel in) {
-        items = in.createStringArrayList();
-        total_price = in.readDouble();
-        left_over = in.readDouble();
-        total_items = in.readInt();
-        four_digits = in.readInt();
-        business = in.readString();
-        date = in.readString();
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeStringList(items);
-        dest.writeDouble(total_price);
-        dest.writeDouble(left_over);
-        dest.writeInt(total_items);
-        dest.writeInt(four_digits);
-        dest.writeString(business);
-        dest.writeString(date);
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    public static final Creator<Receipt> CREATOR = new Creator<Receipt>() {
-        @Override
-        public Receipt createFromParcel(Parcel in) {
-            return new Receipt(in);
-        }
-
-        @Override
-        public Receipt[] newArray(int size) {
-            return new Receipt[size];
-        }
-    };
 
 
+  /*---------------Getters and Setters---------------*/
 
-
-  /*
-  ---------------Getters and Setters---------------
-   */
     public String getBusiness() {
         return business;
     }
@@ -161,6 +120,10 @@ public class Receipt implements Parcelable {//extends document{ TODO why the ext
     public void setFour_digits(int four_digits) {
         this.four_digits = four_digits;
     }
+
+    public ArrayList<Product> getItems() { return items; }
+
+    public void setItems(ArrayList<Product> items) { this.items = items; }
 
     @Override
     public String toString() {

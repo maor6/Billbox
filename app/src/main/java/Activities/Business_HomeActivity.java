@@ -22,7 +22,7 @@ public class Business_HomeActivity extends AppCompatActivity implements View.OnC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_business_home);
 
-        inventory_bt = (CardView) findViewById(R.id.docs_bt);
+        inventory_bt = (CardView) findViewById(R.id.inventoryManage);
         docs_bt = (CardView) findViewById(R.id.docs_bt);
         new_doc_bt = (CardView) findViewById(R.id.newDoc_bt);
         info_bt = (CardView) findViewById(R.id.info_bt);
@@ -35,7 +35,9 @@ public class Business_HomeActivity extends AppCompatActivity implements View.OnC
 
     @Override
     public void onClick(View v) {
-        if(v.getId() == inventory_bt.getId()){}
+        if(v.getId() == inventory_bt.getId()){
+            startActivity(new Intent(Business_HomeActivity.this, InventoryManageActivity.class));
+        }
         if(v.getId() == docs_bt.getId()){}
         if(v.getId() == new_doc_bt.getId()){
             startActivity(new Intent(Business_HomeActivity.this, CreateDocsActivity.class));

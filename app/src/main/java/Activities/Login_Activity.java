@@ -17,6 +17,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.myapplication.FirebaseDatabaseHelper;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -54,7 +55,6 @@ public class Login_Activity extends AppCompatActivity implements View.OnClickLis
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         progressBar.setVisibility(View.GONE);
         rememberMe = (CheckBox) findViewById(R.id.rememberMELogin);
-
         rememberMe.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -68,7 +68,6 @@ public class Login_Activity extends AppCompatActivity implements View.OnClickLis
                 }
                 else {
                     editor.putBoolean("rememberLogin", false);
-
                 }
                 editor.apply();
             }
@@ -175,7 +174,6 @@ public class Login_Activity extends AppCompatActivity implements View.OnClickLis
                             Toast.makeText(Login_Activity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                             // updateUI(null);
-                            // ...
                         }
                     }
 

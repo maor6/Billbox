@@ -78,8 +78,6 @@ public class CreateBillActivity extends AppCompatActivity {
                 Intent intent = new Intent(CreateBillActivity.this, NFCBussinesActivity.class);
                 Receipt receipt = new Receipt(business.getBusiness_name(), "12/2/2000", totalToPay, 1);
                 receipt.setItems(products);
-                Log.d("mytag", "businessNameFirst " + receipt.getBusiness());
-                Log.d("mytag", "dateFirst " + receipt.getDate());
                 intent.putExtra("receipt", receipt);
                 startActivity(intent);
             }

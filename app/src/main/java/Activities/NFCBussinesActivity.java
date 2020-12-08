@@ -9,7 +9,6 @@ import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
 import android.nfc.NfcEvent;
 import android.os.Bundle;
-import android.os.Parcel;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
@@ -17,17 +16,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import DataStructures.Receipt;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import java.io.IOException;
-
-
 
 public class NFCBussinesActivity extends AppCompatActivity implements NfcAdapter.CreateNdefMessageCallback {
 
@@ -54,7 +48,6 @@ public class NFCBussinesActivity extends AppCompatActivity implements NfcAdapter
                 pushReceipt(phoneNumber.getText().toString(), receipt);
             }
         });
-
 
         NfcAdapter mAdapter = NfcAdapter.getDefaultAdapter(this);
         if (mAdapter == null) {

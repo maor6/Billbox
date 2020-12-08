@@ -130,4 +130,18 @@
     <string name="description">תיאור</string>
     <string name="cost">cost</string>
     <string name="total_to_pay">סהכ לתשלום:</string>
+    <string name="business_info">פרטי העסק</string>
+    <string name="addToInventory">הוסף מוצר למלאי</string>
+    <string name="insert_name">הכנס שם פרטי</string>
+    <string name="insert_last_name">הכנס שם משפחה</string>
+    <string name="insert_email">הכנס כתובת מייל</string>
+    <string name="insert_phone">הכנס מספר טלפון</string>
+    <string name="insert_pass">בחר סיסמה</string>
+    <string name="again_pass">אימות סיסמה</string>
+    <string name="continue1">המשך</string>
+    <string name="ImAgree">אני מסכים לתנאי השימוש</string>
+    <string name="insert_product_name">הכנס תיאור מוצר</string>
+    <string name="insertBarcode">הכנס מספר ברקוד</string>
+    <string name="insert_price">הכנס מחיר</string>
+    <string name="add">הוסף</string>
 </resources>

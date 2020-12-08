@@ -38,7 +38,6 @@ public class Register_Bussines_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register__bussines);
 
-
         name = (EditText) findViewById(R.id.editText);
         lastName = (EditText) findViewById(R.id.editText2);
         bussinesName = (EditText) findViewById(R.id.bussinesname);
@@ -48,7 +47,6 @@ public class Register_Bussines_Activity extends AppCompatActivity {
         pass = (EditText) findViewById(R.id.editText5);
         verPass = (EditText) findViewById(R.id.editText6);
         loading = (ProgressBar) findViewById(R.id.progressBar2);
-
         mauth = FirebaseAuth.getInstance();
         loading.setVisibility(View.GONE);
         continuebt = (Button) findViewById(R.id.continue_reg);
@@ -92,10 +90,10 @@ public class Register_Bussines_Activity extends AppCompatActivity {
                             User user = new Business(name.getText().toString(), lastName.getText().toString()
                                     , email.getText().toString(), pass.getText().toString(),
                                     bussinesName.getText().toString(), adrress.getText().toString()
-                                    , phoneNumber.getText().toString()); //true for bussines
+                                    , phoneNumber.getText().toString());
 
                             FirebaseDatabase.getInstance().getReference("Users").child("Bussines")
-                                    .child(mauth.getCurrentUser().getUid()) // get the user uniqe id
+                                    .child(mauth.getCurrentUser().getUid()) // get the user unique id
                                     .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {

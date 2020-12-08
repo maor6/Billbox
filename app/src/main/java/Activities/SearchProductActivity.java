@@ -47,18 +47,15 @@ public class SearchProductActivity extends AppCompatActivity {
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
             }
-
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
             }
-
             @Override
             public void afterTextChanged(Editable s) {
                 filter(s.toString());
             }
         });
-
         adapt();
     }
 
@@ -98,7 +95,6 @@ public class SearchProductActivity extends AppCompatActivity {
                 }
                 productAdapter.notifyDataSetChanged();
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 

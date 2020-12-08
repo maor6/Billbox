@@ -54,7 +54,6 @@ public class CreateBillActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {

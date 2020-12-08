@@ -15,6 +15,7 @@ public class Business extends User {
     private LinkedList<String> documents; //TODO change it to firebase.
     private ArrayList<String> items; //TODO change it to firebase.
 
+
     /**
      * Constructor
      * @param name the name of the business owner.
@@ -23,10 +24,14 @@ public class Business extends User {
      * @param business_name the business name.
      * @param address the address of the business.
      */
-    public Business(String name, String last_name, String email, String password,  String business_name, String address, String phoneNumber){
+    public Business(String name, String last_name, String email, String password, String business_name, String address, String phoneNumber){
         super(name, last_name, email, password, phoneNumber);
         this.business_name = business_name;
         this.address = address;
+    }
+
+    public Business() {
+        super();
     }
 
     public String getAddress(){

@@ -9,7 +9,6 @@ public abstract class User {
     private String last_name;
     private String email;
     private String password;
-    private String id;
     private String phoneNumber;
 
     /**
@@ -23,7 +22,6 @@ public abstract class User {
         this.email = email;
         this.password = password;
         this.phoneNumber = phoneNumber;
-
     }
 
     public User(){}
@@ -42,8 +40,6 @@ public abstract class User {
         return this.password;
     }
 
-    public String getId() { return this.id;}
-
     public void setName(String name) {
         this.name = name;
     }
@@ -58,10 +54,6 @@ public abstract class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getPhoneNumber() { return phoneNumber;}

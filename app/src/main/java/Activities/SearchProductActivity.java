@@ -26,7 +26,6 @@ public class SearchProductActivity extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     ArrayList<Product> products;
     RecyclerView recyclerView;
-//    SearchView searchView;
     EditText searchView;
     ProductAdapter productAdapter;
 

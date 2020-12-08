@@ -35,8 +35,8 @@
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="0dp"
                 android:text="@string/openAccount"
-                android:textColor="@color/cardview_dark_background"
-                android:textSize="17dp" />
+                android:textColor="#000"
+                android:textSize="17sp" />
 
             <EditText
                 android:id="@+id/editText"
@@ -47,10 +47,10 @@
                 android:layout_marginStart="40dp"
                 android:background="@drawable/edt_back"
                 android:ems="10"
-                android:hint="הכנס שם פרטי"
+                android:hint="@string/insert_name"
                 android:inputType="textPersonName"
                 android:padding="8dp"
-                android:textSize="14dp" />
+                android:textSize="14sp" />
 
             <EditText
                 android:id="@+id/editText2"
@@ -60,10 +60,10 @@
                 android:layout_marginStart="40dp"
                 android:background="@drawable/edt_back"
                 android:ems="10"
-                android:hint="הכנס שם משפחה"
+                android:hint="@string/insert_last_name"
                 android:inputType="textPersonName"
                 android:padding="8dp"
-                android:textSize="14dp" />
+                android:textSize="14sp" />
 
             <EditText
                 android:id="@+id/editText3"
@@ -73,10 +73,10 @@
                 android:layout_marginStart="40dp"
                 android:background="@drawable/edt_back"
                 android:ems="10"
-                android:hint="הכנס כתובת מייל"
+                android:hint="@string/insert_email"
                 android:inputType="textEmailAddress"
                 android:padding="8dp"
-                android:textSize="14dp" />
+                android:textSize="14sp" />
 
             <EditText
                 android:id="@+id/editText4"
@@ -86,10 +86,10 @@
                 android:layout_marginStart="40dp"
                 android:background="@drawable/edt_back"
                 android:ems="10"
-                android:hint="הכנס מספר טלפון"
+                android:hint="@string/insert_phone"
                 android:inputType="phone"
                 android:padding="8dp"
-                android:textSize="14dp" />
+                android:textSize="14sp" />
 
             <EditText
                 android:id="@+id/editText5"
@@ -99,10 +99,10 @@
                 android:layout_marginStart="40dp"
                 android:background="@drawable/edt_back"
                 android:ems="10"
-                android:hint="בחר סיסמה"
+                android:hint="@string/insert_pass"
                 android:inputType="textPassword"
                 android:padding="8dp"
-                android:textSize="14dp" />
+                android:textSize="14sp" />
 
 
             <EditText
@@ -113,10 +113,10 @@
                 android:layout_marginStart="40dp"
                 android:background="@drawable/edt_back"
                 android:ems="10"
-                android:hint="אימות סיסמה"
+                android:hint="@string/again_pass"
                 android:inputType="textPassword"
                 android:padding="8dp"
-                android:textSize="14dp" />
+                android:textSize="14sp" />
 
             <CheckBox
                 android:id="@+id/checkBox"
@@ -126,7 +126,7 @@
                 android:layout_marginTop="40dp"
                 android:layout_marginRight="70dp"
                 android:layout_marginBottom="50dp"
-                android:text="אני מסכים לתנאי השימוש" />
+                android:text="@string/ImAgree" />
 
             <Button
                 android:id="@+id/continue_reg"
@@ -137,9 +137,9 @@
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="6dp"
                 android:background="#4CAF50"
-                android:text="המשך"
+                android:text="@string/continue1"
                 android:textColor="#fff"
-                android:textSize="25dp" />
+                android:textSize="25sp" />
 
             <ProgressBar
                 android:id="@+id/progressBarReg"

@@ -47,8 +47,8 @@ public class Register_Bussines_Activity extends AppCompatActivity {
         pass = (EditText) findViewById(R.id.editText5);
         verPass = (EditText) findViewById(R.id.editText6);
         loading = (ProgressBar) findViewById(R.id.progressBar2);
-        mauth = FirebaseAuth.getInstance();
         loading.setVisibility(View.GONE);
+        mauth = FirebaseAuth.getInstance();
         continuebt = (Button) findViewById(R.id.continue_reg);
 
         continuebt.setOnClickListener(new View.OnClickListener() { // button continue pressed
@@ -101,9 +101,6 @@ public class Register_Bussines_Activity extends AppCompatActivity {
                                         Toast.makeText(Register_Bussines_Activity.this, "Successfully registered",
                                                 Toast.LENGTH_LONG).show();
                                     }
-                                    else {
-
-                                    }
                                 }
                             });
 
@@ -113,7 +110,6 @@ public class Register_Bussines_Activity extends AppCompatActivity {
                         }
                     }
                 });
-
     }
 }
 

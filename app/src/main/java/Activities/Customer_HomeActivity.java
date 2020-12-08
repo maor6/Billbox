@@ -14,8 +14,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 
-import com.example.myapplication.MyAddapter;
 import DataStructures.Receipt;
+
+import com.example.myapplication.ReceiptAdapter;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -33,7 +34,7 @@ public class Customer_HomeActivity extends AppCompatActivity implements Navigati
     NavigationView navigationView;
     RecyclerView recyclerView;
     ProgressBar progressBar;
-    MyAddapter myAddapter;
+    ReceiptAdapter receiptAdapter;
     ArrayList<Receipt> receipts;
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
@@ -80,15 +81,15 @@ public class Customer_HomeActivity extends AppCompatActivity implements Navigati
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         receipts = new ArrayList<>();
-        myAddapter = new MyAddapter(this, receipts);
-        myAddapter.setOnItemClickListener(new MyAddapter.OnItemClickListener() { // listen when clicked on receipt
+        receiptAdapter = new ReceiptAdapter(this, receipts);
+        receiptAdapter.setOnItemClickListener(new ReceiptAdapter.OnItemClickListener() { // listen when clicked on receipt
             @Override
             public void OnItemClick(int position) {
                 //TODO open activity that open the full receipt info
                 startActivity(new Intent(Customer_HomeActivity.this, Business_HomeActivity.class));
             }
         });
-        recyclerView.setAdapter(myAddapter);
+        recyclerView.setAdapter(receiptAdapter);
 
         databaseReference.addValueEventListener(new ValueEventListener() { //TODO needed to be handle by FirebaseDatabaseHelper
             @Override
@@ -99,7 +100,7 @@ public class Customer_HomeActivity extends AppCompatActivity implements Navigati
                     Receipt receipt = dataSnapshot1.getValue(Receipt.class);
                     receipts.add(receipt);
                 }
-                myAddapter.notifyDataSetChanged();
+                receiptAdapter.notifyDataSetChanged();
             }
 
             @Override

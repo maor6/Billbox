@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import Activities.R;
 import DataStructures.Receipt;
 
-public class MyAddapter extends RecyclerView.Adapter<MyAddapter.MyViewHolder> {
+public class ReceiptAdapter extends RecyclerView.Adapter<ReceiptAdapter.MyViewHolder> {
 
     ArrayList<Receipt> receipts;
     Context context;
@@ -28,7 +28,7 @@ public class MyAddapter extends RecyclerView.Adapter<MyAddapter.MyViewHolder> {
         mListener = listener;
     }
 
-    public MyAddapter(Context context, ArrayList<Receipt> receipts) {
+    public ReceiptAdapter(Context context, ArrayList<Receipt> receipts) {
         this.receipts = receipts;
         this.context = context;
     }

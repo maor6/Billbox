@@ -96,7 +96,6 @@ public class NFCBussinesActivity extends AppCompatActivity implements NfcAdapter
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Log.d("mytag", "2 " + receipt);
                 String uid = "";
                 String currentPhone = "";
                 boolean found = false;

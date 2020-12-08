@@ -130,4 +130,5 @@
     <string name="description">תיאור</string>
     <string name="cost">cost</string>
     <string name="total_to_pay">סהכ לתשלום:</string>
+    <string name="business_info">פרטי העסק</string>
 </resources>

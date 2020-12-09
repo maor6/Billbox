@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?><manifest xmlns:android="http://schemas.android.com/apk/res/android"
 package="Activities">
 <uses-permission android:name="android.permission.INTERNET" />
 <uses-permission android:name="android.permission.NFC" />
@@ -48,6 +47,10 @@ package="Activities">
     <activity
         android:name=".ChooseUserActivity"
         android:theme="@style/AppTheme.NoActionBar" />
+
+<!--    <activity-->
+<!--        android:name="Activities.phoneTestActivity" />-->
+
     <activity
         android:name=".Business_HomeActivity"
         android:theme="@style/AppTheme.NoActionBar" />
@@ -67,3 +70,4 @@ package="Activities">
     </activity>
 </application>
 </manifest>
+

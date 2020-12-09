@@ -144,4 +144,11 @@
     <string name="insertBarcode">הכנס מספר ברקוד</string>
     <string name="insert_price">הכנס מחיר</string>
     <string name="add">הוסף</string>
+    <string name="agreeForTerms">אני מסכים לתנאי השימוש</string>
+    <string name="verPassword">אימות סיסמה</string>
+    <string name="enterEmail">הכנס כתובת מייל</string>
+    <string name="enterAddress">הכנס כתובת</string>
+    <string name="enterPassword">בחר סיסמה</string>
+    <string name="enterLastName">הכנס שם משפחה</string>
+    <string name="enterFirstName">הכנס שם פרטי</string>
 </resources>

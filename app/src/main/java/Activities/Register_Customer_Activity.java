@@ -7,6 +7,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -25,6 +26,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.hbb20.CountryCodePicker;
 
@@ -54,7 +56,7 @@ public class Register_Customer_Activity extends AppCompatActivity {
 
         init();
 
-        buttonReg.setOnClickListener(new View.OnClickListener() {
+        buttonReg.setOnClickListener(new View.OnClickListener() { // activate when clicked המשך
             @Override
             public void onClick(View v) {
                 if (TextUtils.isEmpty(email.getText().toString())) { // mail is empty
@@ -63,13 +65,13 @@ public class Register_Customer_Activity extends AppCompatActivity {
                     return;
                 }
 
-                if (pass.getText().toString().length() < 6) { // password lenght need to be more then 6
+                if (pass.getText().toString().length() < 6) { // password length need to be more then 6
                     pass.setError("Password at least 6 Characters");
                     pass.requestFocus();
                     return;
                 }
 
-                if (!pass.getText().toString().equals(verPass.getText().toString())) { // the passswords do not match
+                if (!pass.getText().toString().equals(verPass.getText().toString())) { // the passwords do not match
                     verPass.setError("Password at least 6 Characters");
                     verPass.requestFocus();
                     return;
@@ -134,7 +136,7 @@ public class Register_Customer_Activity extends AppCompatActivity {
     }
 
     /**
-     * this method creat Account with email and password on DB
+     * this method create Account with email and password on DB
      */
 
     public void createAccount() {
@@ -148,18 +150,11 @@ public class Register_Customer_Activity extends AppCompatActivity {
                                     countryCodePicker.getSelectedCountryCodeWithPlus()
                                             + phoneNumber.getText().toString());
 
-                            FirebaseDatabase.getInstance().getReference("Users").child("Customer") // upload customer to database
-                                    .child(mauth.getUid()) // get the user uniqe id
-                                    .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    progressBar.setVisibility(View.GONE);
-                                    if (task.isSuccessful()) {
-                                        Toast.makeText(Register_Customer_Activity.this, "Successfully registered",
+                            DatabaseReference referenceCustomer = FirebaseDatabase.getInstance().getReference().child("Users")
+                                    .child("Customer").child(mauth.getUid()); // get the reference of the correct customer
+                            referenceCustomer.push().setValue(user);
+                            Toast.makeText(Register_Customer_Activity.this, "Successfully registered",
                                                 Toast.LENGTH_LONG).show();
-                                    }
-                                }
-                            });
 
                         } else {
                             Toast.makeText(Register_Customer_Activity.this, "Registration Error",

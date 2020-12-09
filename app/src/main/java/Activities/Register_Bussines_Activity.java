@@ -24,6 +24,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.hbb20.CountryCodePicker;
 
@@ -149,17 +150,12 @@ public class Register_Bussines_Activity extends AppCompatActivity {
                                     ,countryCodePicker.getSelectedCountryCodeWithPlus()
                                     + phoneNumber.getText().toString());
 
-                            FirebaseDatabase.getInstance().getReference("Users").child("Bussines")
-                                    .child(mauth.getCurrentUser().getUid()) // get the user unique id
-                                    .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if (task.isSuccessful()) {
-                                        Toast.makeText(Register_Bussines_Activity.this, "Successfully registered",
+                            DatabaseReference referenceCustomer = FirebaseDatabase.getInstance().getReference().child("Users")
+                                    .child("Bussines").child(mauth.getUid()); // get the reference of the correct customer
+                            referenceCustomer.push().setValue(user);
+                            Toast.makeText(Register_Bussines_Activity.this, "Successfully registered",
                                                 Toast.LENGTH_LONG).show();
-                                    }
-                                }
-                            });
+
 
                         } else {
                             Toast.makeText(Register_Bussines_Activity.this, "Registration Error",

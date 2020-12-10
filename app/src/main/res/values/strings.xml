@@ -9,8 +9,8 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
-    <string name="billbox">BillBox</string>
-    <string name="hello_user">שלום \'משתמש\'</string>
+    <string name="billbox">Billbox</string>
+    <string name="hello_user"> \'משתמש\'</string>
     <string name="button">Button</string>
     <string name="my_last_docs">המסמכים האחרונים שלי</string>
     <string name="im_bussines">אני עסק</string>
@@ -116,7 +116,6 @@
     <string name="closeNavDrawer">closeNavDrawer</string>
     <string name="findP">חפש מוצר</string>
     <string name="enter_phone">הכנס מספר טלפון</string>
-    <string name="warranty">תעודת אחריות</string>
     <string name="purchaseDate">תאריך רכישה</string>
     <string name="warrantyDuration">משך האחריות</string>
     <string name="address">כתובת</string>
@@ -129,7 +128,7 @@
     <string name="amount">כמות</string>
     <string name="description">תיאור</string>
     <string name="cost">cost</string>
-    <string name="total_to_pay">סה\"כ לתשלום:</string>
+    <string name="total_to_pay">סה\"כ לתשלום: 0</string>
     <string name="business_info">פרטי העסק</string>
     <string name="addToInventory">הוסף מוצר למלאי</string>
     <string name="insert_name">הכנס שם פרטי</string>
@@ -156,4 +155,8 @@
     <string name="notes">הערות:</string>
     <string name="textview">TextView</string>
     <string name="pay_with">שולם ב:</string>
+    <string name="receipt">חשבונית מס-קבלה</string>
+    <string name="warranty">תעודת אחריות</string>
+    <string name="replacement">החלפה</string>
+    <string name="refund">זיכוי כספי</string>
 </resources>

@@ -72,8 +72,19 @@ public class Customer_HomeActivity extends AppCompatActivity implements Navigati
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+        TextView helloUser = (TextView) findViewById(R.id.helloUser); //to put yhe user name
+        DatabaseReference referenceForName = firebaseDatabase.getReference().child("Users").child("Customer").child(firebaseAuth.getUid()).child("name");
+        referenceForName.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                helloUser.setText("שלום " + dataSnapshot.getValue().toString());
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
+            }
+        });
         //TODO use this ->FirebaseDatabaseHelper firebaseDatabaseHelper = new FirebaseDatabaseHelper();
 
         getReceipts();

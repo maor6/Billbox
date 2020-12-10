@@ -94,7 +94,7 @@ public class CreateBillActivity extends AppCompatActivity {
                 Product product = (Product) data.getSerializableExtra("product");
                 this.products.add(product);
                 totalToPay += product.getPrice();
-                totalPriceView.setText(String.format("%.2f", totalToPay));
+                totalPriceView.setText("סה\"כ לתשלום: " + String.format("%.2f", totalToPay)+"₪");
                 productsListAdapter = new ProductsListAdapter(this, R.layout.bill_products_list, products);
                 itemsList.setAdapter(productsListAdapter);
             }

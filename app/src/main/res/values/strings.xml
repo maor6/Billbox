@@ -143,7 +143,6 @@
     <string name="insert_product_name">הכנס תיאור מוצר</string>
     <string name="insertBarcode">הכנס מספר ברקוד</string>
     <string name="insert_price">הכנס מחיר</string>
-    <string name="add">הוסף</string>
     <string name="agreeForTerms">אני מסכים לתנאי השימוש</string>
     <string name="verPassword">אימות סיסמה</string>
     <string name="enterEmail">הכנס כתובת מייל</string>
@@ -151,6 +150,7 @@
     <string name="enterPassword">בחר סיסמה</string>
     <string name="enterLastName">הכנס שם משפחה</string>
     <string name="enterFirstName">הכנס שם פרטי</string>
+    <string name="add">הוסף</string>
     <string name="taxes">מע\"מ 17%:</string>
     <string name="cash">מזומן</string>
     <string name="notes">הערות:</string>

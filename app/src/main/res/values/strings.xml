@@ -129,7 +129,7 @@
     <string name="amount">כמות</string>
     <string name="description">תיאור</string>
     <string name="cost">cost</string>
-    <string name="total_to_pay">סהכ לתשלום:</string>
+    <string name="total_to_pay">סה\"כ לתשלום:</string>
     <string name="business_info">פרטי העסק</string>
     <string name="addToInventory">הוסף מוצר למלאי</string>
     <string name="insert_name">הכנס שם פרטי</string>
@@ -151,4 +151,9 @@
     <string name="enterPassword">בחר סיסמה</string>
     <string name="enterLastName">הכנס שם משפחה</string>
     <string name="enterFirstName">הכנס שם פרטי</string>
+    <string name="taxes">מע\"מ 17%:</string>
+    <string name="cash">מזומן</string>
+    <string name="notes">הערות:</string>
+    <string name="textview">TextView</string>
+    <string name="pay_with">שולם ב:</string>
 </resources>

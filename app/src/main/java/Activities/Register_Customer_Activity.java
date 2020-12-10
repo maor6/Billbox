@@ -152,7 +152,7 @@ public class Register_Customer_Activity extends AppCompatActivity {
 
                             DatabaseReference referenceCustomer = FirebaseDatabase.getInstance().getReference().child("Users")
                                     .child("Customer").child(mauth.getUid()); // get the reference of the correct customer
-                            referenceCustomer.push().setValue(user);
+                            referenceCustomer.setValue(user);
                             Toast.makeText(Register_Customer_Activity.this, "Successfully registered",
                                                 Toast.LENGTH_LONG).show();
 

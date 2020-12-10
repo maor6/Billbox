@@ -7,6 +7,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -151,11 +152,10 @@ public class Register_Bussines_Activity extends AppCompatActivity {
                                     + phoneNumber.getText().toString());
 
                             DatabaseReference referenceCustomer = FirebaseDatabase.getInstance().getReference().child("Users")
-                                    .child("Bussines").child(mauth.getUid()); // get the reference of the correct customer
-                            referenceCustomer.push().setValue(user);
+                                    .child("Bussines").child(mauth.getUid()); // get the reference of the correct business
+                            referenceCustomer.setValue(user);
                             Toast.makeText(Register_Bussines_Activity.this, "Successfully registered",
-                                                Toast.LENGTH_LONG).show();
-
+                                    Toast.LENGTH_LONG).show();
 
                         } else {
                             Toast.makeText(Register_Bussines_Activity.this, "Registration Error",

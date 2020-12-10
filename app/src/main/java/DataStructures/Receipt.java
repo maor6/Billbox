@@ -1,17 +1,8 @@
 package DataStructures;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.ObjectInput;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * This class is Billbox DataStructures.Receipt format data type.
@@ -26,6 +17,10 @@ public class Receipt implements Serializable {//extends document{ TODO why the e
     private enum paying_method {CREDIT ,CASH ,TRANSFER ,CHEQUE};
     private String business;
     private String date;
+    private String businessAddress;
+    private String businessPhone;
+    private String notes;
+    private String id;
 
     /**
      * Constructor
@@ -47,13 +42,28 @@ public class Receipt implements Serializable {//extends document{ TODO why the e
       this.total_price = total_price;
   }
 
-  public Receipt(String business, String date, double total_price, int total_items) {
+    /**
+     * Constructor
+     * @param business
+     * @param date
+     * @param total_price
+     * @param total_items
+     * @param businessAddress
+     * @param businessPhone
+     * @param notes
+     * @param id
+     */
+  public Receipt(String business, String date, double total_price, int total_items, String businessAddress, String businessPhone, String notes, String id) {
+      DecimalFormat df = new DecimalFormat("#.##");
       this.business = business;
       this.date = date;
       this.total_price = total_price;
       this.total_items = total_items;
+      this.businessAddress = businessAddress;
+      this.businessPhone = businessPhone;
+      this.notes = notes;
+      this.id = id;
   }
-
 
     public Receipt(String rec) { // constructor with String TODO set all the variables
         String[] s = rec.split(",");
@@ -103,6 +113,46 @@ public class Receipt implements Serializable {//extends document{ TODO why the e
 
     public int getFour_digits() {
         return four_digits;
+    }
+
+    public void setBusiness(String business) {
+        this.business = business;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getBusinessAddress() {
+        return businessAddress;
+    }
+
+    public void setBusinessAddress(String businessAddress) {
+        this.businessAddress = businessAddress;
+    }
+
+    public String getBusinessPhone() {
+        return businessPhone;
+    }
+
+    public void setBusinessPhone(String businessPhone) {
+        this.businessPhone = businessPhone;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public void setTotal_price(double total_price) {

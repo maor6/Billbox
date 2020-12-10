@@ -14,6 +14,7 @@ public class Business extends User {
     private String address;
     private LinkedList<String> documents; //TODO change it to firebase.
     private ArrayList<String> items; //TODO change it to firebase.
+    private String billNotes;
 
 
     /**
@@ -28,14 +29,43 @@ public class Business extends User {
         super(name, last_name, email, password, phoneNumber);
         this.business_name = business_name;
         this.address = address;
+        this.billNotes= "";
     }
 
     public Business() {
         super();
     }
 
+    public void addNotes(String notes){
+       this.billNotes = notes;
+    }
+
     public String getAddress(){
         return this.address;
+    }
+
+    public LinkedList<String> getDocuments() {
+        return documents;
+    }
+
+    public void setDocuments(LinkedList<String> documents) {
+        this.documents = documents;
+    }
+
+    public ArrayList<String> getItems() {
+        return items;
+    }
+
+    public void setItems(ArrayList<String> items) {
+        this.items = items;
+    }
+
+    public String getBillNotes() {
+        return billNotes;
+    }
+
+    public void setBillNotes(String billNotes) {
+        this.billNotes = billNotes;
     }
 
     public String getBusiness_name(){

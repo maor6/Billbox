@@ -32,9 +32,7 @@ import com.hbb20.CountryCodePicker;
 
 import java.util.concurrent.TimeUnit;
 
-
 public class Register_Customer_Activity extends AppCompatActivity {
-
 
     FirebaseAuth mauth;
     ProgressBar progressBar;
@@ -81,7 +79,6 @@ public class Register_Customer_Activity extends AppCompatActivity {
                 openVerificationDialog();
                 String number = countryCodePicker.getSelectedCountryCodeWithPlus() + phoneNumber.getText().toString();
                 sendVerificationCode(number); // send sms to full phoneNumber
-                //createAccount();
             }
         });
     }
@@ -127,13 +124,6 @@ public class Register_Customer_Activity extends AppCompatActivity {
         dialog.show();
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mauth.getCurrentUser();
-        //updateUI(currentUser);
-    }
 
     /**
      * this method create Account with email and password on DB
@@ -150,11 +140,15 @@ public class Register_Customer_Activity extends AppCompatActivity {
                                     countryCodePicker.getSelectedCountryCodeWithPlus()
                                             + phoneNumber.getText().toString());
 
-                            DatabaseReference referenceCustomer = FirebaseDatabase.getInstance().getReference().child("Users")
-                                    .child("Customer").child(mauth.getUid()); // get the reference of the correct customer
-                            referenceCustomer.setValue(user);
+                            DatabaseReference referenceCustomer = FirebaseDatabase.getInstance().getReference();
+                            referenceCustomer.child("Users")
+                                    .child("Customer").child(mauth.getUid()).setValue(user); // get the reference of the correct customer
                             Toast.makeText(Register_Customer_Activity.this, "Successfully registered",
                                                 Toast.LENGTH_LONG).show();
+
+                            Intent intent = new Intent(Register_Customer_Activity.this, Login_Activity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // clear the activity stack
+                            startActivity(intent);
 
                         } else {
                             Toast.makeText(Register_Customer_Activity.this, "Registration Error",
@@ -178,15 +172,12 @@ public class Register_Customer_Activity extends AppCompatActivity {
         }
 
         @Override
-        public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) { // activate when complete
+        public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
             EditText codeText = (EditText) dialog.findViewById(R.id.verificationCode);
             String code = phoneAuthCredential.getSmsCode();
             if (code != null) {
                 codeText.setText(code);
                 createAccount();
-                Intent intent = new Intent(Register_Customer_Activity.this, Login_Activity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // clear the activity stack
-                startActivity(intent);
             }
         }
 

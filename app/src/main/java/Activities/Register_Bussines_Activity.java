@@ -29,6 +29,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.hbb20.CountryCodePicker;
 
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 public class Register_Bussines_Activity extends AppCompatActivity {
@@ -151,11 +152,15 @@ public class Register_Bussines_Activity extends AppCompatActivity {
                                     ,countryCodePicker.getSelectedCountryCodeWithPlus()
                                     + phoneNumber.getText().toString());
 
-                            DatabaseReference referenceCustomer = FirebaseDatabase.getInstance().getReference().child("Users")
-                                    .child("Bussines").child(mauth.getUid()); // get the reference of the correct business
-                            referenceCustomer.setValue(user);
+                            DatabaseReference referenceBusiness = FirebaseDatabase.getInstance().getReference();
+                            referenceBusiness.child("Users").child("Bussines")
+                                    .child(Objects.requireNonNull(mauth.getUid())).setValue(user); // get the reference of the correct business
                             Toast.makeText(Register_Bussines_Activity.this, "Successfully registered",
                                     Toast.LENGTH_LONG).show();
+
+                            Intent intent = new Intent(Register_Bussines_Activity.this, Login_Activity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // clear the activity stack
+                            startActivity(intent); // go to logIn activity
 
                         } else {
                             Toast.makeText(Register_Bussines_Activity.this, "Registration Error",
@@ -163,16 +168,6 @@ public class Register_Bussines_Activity extends AppCompatActivity {
                         }
                     }
                 });
-    }
-
-
-    private void verifyCode(String code) {
-        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationId, code);
-        Toast.makeText(Register_Bussines_Activity.this, "verifyCode", Toast.LENGTH_LONG).show();
-
-        //signIN
-        //start new activity to verify the code (suppose to do automatically)
-        // intent set flag with NEW_taks | CLEAR_TASK will empty the stack of activity
     }
 
     private void sendVerificationCode(String number) { // send the SMS
@@ -193,11 +188,7 @@ public class Register_Bussines_Activity extends AppCompatActivity {
             String code = phoneAuthCredential.getSmsCode();
             if (code != null) {
                 codeText.setText(code);
-                //verifyCode(code);
                 createAccount();
-                Intent intent = new Intent(Register_Bussines_Activity.this, Login_Activity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // clear the activity stack
-                startActivity(intent);
             }
         }
 

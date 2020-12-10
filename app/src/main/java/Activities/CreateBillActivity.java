@@ -76,7 +76,8 @@ public class CreateBillActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(CreateBillActivity.this, NFCBussinesActivity.class);
-                Receipt receipt = new Receipt(business.getBusiness_name(), "12/2/2000", totalToPay, 1);
+                Receipt receipt = new Receipt(business.getBusiness_name(), "12/2/2000", totalToPay, 1,
+                        business.getAddress(), business.getPhoneNumber(), "hiii", "10293");
                 receipt.setItems(products);
                 intent.putExtra("receipt", receipt);
                 startActivity(intent);
@@ -93,7 +94,7 @@ public class CreateBillActivity extends AppCompatActivity {
                 Product product = (Product) data.getSerializableExtra("product");
                 this.products.add(product);
                 totalToPay += product.getPrice();
-                totalPriceView.setText(String.valueOf(totalToPay));
+                totalPriceView.setText(String.format("%.2f", totalToPay));
                 productsListAdapter = new ProductsListAdapter(this, R.layout.bill_products_list, products);
                 itemsList.setAdapter(productsListAdapter);
             }

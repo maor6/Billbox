@@ -9,7 +9,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="#4DB351"
+        android:background="#5BBF80"
         app:layout_anchor="@+id/appBarLayout"
         app:popupTheme="@style/AppTheme.PopupOverlay">
 
@@ -116,7 +116,7 @@
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:layout_gravity="bottom"
-        android:background="#33BF39"
+        android:background="#5BBF80"
         app:layout_scrollFlags="scroll|enterAlways">
         <RelativeLayout
             android:layout_width="match_parent"
@@ -126,21 +126,11 @@
                 android:id="@+id/totalToPay"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0"
-                android:layout_marginStart="190dp"
-                android:textSize="24sp"
-                android:layout_centerVertical="true"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/totalView"
                 android:text="@string/total_to_pay"
                 android:textSize="24sp"
-                android:textStyle="bold"
-                android:layout_marginStart="25dp"
-                android:layout_centerVertical="true">
-            </TextView>
+                android:layout_centerVertical="true"
+                android:textColor="#000"/>
+
 
             <Button
                 android:id="@+id/finishbt"

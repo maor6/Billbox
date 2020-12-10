@@ -73,7 +73,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="105dp"
-                android:text="@string/cost"
+                android:text="@string/price"
                 android:textSize="17sp"
                 android:textStyle="bold" />
 
@@ -92,7 +92,7 @@
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="66dp"
+        android:layout_height="130dp"
         android:layout_marginTop="110dp">
 
         <LinearLayout
@@ -101,52 +101,26 @@
             android:orientation="vertical" />
     </ScrollView>
 
-    <ScrollView
-
-        android:layout_width="match_parent"
-        android:layout_height="66dp"
-        android:layout_below="@+id/scrollView"
-        android:layout_marginTop="58dp"
-        tools:ignore="ExtraText">
-        android:layout_marginTop="120dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
-    </ScrollView>
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_below="@+id/scrollView"
-        android:layout_marginTop="235dp"
-        tools:ignore="ExtraText">
-        android:layout_marginTop="120dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
-    </ScrollView>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/dateValues"
         android:layout_width="350dp"
         android:layout_height="30dp"
-        android:layout_above="@+id/scrollView"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="-220dp">
+        android:layout_marginTop="250dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_gravity="center">
 
             <TextView
                 android:id="@+id/purchaseDate"
-                android:layout_width="152dp"
+                android:layout_width="154dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="170dp"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="181dp"
+                android:gravity="center"
                 android:text="@string/purchaseDate"
                 android:textSize="17sp"
                 android:textStyle="bold" />
@@ -155,40 +129,18 @@
                 android:id="@+id/warrantyDuration"
                 android:layout_width="140dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="40dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="3dp"
+                android:gravity="center"
                 android:text="@string/warrantyDuration"
                 android:textSize="17sp"
                 android:textStyle="bold" />
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
-    <androidx.cardview.widget.CardView
-        android:id="@+id/bussinesInfo"
-        android:layout_width="350dp"
-        android:layout_height="30dp"
-        android:layout_above="@+id/scrollView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="-390dp">
 
-        <TextView
-            android:id="@+id/bussinesAddress"
-            android:layout_width="140dp"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_marginStart="40dp"
-            android:text="@string/address"
-            android:textSize="17sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/bussinesName"
-            android:layout_width="340dp"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_marginStart="40dp"
-            android:text="@string/businessName"
-            android:textSize="17sp"
-            android:textStyle="bold" />
-
-    </androidx.cardview.widget.CardView>
 </com.google.android.material.circularreveal.CircularRevealRelativeLayout>

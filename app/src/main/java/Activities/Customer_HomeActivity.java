@@ -8,14 +8,19 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import DataStructures.Receipt;
 
+import com.example.myapplication.ProductsListAdapter;
 import com.example.myapplication.ReceiptAdapter;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,6 +31,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 public class Customer_HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -38,7 +45,8 @@ public class Customer_HomeActivity extends AppCompatActivity implements Navigati
     ArrayList<Receipt> receipts;
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-    DatabaseReference databaseReference = firebaseDatabase.getReference().child("Documents").child("Receipt").child(firebaseAuth.getUid());
+    ProductsListAdapter productsListAdapter;
+    DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +59,7 @@ public class Customer_HomeActivity extends AppCompatActivity implements Navigati
 
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
+        databaseReference = firebaseDatabase.getReference().child("Documents").child("Receipt").child(Objects.requireNonNull(firebaseAuth.getUid()));
 
         ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(
                 this,
@@ -85,8 +94,7 @@ public class Customer_HomeActivity extends AppCompatActivity implements Navigati
         receiptAdapter.setOnItemClickListener(new ReceiptAdapter.OnItemClickListener() { // listen when clicked on receipt
             @Override
             public void OnItemClick(int position) {
-                //TODO open activity that open the full receipt info
-                startActivity(new Intent(Customer_HomeActivity.this, Business_HomeActivity.class));
+                openBillDialog(receipts.get(position));
             }
         });
         recyclerView.setAdapter(receiptAdapter);
@@ -108,6 +116,36 @@ public class Customer_HomeActivity extends AppCompatActivity implements Navigati
 
             }
         });
+    }
+
+    private void openBillDialog(Receipt receipt) {
+        final Dialog dialog = new Dialog(Customer_HomeActivity.this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(true); //able to cancel the dialog by clicking outside the dialog
+        dialog.setContentView(R.layout.dialog_full_reciept);
+
+        TextView businessName = dialog.findViewById(R.id.businessNameBill);
+        TextView businessAddress = dialog.findViewById(R.id.businessAddressBill);
+        TextView businessPhone = dialog.findViewById(R.id.businessPhoneBill);
+        TextView businessTime = dialog.findViewById(R.id.timeBill);
+        TextView receiptId = dialog.findViewById(R.id.billNumber);
+        TextView taxes = dialog.findViewById(R.id.taxesBill);
+        TextView total = dialog.findViewById(R.id.totalWithTaxesBill);
+        TextView notes = dialog.findViewById(R.id.notesBill);
+        ListView productsList = dialog.findViewById(R.id.productsListBill);
+
+        businessName.setText(receipt.getBusiness());
+        businessAddress.setText(receipt.getBusinessAddress());
+        businessPhone.setText(receipt.getBusinessPhone());
+        businessTime.setText(receipt.getDate());
+        receiptId.setText(receipt.getId());
+        taxes.setText(String.format("%.2f", (receipt.getTotal_price()*0.17)));
+        total.setText(String.format("%.2f", receipt.getTotal_price()));
+        notes.setText(receipt.getNotes());
+        productsListAdapter = new ProductsListAdapter(this, R.layout.bill_products_list, receipt.getItems());
+        productsList.setAdapter(productsListAdapter);
+
+        dialog.show();
     }
 
     @Override

@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 /**
- * This is an activity class which operate the business screen.
+ * This is an activity class which operate the business-main screen.
  */
 public class Business_HomeActivity extends AppCompatActivity implements View.OnClickListener {
 

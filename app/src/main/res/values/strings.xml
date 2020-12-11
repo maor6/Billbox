@@ -160,4 +160,8 @@
     <string name="replacement">החלפה</string>
     <string name="refund">זיכוי כספי</string>
     <string name="add_product">הוסף מוצר</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">התחבר</string>
+    <string name="loginwithgoogle">התחבר עם Google</string>
 </resources>

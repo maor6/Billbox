@@ -13,13 +13,13 @@
         android:id="@+id/info_bt"
         android:layout_width="120dp"
         android:layout_height="120dp"
-        app:cardBackgroundColor="#5BBF80"
+        app:cardBackgroundColor="#7DDA8A"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.243"
+        app:layout_constraintHorizontal_bias="0.195"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.426">
+        app:layout_constraintVertical_bias="0.423">
 
         <ImageView
             android:layout_width="80dp"
@@ -42,7 +42,7 @@
         android:id="@+id/newDoc_bt"
         android:layout_width="120dp"
         android:layout_height="120dp"
-        app:cardBackgroundColor="#5BBF80"
+        app:cardBackgroundColor="#7DDA8A"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.79"
@@ -70,13 +70,13 @@
         android:id="@+id/docs_bt"
         android:layout_width="120dp"
         android:layout_height="120dp"
-        app:cardBackgroundColor="#5BBF80"
+        app:cardBackgroundColor="#7DDA8A"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.79"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.699">
+        app:layout_constraintVertical_bias="0.695">
 
         <ImageView
             android:layout_width="80dp"
@@ -98,13 +98,13 @@
         android:id="@+id/inventoryManage"
         android:layout_width="120dp"
         android:layout_height="120dp"
-        app:cardBackgroundColor="#5BBF80"
+        app:cardBackgroundColor="#7DDA8A"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.243"
+        app:layout_constraintHorizontal_bias="0.195"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.701">
+        app:layout_constraintVertical_bias="0.697">
 
         <ImageView
             android:layout_width="80dp"
@@ -123,23 +123,21 @@
     </androidx.cardview.widget.CardView>
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:layout_marginBottom="190dp"
+        android:layout_width="96dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="16dp"
         android:text="Billbox"
-        android:textSize="36sp"
+        android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.088"
+        app:layout_constraintHorizontal_bias="0.05"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello user"
+        android:text="שלום"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

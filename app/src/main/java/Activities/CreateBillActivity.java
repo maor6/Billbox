@@ -1,14 +1,15 @@
 package Activities;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import com.example.myapplication.ProductsListAdapter;
@@ -19,12 +20,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import DataStructures.Business;
 import DataStructures.Product;
 import DataStructures.Receipt;
-import DataStructures.User;
 
 
 public class CreateBillActivity extends AppCompatActivity {
@@ -39,6 +41,7 @@ public class CreateBillActivity extends AppCompatActivity {
     DatabaseReference ref;
     FirebaseAuth firebaseAuth;
     Business business;
+    public static int receiptID = 1000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,11 +76,16 @@ public class CreateBillActivity extends AppCompatActivity {
 
         finishBt = (Button) findViewById(R.id.finishbt);
         finishBt.setOnClickListener(new View.OnClickListener() { // on "סיים" clicked
+
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yy");
+                LocalDate localDate = LocalDate.now();
                 Intent intent = new Intent(CreateBillActivity.this, NFCBussinesActivity.class);
-                Receipt receipt = new Receipt(business.getBusiness_name(), "12/2/2000", totalToPay, 1,
-                        business.getAddress(), business.getPhoneNumber(), "hiii", "10293");
+                Receipt receipt = new Receipt(business.getBusiness_name(), dtf.format(localDate), totalToPay,
+                        business.getAddress(), business.getPhoneNumber(), business.getBillNotes(), String.valueOf(receiptID));
+                receiptID++;
                 receipt.setItems(products);
                 intent.putExtra("receipt", receipt);
                 startActivity(intent);

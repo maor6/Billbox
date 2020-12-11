@@ -6,26 +6,32 @@
     android:layout_height="match_parent"
     tools:context="Activities.NFCBussinesActivity">
 
+
     <TextView
         android:id="@+id/test1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/test1"
-        android:textSize="100sp"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:text="הכנס את מספר הטלפון של הלקוח לשליחת המסמך"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.209" />
 
     <EditText
         android:id="@+id/NFCBussinesPhoneNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
         android:autofillHints="@string/enter_phone"
         android:hint="@string/enter_phone"
         android:inputType="phone"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.728"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/test1" />
 
     <Button
@@ -34,8 +40,10 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="13dp"
         android:text="@string/countinue"
+        android:background="#7DDA8A"
         app:layout_constraintBaseline_toBaselineOf="@+id/NFCBussinesPhoneNumber"
-        app:layout_constraintEnd_toStartOf="@+id/NFCBussinesPhoneNumber">
+        app:layout_constraintEnd_toStartOf="@+id/NFCBussinesPhoneNumber"
+        app:layout_constraintStart_toStartOf="parent">
 
     </Button>
 

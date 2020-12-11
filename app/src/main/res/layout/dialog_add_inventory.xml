@@ -59,7 +59,7 @@
         android:id="@+id/addFromDialog"
         android:layout_width="110dp"
         android:layout_height="wrap_content"
-        android:background="#80BF83"
+        android:background="#7DDA8A"
         android:text="@string/add"
         android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="parent"

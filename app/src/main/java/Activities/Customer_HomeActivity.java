@@ -142,17 +142,17 @@ public class Customer_HomeActivity extends AppCompatActivity implements Navigati
         TextView receiptId = dialog.findViewById(R.id.billNumber);
         TextView taxes = dialog.findViewById(R.id.taxesBill);
         TextView total = dialog.findViewById(R.id.totalWithTaxesBill);
-        TextView notes = dialog.findViewById(R.id.notesBill);
+        TextView notes = dialog.findViewById(R.id.notes);
         ListView productsList = dialog.findViewById(R.id.productsListBill);
 
         businessName.setText(receipt.getBusiness());
         businessAddress.setText(receipt.getBusinessAddress());
         businessPhone.setText(receipt.getBusinessPhone());
         businessTime.setText(receipt.getDate());
-        receiptId.setText(receipt.getId());
-        taxes.setText(String.format("%.2f", (receipt.getTotal_price()*0.17)));
-        total.setText(String.format("%.2f", receipt.getTotal_price()));
-        notes.setText(receipt.getNotes());
+        receiptId.setText("מספר-"+receipt.getId());
+        taxes.setText("מע\"מ 17%: " + String.format("%.2f", (receipt.getTotal_price()*0.17)));
+        total.setText("סה\"כ לתשלום: " + String.format("%.2f", receipt.getTotal_price()));
+        notes.setText(  "הערות: " + receipt.getNotes());
         productsListAdapter = new ProductsListAdapter(this, R.layout.bill_products_list, receipt.getItems());
         productsList.setAdapter(productsListAdapter);
 

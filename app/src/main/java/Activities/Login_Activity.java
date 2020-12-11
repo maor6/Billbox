@@ -105,20 +105,20 @@ public class Login_Activity extends AppCompatActivity implements View.OnClickLis
                 progressBar.setVisibility(View.GONE);
             }
             else {
-                LogIn(email,pass); // sign in with firebase
+                LogIn(email,pass); // login with firebase
             }
 
         }
 
         //TODO implement sign in with google
-        if (view.getId() == cardGoogle.getId()) { // sign in with google
+        if (view.getId() == cardGoogle.getId()) { // TODO sign in with google
 
         }
     }
 
        /**
         this method will check if the "remember me" CheckBox is on,
-        and if it is, it will logIn automatically
+        and logIn automatically
      **/
 
     private void checkCheckBox() {

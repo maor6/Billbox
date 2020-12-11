@@ -182,42 +182,6 @@
         app:layout_constraintVertical_bias="0.937" />
 
     <TextView
-        android:id="@+id/notesBill"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/textview"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.279"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.939" />
-
-    <TextView
-        android:id="@+id/taxes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/taxes"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.696"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.775" />
-
-    <TextView
-        android:id="@+id/totalWithTaxes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/total_to_pay"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.665"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.814" />
-
-    <TextView
         android:id="@+id/taxesBill"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -236,8 +200,8 @@
         android:text="@string/textview"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.929"
+        app:layout_constraintHorizontal_bias="0.93"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.812" />
+        app:layout_constraintVertical_bias="0.847" />
 </androidx.constraintlayout.widget.ConstraintLayout>

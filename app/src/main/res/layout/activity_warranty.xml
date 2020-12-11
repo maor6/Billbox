@@ -9,7 +9,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="75dp"
-        android:background="#4DB351"
+        android:background="#7DDA8A"
         app:layout_anchor="@+id/appBarLayout"
         app:popupTheme="@style/AppTheme.PopupOverlay">
 

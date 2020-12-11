@@ -12,7 +12,6 @@ public class Receipt implements Serializable {//extends document{ TODO why the e
     private ArrayList<Product> items;
     private double total_price;
     private double left_over;
-    private int total_items;
     private int four_digits;
     private enum paying_method {CREDIT ,CASH ,TRANSFER ,CHEQUE};
     private String business;
@@ -20,7 +19,7 @@ public class Receipt implements Serializable {//extends document{ TODO why the e
     private String businessAddress;
     private String businessPhone;
     private String notes;
-    private String id;
+    public static String id;
 
     /**
      * Constructor
@@ -28,14 +27,12 @@ public class Receipt implements Serializable {//extends document{ TODO why the e
      * @param date purchase date
      * @param total_price total deal cost as double
      * @param left_over left over in double in case of cash.
-     * @param total_items number of items that was purchased
      * @param four_digits last 4 digits of credit card in case of credit.
      */
     //TODO Insert paying method to constructor as enum.
-  public Receipt(String business, String date, double total_price, double left_over, int total_items, int four_digits) {
+  public Receipt(String business, String date, double total_price, double left_over, int four_digits) {
       //super(business, customer, date);
       this.four_digits = four_digits;
-      this.total_items = total_items;
       this.left_over = left_over;
       this.business = business;
       this.date = date;
@@ -47,18 +44,15 @@ public class Receipt implements Serializable {//extends document{ TODO why the e
      * @param business
      * @param date
      * @param total_price
-     * @param total_items
      * @param businessAddress
      * @param businessPhone
      * @param notes
      * @param id
      */
-  public Receipt(String business, String date, double total_price, int total_items, String businessAddress, String businessPhone, String notes, String id) {
-      DecimalFormat df = new DecimalFormat("#.##");
+  public Receipt(String business, String date, double total_price, String businessAddress, String businessPhone, String notes, String id) {
       this.business = business;
       this.date = date;
       this.total_price = total_price;
-      this.total_items = total_items;
       this.businessAddress = businessAddress;
       this.businessPhone = businessPhone;
       this.notes = notes;
@@ -105,10 +99,6 @@ public class Receipt implements Serializable {//extends document{ TODO why the e
 
     public double getLeft_over() {
         return left_over;
-    }
-
-    public int getTotal_items() {
-        return total_items;
     }
 
     public int getFour_digits() {
@@ -163,10 +153,6 @@ public class Receipt implements Serializable {//extends document{ TODO why the e
         this.left_over = left_over;
     }
 
-    public void setTotal_items(int total_items) {
-        this.total_items = total_items;
-    }
-
     public void setFour_digits(int four_digits) {
         this.four_digits = four_digits;
     }
@@ -180,7 +166,6 @@ public class Receipt implements Serializable {//extends document{ TODO why the e
         return "" +// items +
                 "," + total_price +
                 "," + left_over +
-                "," + total_items +
                 "," + four_digits +
                 "," + business +
                 "," + date;

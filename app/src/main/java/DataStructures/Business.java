@@ -29,7 +29,7 @@ public class Business extends User {
         super(name, last_name, email, password, phoneNumber);
         this.business_name = business_name;
         this.address = address;
-        this.billNotes= "";
+        this.billNotes= " ";
     }
 
     public Business() {

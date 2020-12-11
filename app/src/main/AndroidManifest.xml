@@ -12,11 +12,13 @@ package="Activities">
     android:roundIcon="@mipmap/ic_launcher_round"
     android:supportsRtl="true"
     android:theme="@style/AppTheme.NoActionBar">
-    <activity android:name=".InfoEditActivity">
+    <activity
+        android:name=".InfoEditActivity"/>
 
-    </activity>
     <activity android:name=".WarrantyActivity" />
+
     <activity android:name=".CreateDocsActivity" />
+
     <activity
         android:name=".NFCDisplayActivity"
         android:label="NFC Data Display">
@@ -28,28 +30,32 @@ package="Activities">
             <data android:mimeType="text/plain" />
         </intent-filter>
     </activity>
-    <activity android:name="Activities.InventoryManageActivity"></activity>
+
+    <activity android:name="Activities.InventoryManageActivity"/>
+
     <activity
         android:name=".NFCBussinesActivity"
         android:theme="@style/AppTheme.NoActionBar" />
+
     <activity
         android:name=".SearchProductActivity"
         android:theme="@style/AppTheme.NoActionBar" />
+
     <activity
         android:name=".CreateBillActivity"
         android:theme="@style/AppTheme.NoActionBar" />
+
     <activity
         android:name=".Register_Bussines_Activity"
         android:theme="@style/AppTheme.NoActionBar" />
+
     <activity
         android:name=".Register_Customer_Activity"
         android:theme="@style/AppTheme.NoActionBar" />
+
     <activity
         android:name=".ChooseUserActivity"
         android:theme="@style/AppTheme.NoActionBar" />
-
-<!--    <activity-->
-<!--        android:name="Activities.phoneTestActivity" />-->
 
     <activity
         android:name=".Business_HomeActivity"

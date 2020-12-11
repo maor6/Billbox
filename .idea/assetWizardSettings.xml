@@ -24,7 +24,7 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
-                                                <entry key="imagePath" value="C:\Users\גופי\AppData\Local\Temp\baseline_search_24.xml" />
+                                                <entry key="imagePath" value="C:\Users\Maor\AppData\Local\Temp\baseline_search_24.xml" />
                                                 <entry key="opacityPercent" value="60" />
                                               </map>
                                             </option>
@@ -48,7 +48,9 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
+                                                <entry key="imagePath" value="C:\Users\Maor\Downloads\icon_lancher.jpeg" />
                                                 <entry key="opacityPercent" value="60" />
+                                                <entry key="paddingPercent" value="5" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -82,7 +84,9 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="outputName" value="ic_search" />
+                                      <entry key="assetType" value="IMAGE" />
+                                      <entry key="imageAsset" value="C:\Users\Maor\Downloads\icon_lancher.jpeg" />
+                                      <entry key="outputName" value="ic_lantcher" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -93,12 +97,24 @@
                                 <PersistentState>
                                   <option name="children">
                                     <map>
+                                      <entry key="backgroundImage">
+                                        <value>
+                                          <PersistentState>
+                                            <option name="values">
+                                              <map>
+                                                <entry key="scalingPercent" value="101" />
+                                              </map>
+                                            </option>
+                                          </PersistentState>
+                                        </value>
+                                      </entry>
                                       <entry key="foregroundClipArt">
                                         <value>
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="imagePath" value="C:\Users\גופי\AppData\Local\Temp\ic_android_black_24dp.xml" />
+                                                <entry key="color" value="000000" />
+                                                <entry key="imagePath" value="C:\Users\Maor\AppData\Local\Temp\ic_android_black_24dp.xml" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -110,6 +126,8 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
+                                                <entry key="imagePath" value="C:\Users\Maor\Downloads\icon_lancher.jpeg" />
+                                                <entry key="scalingPercent" value="85" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -139,6 +157,11 @@
                                       </entry>
                                     </map>
                                   </option>
+                                  <option name="values">
+                                    <map>
+                                      <entry key="showSafeZone" value="false" />
+                                    </map>
+                                  </option>
                                 </PersistentState>
                               </value>
                             </entry>
@@ -153,7 +176,7 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
-                                                <entry key="imagePath" value="C:\Users\גופי\AppData\Local\Temp\ic_android_black_24dp.xml" />
+                                                <entry key="imagePath" value="C:\Users\Maor\AppData\Local\Temp\ic_android_black_24dp.xml" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -197,7 +220,7 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
-                                                <entry key="imagePath" value="C:\Users\גופי\AppData\Local\Temp\ic_android_black_24dp.xml" />
+                                                <entry key="imagePath" value="C:\Users\Maor\AppData\Local\Temp\ic_android_black_24dp.xml" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -261,7 +284,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="imagePath" value="C:\Users\גופי\AppData\Local\Temp\ic_android_black_24dp.xml" />
+                                                <entry key="imagePath" value="C:\Users\Maor\AppData\Local\Temp\ic_android_black_24dp.xml" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -302,14 +325,14 @@
                                       </entry>
                                     </map>
                                   </option>
+                                  <option name="values">
+                                    <map>
+                                      <entry key="showSafeZone" value="false" />
+                                    </map>
+                                  </option>
                                 </PersistentState>
                               </value>
                             </entry>
-                          </map>
-                        </option>
-                        <option name="values">
-                          <map>
-                            <entry key="outputIconType" value="ACTIONBAR" />
                           </map>
                         </option>
                       </PersistentState>

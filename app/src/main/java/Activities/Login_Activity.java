@@ -120,7 +120,6 @@ public class Login_Activity extends AppCompatActivity implements View.OnClickLis
         this method will check if the "remember me" CheckBox is on,
         and logIn automatically
      **/
-
     private void checkCheckBox() {
         SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
         if (preferences.getBoolean("rememberLogin", false)) {
@@ -136,9 +135,8 @@ public class Login_Activity extends AppCompatActivity implements View.OnClickLis
 
     /**
         this method will log in the system'
-        and check which activity to open business or customer
+        and check which activity to open-business or customer
      **/
-
     private void LogIn (String email, String pass) {
         mAuth.signInWithEmailAndPassword(email, pass)
                 .addOnCompleteListener(Login_Activity.this, new OnCompleteListener<AuthResult>() {

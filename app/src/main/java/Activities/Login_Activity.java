@@ -27,6 +27,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Objects;
+
 
 public class Login_Activity extends AppCompatActivity implements View.OnClickListener {
 
@@ -44,16 +46,9 @@ public class Login_Activity extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        mAuth = FirebaseAuth.getInstance();
-        registerbt = (TextView) findViewById(R.id.registerbt);
-        editEmail = (EditText) findViewById(R.id.editTextEmail);
-        editPass = (EditText) findViewById(R.id.editTextPass);
-        loginbt = (CardView) findViewById(R.id.cardLogin);
-        cardGoogle = (CardView) findViewById(R.id.cardGoogle);
-        progressBar = (ProgressBar) findViewById(R.id.progressBar);
-        progressBar.setVisibility(View.GONE);
-        rememberMe = (CheckBox) findViewById(R.id.rememberMELogin);
-        rememberMe.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        init();
+
+        rememberMe.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() { // button to remember the user
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
@@ -78,13 +73,19 @@ public class Login_Activity extends AppCompatActivity implements View.OnClickLis
         checkCheckBox();
     }
 
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-//        updateUI(currentUser);
+    /**
+     * this method init all the variables
+     */
+    private void init() {
+        mAuth = FirebaseAuth.getInstance();
+        registerbt = (TextView) findViewById(R.id.registerbt);
+        editEmail = (EditText) findViewById(R.id.editTextEmail);
+        editPass = (EditText) findViewById(R.id.editTextPass);
+        loginbt = (CardView) findViewById(R.id.cardLogin);
+        cardGoogle = (CardView) findViewById(R.id.cardGoogle);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.GONE);
+        rememberMe = (CheckBox) findViewById(R.id.rememberMELogin);
     }
 
 
@@ -95,15 +96,18 @@ public class Login_Activity extends AppCompatActivity implements View.OnClickLis
         }
 
         if (view.getId() == loginbt.getId()) { // press the login button
+            progressBar.setVisibility(View.VISIBLE);
             String email = editEmail.getText().toString();
             String pass = editPass.getText().toString();
-            if (TextUtils.isEmpty(email)|| TextUtils.isEmpty(pass)) { // not entered email or password
-                Toast.makeText(Login_Activity.this, "Email or Password invalid.",
+            if (email.isEmpty() || pass.isEmpty()) {
+                Toast.makeText(Login_Activity.this, "Authentication failed.",
                         Toast.LENGTH_SHORT).show();
+                progressBar.setVisibility(View.GONE);
             }
             else {
                 LogIn(email,pass); // sign in with firebase
             }
+
         }
 
         //TODO implement sign in with google
@@ -112,10 +116,10 @@ public class Login_Activity extends AppCompatActivity implements View.OnClickLis
         }
     }
 
-       /*
+       /**
         this method will check if the "remember me" CheckBox is on,
         and if it is, it will logIn automatically
-     */
+     **/
 
     private void checkCheckBox() {
         SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
@@ -130,26 +134,24 @@ public class Login_Activity extends AppCompatActivity implements View.OnClickLis
     }
 
 
-    /*
+    /**
         this method will log in the system'
         and check which activity to open business or customer
-     */
+     **/
 
     private void LogIn (String email, String pass) {
-        progressBar.setVisibility(View.VISIBLE);
         mAuth.signInWithEmailAndPassword(email, pass)
                 .addOnCompleteListener(Login_Activity.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            // updateUI(user);
                             DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
                             rootRef.addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                     Intent intent;
-                                    if (dataSnapshot.child("Users").child("Bussines").hasChild(mAuth.getUid())) {
+                                    if (dataSnapshot.child("Users").child("Bussines").
+                                            hasChild(Objects.requireNonNull(mAuth.getUid()))) {
                                         intent = new Intent(Login_Activity.this, Business_HomeActivity.class);
                                     }
                                     else {
@@ -165,19 +167,12 @@ public class Login_Activity extends AppCompatActivity implements View.OnClickLis
                                 }
                             });
 
-
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w("NotGood", "signInWithEmail:failure", task.getException());
+                        } else { // sign in fails, display a message to the user.
                             Toast.makeText(Login_Activity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
-                            // updateUI(null);
+                            progressBar.setVisibility(View.GONE);
                         }
                     }
-
-
-                    // ...
-
                 });
     }
 }

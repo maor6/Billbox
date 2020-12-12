@@ -28,7 +28,9 @@ import DataStructures.Business;
 import DataStructures.Product;
 import DataStructures.Receipt;
 
-
+/**
+ * This is an activity class to create receipt document by the business user
+ */
 public class CreateBillActivity extends AppCompatActivity {
 
     CardView search;
@@ -47,13 +49,8 @@ public class CreateBillActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_bill);
-        firebaseAuth = FirebaseAuth.getInstance();
-        ref = FirebaseDatabase.getInstance().getReference().child("Users").child("Bussines");
-        products = new ArrayList<>();
-        itemsList = (ListView) findViewById(R.id.productsList);
-        totalToPay = 0;
-        totalPriceView = (TextView) findViewById(R.id.totalToPay);
-        search = (CardView) findViewById(R.id.search);
+
+        initActivity();
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,10 +70,7 @@ public class CreateBillActivity extends AppCompatActivity {
 
             }
         });
-
-        finishBt = (Button) findViewById(R.id.finishbt);
         finishBt.setOnClickListener(new View.OnClickListener() { // on "סיים" clicked
-
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
@@ -93,6 +87,26 @@ public class CreateBillActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * this function initialize the variables in the activity
+     */
+    private void initActivity() {
+        firebaseAuth = FirebaseAuth.getInstance();
+        ref = FirebaseDatabase.getInstance().getReference().child("Users").child("Bussines");
+        products = new ArrayList<>();
+        itemsList = (ListView) findViewById(R.id.productsList);
+        totalToPay = 0;
+        totalPriceView = (TextView) findViewById(R.id.totalToPay);
+        search = (CardView) findViewById(R.id.search);
+        finishBt = (Button) findViewById(R.id.finishbt);
+    }
+
+    /**
+     * to get a product from the search-activity and add it to the list in the receipt
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) { // activate when return to this activity
         super.onActivityResult(requestCode, resultCode, data);

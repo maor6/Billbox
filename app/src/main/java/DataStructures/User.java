@@ -26,6 +26,8 @@ public abstract class User {
 
     public User(){}
 
+    /*---------------Getters and Setters---------------*/
+
     public String getName(){
         return this.name;
     }

@@ -12,9 +12,9 @@ public class Business extends User {
 
     private String business_name;
     private String address;
-    private LinkedList<String> documents; //TODO change it to firebase.
-    private ArrayList<String> items; //TODO change it to firebase.
     private String billNotes;
+    private ArrayList<String> items;
+    private LinkedList<String> documents;
 
 
     /**
@@ -36,9 +36,15 @@ public class Business extends User {
         super();
     }
 
+    /**
+     * option to the user to add a notes to documents
+     * @param notes
+     */
     public void addNotes(String notes){
        this.billNotes = notes;
     }
+
+    /*--------------Getters and Setters--------------*/
 
     public String getAddress(){
         return this.address;

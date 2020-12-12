@@ -12,16 +12,23 @@ import android.widget.ImageView;
  */
 public class Business_HomeActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private CardView inventory_bt;
-    private CardView new_doc_bt;
-    private CardView docs_bt;
-    private CardView info_bt;
+    CardView inventory_bt;
+    CardView new_doc_bt;
+    CardView docs_bt;
+    CardView info_bt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_business_home);
 
+        initActivity();
+    }
+
+    /**
+     * this function initialize the views in the screen
+     */
+    private void initActivity() {
         inventory_bt = (CardView) findViewById(R.id.inventoryManage);
         docs_bt = (CardView) findViewById(R.id.docs_bt);
         new_doc_bt = (CardView) findViewById(R.id.newDoc_bt);
@@ -40,7 +47,7 @@ public class Business_HomeActivity extends AppCompatActivity implements View.OnC
         }
         if(v.getId() == docs_bt.getId()){}
         if(v.getId() == new_doc_bt.getId()){
-            startActivity(new Intent(Business_HomeActivity.this, CreateDocsActivity.class));
+            startActivity(new Intent(Business_HomeActivity.this, ChooseDocsActivity.class));
         }
         if(v.getId() == info_bt.getId()){}
     }

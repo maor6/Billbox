@@ -5,15 +5,15 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 /**
- * This class is Billbox DataStructures.Receipt format data type.
+ * This class is Billbox Receipt format data type.
  */
-public class Receipt implements Serializable {//extends document{ TODO why the extends coolapse the app???
+public class Receipt implements Serializable {//extends document{
 
     private ArrayList<Product> items;
     private double total_price;
     private double left_over;
     private int four_digits;
-    private enum paying_method {CREDIT ,CASH ,TRANSFER ,CHEQUE};
+    private enum paying_method {CREDIT ,CASH ,TRANSFER ,CHEQUE}; //TODO
     private String business;
     private String date;
     private String businessAddress;
@@ -66,18 +66,6 @@ public class Receipt implements Serializable {//extends document{ TODO why the e
         this.business = s[5];
         this.date = s[6];
     }
-
-//    /**
-//     * Constructor with DataStructures.document
-//     * @param document  basic DataStructures.document fields
-//     * @param total_price total deal cost as double
-//     * @param left_over left over in double in case of cash.
-//     * @param total_items number of items that was purchased
-//     * @param four_digits last 4 digits of credit card in case of credit
-//     */
-
-
-
 
   /*---------------Getters and Setters---------------*/
 

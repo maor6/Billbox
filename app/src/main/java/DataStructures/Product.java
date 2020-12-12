@@ -5,6 +5,9 @@ import android.os.Parcelable;
 
 import java.io.Serializable;
 
+/**
+ * this class represent a product in business inventory
+ */
 public class Product implements Serializable {
     String name;
     int barCode;

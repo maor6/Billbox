@@ -23,6 +23,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+/**
+ * This is an activity class to sent a receipt to costumer-user //TODO sent it with NFC
+ */
 public class NFCBussinesActivity extends AppCompatActivity implements NfcAdapter.CreateNdefMessageCallback {
 
     DataStructures.Receipt receiptByPhone;
@@ -37,35 +40,38 @@ public class NFCBussinesActivity extends AppCompatActivity implements NfcAdapter
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_nfc_bussines);
-        phoneNumber = (EditText) findViewById(R.id.NFCBussinesPhoneNumber);
-        enter = (Button) findViewById(R.id.NFC_bussines_continue);
-        mEditText = (TextView) findViewById(R.id.test1);
-        receipt =  (Receipt) getIntent().getSerializableExtra("receipt");
+
+        initActivity();
         enter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 pushReceipt(phoneNumber.getText().toString(), receipt);
             }
         });
-
         NfcAdapter mAdapter = NfcAdapter.getDefaultAdapter(this);
         if (mAdapter == null) {
             mEditText.setText("Sorry this device does not have NFC.");
             return;
         }
-
         if (!mAdapter.isEnabled()) { // go to NFC phone settings
             Toast.makeText(this, "Please enable NFC via Settings.", Toast.LENGTH_LONG).show();
             startActivity(new Intent(Settings.ACTION_NFC_SETTINGS));
         }
 
         mAdapter.setNdefPushMessageCallback(this, this);
-
 //        Intent intent = new Intent(this, getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
 //        intent.putExtra("receipt", reciept);
+    }
 
-
+    /**
+     * this function initialize the variables in the activity
+     */
+    private void initActivity() {
+        setContentView(R.layout.activity_nfc_bussines);
+        phoneNumber = (EditText) findViewById(R.id.NFCBussinesPhoneNumber);
+        enter = (Button) findViewById(R.id.NFC_bussines_continue);
+        mEditText = (TextView) findViewById(R.id.test1);
+        receipt =  (Receipt) getIntent().getSerializableExtra("receipt");
     }
 
     @Override
@@ -76,12 +82,9 @@ public class NFCBussinesActivity extends AppCompatActivity implements NfcAdapter
         return ndefMessage;
     }
 
-
-
     /**
      * this method search the correct customer from the DB
      * and push the receipt to the customer
-     *
      * @param phoneToSearch
      * @param receipt
      */
@@ -100,7 +103,6 @@ public class NFCBussinesActivity extends AppCompatActivity implements NfcAdapter
                         break;
                     }
                 }
-
                 if (found) { // Add the receipt to the correct customer by phone number
                     DatabaseReference ReferenceCustomer = firebaseDatabase.getReference("Documents")
                             .child("Receipt").child(uid); // get the reference of the correct customer

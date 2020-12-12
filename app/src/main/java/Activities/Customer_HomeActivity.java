@@ -44,6 +44,7 @@ public class Customer_HomeActivity extends AppCompatActivity implements Navigati
     NavigationView navigationView;
     RecyclerView recyclerView;
     ProgressBar progressBar;
+    TextView helloUser;
     ReceiptAdapter receiptAdapter;
     ArrayList<Receipt> receipts;
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
@@ -56,13 +57,7 @@ public class Customer_HomeActivity extends AppCompatActivity implements Navigati
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer__home);
 
-        progressBar = (ProgressBar) findViewById(R.id.progressBar3);
-        toolbar = findViewById(R.id.main_toolbar);
-        setSupportActionBar(toolbar);
-
-        drawerLayout = findViewById(R.id.drawer_layout);
-        navigationView = findViewById(R.id.nav_view);
-        databaseReference = firebaseDatabase.getReference().child("Documents").child("Receipt").child(Objects.requireNonNull(firebaseAuth.getUid()));
+        initActivity();
 
         ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(
                 this,
@@ -71,11 +66,8 @@ public class Customer_HomeActivity extends AppCompatActivity implements Navigati
                 R.string.NavigationDrawerOpen,
                 R.string.closeNavDrawer
         );
-
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
-        navigationView.setNavigationItemSelectedListener(this);
-        TextView helloUser = (TextView) findViewById(R.id.helloUser); //to put yhe user name
         DatabaseReference referenceForName = firebaseDatabase.getReference().child("Users").child("Customer").child(firebaseAuth.getUid()).child("name");
         referenceForName.addValueEventListener(new ValueEventListener() {
             @Override
@@ -94,11 +86,24 @@ public class Customer_HomeActivity extends AppCompatActivity implements Navigati
 
     }
 
-    /*
-    this method will get the receipt from the database
-    and put it in the recycler view
+    /**
+     * this function initialize the variables in the activity
      */
+    private void initActivity() {
+        progressBar = (ProgressBar) findViewById(R.id.progressBar3);
+        toolbar = findViewById(R.id.main_toolbar);
+        setSupportActionBar(toolbar);
+        drawerLayout = findViewById(R.id.drawer_layout);
+        navigationView = findViewById(R.id.nav_view);
+        databaseReference = firebaseDatabase.getReference().child("Documents").child("Receipt").child(Objects.requireNonNull(firebaseAuth.getUid()));
+        helloUser = (TextView) findViewById(R.id.helloUser); //to put yhe user name
+        navigationView.setNavigationItemSelectedListener(this);
+    }
 
+    /**
+     this method will get the receipt from the database
+     and put it in the recycler view
+     */
     private void getReceipts() {
         recyclerView = (RecyclerView) findViewById(R.id.recyclerview_reciepts);
         recyclerView.setHasFixedSize(true);
@@ -132,6 +137,10 @@ public class Customer_HomeActivity extends AppCompatActivity implements Navigati
         });
     }
 
+    /**
+     * this function open the full receipt data
+     * @param receipt the receipt to open
+     */
     private void openBillDialog(Receipt receipt) {
         final Dialog dialog = new Dialog(Customer_HomeActivity.this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);

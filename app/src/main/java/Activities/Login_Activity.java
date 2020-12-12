@@ -96,7 +96,6 @@ public class Login_Activity extends AppCompatActivity implements View.OnClickLis
         }
 
         if (view.getId() == loginbt.getId()) { // press the login button
-            progressBar.setVisibility(View.VISIBLE);
             String email = editEmail.getText().toString();
             String pass = editPass.getText().toString();
             if (email.isEmpty() || pass.isEmpty()) {
@@ -138,6 +137,7 @@ public class Login_Activity extends AppCompatActivity implements View.OnClickLis
         and check which activity to open-business or customer
      **/
     private void LogIn (String email, String pass) {
+        progressBar.setVisibility(View.VISIBLE);
         mAuth.signInWithEmailAndPassword(email, pass)
                 .addOnCompleteListener(Login_Activity.this, new OnCompleteListener<AuthResult>() {
                     @Override

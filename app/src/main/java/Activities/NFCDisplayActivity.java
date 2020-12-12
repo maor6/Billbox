@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 import DataStructures.Receipt;
 
-
 public class NFCDisplayActivity extends AppCompatActivity {
 
     TextView mTextView;

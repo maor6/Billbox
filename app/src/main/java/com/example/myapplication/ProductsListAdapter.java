@@ -13,6 +13,9 @@ import java.util.ArrayList;
 import Activities.R;
 import DataStructures.Product;
 
+/**
+ * This class assigned to fit a list of products to receipt screen
+ */
 public class ProductsListAdapter extends ArrayAdapter<Product> {
     private Context context;
     int resource;

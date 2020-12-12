@@ -20,6 +20,9 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import DataStructures.Product;
 
+/**
+ * This is an activity class to search and filter products from the inventory list
+ */
 public class SearchProductActivity extends AppCompatActivity {
 
     DatabaseReference ref;
@@ -34,14 +37,8 @@ public class SearchProductActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_product);
 
-        firebaseAuth = FirebaseAuth.getInstance();
-        ref = FirebaseDatabase.getInstance().getReference().child("Stock").child(firebaseAuth.getUid());
-        recyclerView = findViewById(R.id.productsRecycler);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        products = new ArrayList<Product>();
-        searchView = findViewById(R.id.search); // here is the problem
-        searchView.addTextChangedListener(new TextWatcher() {
+        initActivity();
+        searchView.addTextChangedListener(new TextWatcher() { // filter the products list
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -58,6 +55,23 @@ public class SearchProductActivity extends AppCompatActivity {
         adapt();
     }
 
+    /**
+     * this function initialize the variables in the activity
+     */
+    private void initActivity() {
+        firebaseAuth = FirebaseAuth.getInstance();
+        ref = FirebaseDatabase.getInstance().getReference().child("Stock").child(firebaseAuth.getUid());
+        recyclerView = findViewById(R.id.productsRecycler);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        products = new ArrayList<Product>();
+        searchView = findViewById(R.id.search); // here is the problem
+    }
+
+    /**
+     * filter the products list
+     * @param s the string to search
+     */
     private void filter(String s){
         ArrayList<Product> filteredList = new ArrayList<>();
         for (Product item : products){
@@ -68,9 +82,9 @@ public class SearchProductActivity extends AppCompatActivity {
         productAdapter.filterList(filteredList);
     }
 
-    /*
-        this function get all the products from the database
-        and put it to recycler view
+    /**
+     *this function get all the products from the database
+     *and put it to recycler view
     */
     private void adapt() {
         productAdapter = new ProductAdapter(this, products);
@@ -100,34 +114,4 @@ public class SearchProductActivity extends AppCompatActivity {
             }
         });
     }
-
-    //    @Override
-//    protected void onStart() {
-//        super.onStart();
-//        if(searchView != null){
-//            searchView.setOnQueryTextListener((new SearchView.OnQueryTextListener() {
-//                @Override
-//                public boolean onQueryTextSubmit(String s) {
-//                    return false;
-//                }
-//
-//                @Override
-//                public boolean onQueryTextChange(String s) {
-//                    search(s);
-//                    return true;
-//                }
-//            }));
-//        }
-//    }
-
-//    private void search(String s){
-//        ArrayList<Product> myProducts = new ArrayList<Product>();
-//        for(Product p : products){
-//            if(p.getName().toLowerCase().contains(s.toLowerCase())){
-//                myProducts.add(p);
-//            }
-//        }
-//        ProductAdapter productAdapter = new ProductAdapter(this ,myProducts);
-//        recyclerView.setAdapter(productAdapter);
-//    }
 }

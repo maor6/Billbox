@@ -27,6 +27,9 @@ import java.util.ArrayList;
 
 import DataStructures.Product;
 
+/**
+ * This is an activity class to manage the inventory by the business user (add new products, updates prices and more)
+ */
 public class InventoryManageActivity extends AppCompatActivity {
 
     Button addProduct;
@@ -41,13 +44,7 @@ public class InventoryManageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inventory_manage);
 
-        firebaseAuth = FirebaseAuth.getInstance();
-        ref = FirebaseDatabase.getInstance().getReference().child("Stock").child(firebaseAuth.getUid());
-        recyclerView = findViewById(R.id.inventoryRecycler);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        products = new ArrayList<Product>();
-        addProduct = (Button) findViewById(R.id.addProduct);
+        initActivity();
         adapt();
         addProduct.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,6 +54,22 @@ public class InventoryManageActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * this function initialize the variables in the activity
+     */
+    private void initActivity() {
+        firebaseAuth = FirebaseAuth.getInstance();
+        ref = FirebaseDatabase.getInstance().getReference().child("Stock").child(firebaseAuth.getUid());
+        recyclerView = findViewById(R.id.inventoryRecycler);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        products = new ArrayList<Product>();
+        addProduct = (Button) findViewById(R.id.addProduct);
+    }
+
+    /**
+     * this function open dialog to add a product to the list by the user
+     */
     public void showAddDialog() {
         final Dialog dialog = new Dialog(InventoryManageActivity.this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -81,13 +94,20 @@ public class InventoryManageActivity extends AppCompatActivity {
         dialog.show();
     }
 
+    /**
+     * to add the product to the DB
+     * @param name
+     * @param barcode
+     * @param price
+     */
     public void addProduct(String name, int barcode, double price) {
         Product product = new Product(name, barcode, price, 1);
         ref.push().setValue(product);
-//        products.add(product);\
-//       productAdapter.notifyDataSetChanged();
     }
 
+    /**
+     * display the products from DB in the recycler view
+     */
     private void adapt() {
         productAdapter = new ProductAdapter(this, products);
         recyclerView.setAdapter(productAdapter);
@@ -107,5 +127,4 @@ public class InventoryManageActivity extends AppCompatActivity {
             }
         });
     }
-
 }

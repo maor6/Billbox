@@ -17,7 +17,7 @@ package="Activities">
 
     <activity android:name=".WarrantyActivity" />
 
-    <activity android:name=".CreateDocsActivity" />
+    <activity android:name=".ChooseDocsActivity" />
 
     <activity
         android:name=".NFCDisplayActivity"

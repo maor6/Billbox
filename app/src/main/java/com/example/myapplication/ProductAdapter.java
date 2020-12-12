@@ -11,13 +11,20 @@ import java.util.ArrayList;
 import Activities.R;
 import DataStructures.Product;
 
+/**
+ * This class assigned to fit a visual list of products to the screen
+ */
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHolder> {
 
     ArrayList<Product> products;
     Context context;
     private OnItemClickListener mListener;
 
-
+    /**
+     * Constructor
+     * @param context
+     * @param products
+     */
     public ProductAdapter(Context context, ArrayList<Product> products) {
         this.context = context;
         this.products = products;

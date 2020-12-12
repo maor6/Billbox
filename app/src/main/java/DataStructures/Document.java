@@ -29,8 +29,7 @@ public abstract class Document {
        this.customer = "" + document.customer;
     }
 
-    public Document() {
-    }
+    /*--------------Getters and Setters--------------*/
 
     public String getCustomer() {
         return customer;

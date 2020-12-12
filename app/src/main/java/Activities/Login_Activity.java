@@ -29,7 +29,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.Objects;
 
-
+/**
+ * This is an activity class to login the app by insert email+password
+ */
 public class Login_Activity extends AppCompatActivity implements View.OnClickListener {
 
     FirebaseAuth mAuth;
@@ -46,7 +48,7 @@ public class Login_Activity extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        init();
+        initActivity();
 
         rememberMe.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() { // button to remember the user
             @Override
@@ -64,19 +66,14 @@ public class Login_Activity extends AppCompatActivity implements View.OnClickLis
                 }
                 editor.apply();
             }
-        }); // listen to checkbox
-
-        registerbt.setOnClickListener(this);
-        loginbt.setOnClickListener(this);
-        cardGoogle.setOnClickListener(this);
-
-        checkCheckBox();
+        });
+        checkCheckBox(); // listen to checkbox
     }
 
     /**
-     * this method init all the variables
+     * this function initialize the variables in the activity
      */
-    private void init() {
+    private void initActivity() {
         mAuth = FirebaseAuth.getInstance();
         registerbt = (TextView) findViewById(R.id.registerbt);
         editEmail = (EditText) findViewById(R.id.editTextEmail);
@@ -86,6 +83,9 @@ public class Login_Activity extends AppCompatActivity implements View.OnClickLis
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         progressBar.setVisibility(View.GONE);
         rememberMe = (CheckBox) findViewById(R.id.rememberMELogin);
+        registerbt.setOnClickListener(this);
+        loginbt.setOnClickListener(this);
+        cardGoogle.setOnClickListener(this);
     }
 
 
@@ -94,7 +94,6 @@ public class Login_Activity extends AppCompatActivity implements View.OnClickLis
         if(view.getId() == registerbt.getId()){ // press the register button
             startActivity(new Intent(Login_Activity.this, ChooseUserActivity.class));
         }
-
         if (view.getId() == loginbt.getId()) { // press the login button
             String email = editEmail.getText().toString();
             String pass = editPass.getText().toString();
@@ -106,18 +105,15 @@ public class Login_Activity extends AppCompatActivity implements View.OnClickLis
             else {
                 LogIn(email,pass); // login with firebase
             }
-
         }
-
-        //TODO implement sign in with google
-        if (view.getId() == cardGoogle.getId()) { // TODO sign in with google
-
+        if (view.getId() == cardGoogle.getId()) {
+            //TODO implement sign in with google
         }
     }
 
-       /**
-        this method will check if the "remember me" CheckBox is on,
-        and logIn automatically
+    /**
+     this method will check if the "remember me" CheckBox is on,
+     and logIn automatically
      **/
     private void checkCheckBox() {
         SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
@@ -130,7 +126,6 @@ public class Login_Activity extends AppCompatActivity implements View.OnClickLis
             LogIn(mail, password);
         }
     }
-
 
     /**
         this method will log in the system'
@@ -158,13 +153,11 @@ public class Login_Activity extends AppCompatActivity implements View.OnClickLis
                                     progressBar.setVisibility(View.GONE);
                                     startActivity(intent);
                                 }
-
                                 @Override
                                 public void onCancelled(@NonNull DatabaseError databaseError) {
 
                                 }
                             });
-
                         } else { // sign in fails, display a message to the user.
                             Toast.makeText(Login_Activity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();

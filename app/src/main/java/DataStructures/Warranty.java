@@ -29,6 +29,7 @@ public class Warranty extends Document {
         this.item = item;
         this.rules = rules;
     }
+    /*---------------Getters and Setters---------------*/
 
     public String getItem() {
         return item;

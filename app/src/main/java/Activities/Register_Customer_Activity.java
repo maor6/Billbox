@@ -32,6 +32,9 @@ import com.hbb20.CountryCodePicker;
 
 import java.util.concurrent.TimeUnit;
 
+/**
+ * This is an activity class to open customer account in the app
+ */
 public class Register_Customer_Activity extends AppCompatActivity {
 
     FirebaseAuth mauth;
@@ -52,7 +55,7 @@ public class Register_Customer_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_customer);
 
-        init();
+        initActivity();
 
         buttonReg.setOnClickListener(new View.OnClickListener() { // activate when clicked המשך
             @Override
@@ -83,12 +86,10 @@ public class Register_Customer_Activity extends AppCompatActivity {
         });
     }
 
-
     /**
-     * this method will initialize variables
+     * this function initialize the variables in the activity
      */
-
-    private void init() {
+    private void initActivity() {
         buttonReg = (Button) findViewById(R.id.continue_reg);
         name = (EditText) findViewById(R.id.firstName);
         lastName = (EditText) findViewById(R.id.lastName);
@@ -103,11 +104,9 @@ public class Register_Customer_Activity extends AppCompatActivity {
         progressBar.setVisibility(View.GONE);
     }
 
-
     /**
      * this method responsible the dialog
      */
-
     private void openVerificationDialog() {
         dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -124,11 +123,9 @@ public class Register_Customer_Activity extends AppCompatActivity {
         dialog.show();
     }
 
-
     /**
      * this method create Account with email and password on DB
      */
-
     public void createAccount() {
         mauth.createUserWithEmailAndPassword(email.getText().toString(), pass.getText().toString())
                 .addOnCompleteListener(Register_Customer_Activity.this, new OnCompleteListener<AuthResult>() {
@@ -158,13 +155,15 @@ public class Register_Customer_Activity extends AppCompatActivity {
                 });
     }
 
-
-    private void sendVerificationCode(String number) { // send the SMS
+    /**
+     * sent the sms with the code to the phone number
+     * @param number the phone number to sent the sms
+     */
+    private void sendVerificationCode(String number) {
         PhoneAuthProvider.getInstance().verifyPhoneNumber(number, 60, TimeUnit.SECONDS, TaskExecutors.MAIN_THREAD, mCallBack);
     }
 
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallBack = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
-
         @Override
         public void onCodeSent(String s, PhoneAuthProvider.ForceResendingToken forceResendingToken) {
             super.onCodeSent(s, forceResendingToken);

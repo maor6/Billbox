@@ -66,9 +66,11 @@ public class Customer_HomeActivity extends AppCompatActivity implements Navigati
                 R.string.NavigationDrawerOpen,
                 R.string.closeNavDrawer
         );
+
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
-        DatabaseReference referenceForName = firebaseDatabase.getReference().child("Users").child("Customer").child(firebaseAuth.getUid()).child("name");
+        DatabaseReference referenceForName = firebaseDatabase.getReference().child("Users")
+                .child("Customer").child(Objects.requireNonNull(firebaseAuth.getUid())).child("name");
         referenceForName.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -96,7 +98,7 @@ public class Customer_HomeActivity extends AppCompatActivity implements Navigati
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
         databaseReference = firebaseDatabase.getReference().child("Documents").child("Receipt").child(Objects.requireNonNull(firebaseAuth.getUid()));
-        helloUser = (TextView) findViewById(R.id.helloUser); //to put yhe user name
+        helloUser = (TextView) findViewById(R.id.helloUser); //to put the user name
         navigationView.setNavigationItemSelectedListener(this);
     }
 

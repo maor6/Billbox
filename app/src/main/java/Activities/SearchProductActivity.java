@@ -18,6 +18,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
+import java.util.Objects;
+
 import DataStructures.Product;
 
 /**
@@ -60,7 +62,7 @@ public class SearchProductActivity extends AppCompatActivity {
      */
     private void initActivity() {
         firebaseAuth = FirebaseAuth.getInstance();
-        ref = FirebaseDatabase.getInstance().getReference().child("Stock").child(firebaseAuth.getUid());
+        ref = FirebaseDatabase.getInstance().getReference().child("Stock").child(Objects.requireNonNull(firebaseAuth.getUid()));
         recyclerView = findViewById(R.id.productsRecycler);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

@@ -23,6 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Objects;
 
 import DataStructures.Business;
 import DataStructures.Product;
@@ -62,7 +63,7 @@ public class CreateBillActivity extends AppCompatActivity {
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                business = (Business) dataSnapshot.child(firebaseAuth.getUid()).getValue(Business.class);
+                business = (Business) dataSnapshot.child(Objects.requireNonNull(firebaseAuth.getUid())).getValue(Business.class);
             }
 
             @Override

@@ -43,6 +43,7 @@ public class NFCBussinesActivity extends AppCompatActivity implements NfcAdapter
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_nfc_bussines);
 
         initActivity();
 
@@ -52,6 +53,7 @@ public class NFCBussinesActivity extends AppCompatActivity implements NfcAdapter
                 pushReceipt(phoneNumber.getText().toString(), receipt);
             }
         });
+
         NfcAdapter mAdapter = NfcAdapter.getDefaultAdapter(this);
         if (mAdapter == null) {
             mEditText.setText("Sorry this device does not have NFC.");
@@ -71,7 +73,6 @@ public class NFCBussinesActivity extends AppCompatActivity implements NfcAdapter
      * this function initialize the variables in the activity
      */
     private void initActivity() {
-        setContentView(R.layout.activity_nfc_bussines);
         phoneNumber = (EditText) findViewById(R.id.NFCBussinesPhoneNumber);
         enter = (Button) findViewById(R.id.NFC_bussines_continue);
         mEditText = (TextView) findViewById(R.id.test1);
@@ -102,7 +103,7 @@ public class NFCBussinesActivity extends AppCompatActivity implements NfcAdapter
                 boolean found = false;
                 for (DataSnapshot id : dataSnapshot.getChildren()) { // search the correct user
                     uid = id.getKey(); // get the UID of the customer
-                    currentPhone = id.child("phoneNumber").getValue().toString();
+                    currentPhone = Objects.requireNonNull(id.child("phoneNumber").getValue()).toString();
                     if (phoneToSearch.equals(currentPhone)) { // found the correct customer by phone
                         found = true;
                         break;

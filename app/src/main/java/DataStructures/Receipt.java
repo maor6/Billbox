@@ -1,21 +1,20 @@
 package DataStructures;
 
 import java.io.Serializable;
-import java.text.DecimalFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * This class is Billbox Receipt format data type.
  */
-public class Receipt implements Serializable {//extends document{
+public class Receipt extends Document implements Serializable {
 
     private ArrayList<Product> items;
     private double total_price;
     private double left_over;
     private int four_digits;
-    private enum paying_method {CREDIT ,CASH ,TRANSFER ,CHEQUE}; //TODO
-    private String business;
-    private String date;
+    private enum paying_method {CREDIT ,CASH ,TRANSFER ,CHEQUE};
     private String businessAddress;
     private String businessPhone;
     private String notes;
@@ -23,25 +22,25 @@ public class Receipt implements Serializable {//extends document{
 
     /**
      * Constructor
-     * @param business name as string
+     * @param businessName name as string
      * @param date purchase date
      * @param total_price total deal cost as double
      * @param left_over left over in double in case of cash.
      * @param four_digits last 4 digits of credit card in case of credit.
      */
     //TODO Insert paying method to constructor as enum.
-  public Receipt(String business, String date, double total_price, double left_over, int four_digits) {
-      //super(business, customer, date);
+  public Receipt(String businessName, String date, double total_price, double left_over, int four_digits) {
+      super(businessName, date);
       this.four_digits = four_digits;
       this.left_over = left_over;
-      this.business = business;
-      this.date = date;
       this.total_price = total_price;
   }
 
+  public Receipt() {super();}
+
     /**
      * Constructor
-     * @param business
+     * @param businessName
      * @param date
      * @param total_price
      * @param businessAddress
@@ -49,9 +48,8 @@ public class Receipt implements Serializable {//extends document{
      * @param notes
      * @param id
      */
-  public Receipt(String business, String date, double total_price, String businessAddress, String businessPhone, String notes, String id) {
-      this.business = business;
-      this.date = date;
+  public Receipt(String businessName, String date, double total_price, String businessAddress, String businessPhone, String notes, String id) {
+      super(businessName, date);
       this.total_price = total_price;
       this.businessAddress = businessAddress;
       this.businessPhone = businessPhone;
@@ -59,27 +57,7 @@ public class Receipt implements Serializable {//extends document{
       this.id = id;
   }
 
-    public Receipt(String rec) { // constructor with String TODO set all the variables
-        String[] s = rec.split(",");
-        //this.items = s[0];
-        this.total_price = Double.parseDouble(s[1]);
-        this.business = s[5];
-        this.date = s[6];
-    }
-
   /*---------------Getters and Setters---------------*/
-
-    public String getBusiness() {
-        return business;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public Receipt() {
-        super();
-    }
 
     public double getTotal_price() {
         return total_price;
@@ -93,21 +71,11 @@ public class Receipt implements Serializable {//extends document{
         return four_digits;
     }
 
-    public void setBusiness(String business) {
-        this.business = business;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
     public String getBusinessAddress() {
         return businessAddress;
     }
 
-    public void setBusinessAddress(String businessAddress) {
-        this.businessAddress = businessAddress;
-    }
+    public void setBusinessAddress(String businessAddress) { this.businessAddress = businessAddress; }
 
     public String getBusinessPhone() {
         return businessPhone;
@@ -149,15 +117,6 @@ public class Receipt implements Serializable {//extends document{
 
     public void setItems(ArrayList<Product> items) { this.items = items; }
 
-    @Override
-    public String toString() {
-        return "" +// items +
-                "," + total_price +
-                "," + left_over +
-                "," + four_digits +
-                "," + business +
-                "," + date;
-    }
 }
 
 

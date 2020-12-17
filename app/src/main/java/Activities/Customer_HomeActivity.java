@@ -1,6 +1,7 @@
 package Activities;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -10,7 +11,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -18,6 +21,7 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import DataStructures.Product;
 import DataStructures.Receipt;
 
 import com.example.myapplication.ProductsListAdapter;
@@ -30,6 +34,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -66,9 +71,11 @@ public class Customer_HomeActivity extends AppCompatActivity implements Navigati
                 R.string.NavigationDrawerOpen,
                 R.string.closeNavDrawer
         );
+
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
-        DatabaseReference referenceForName = firebaseDatabase.getReference().child("Users").child("Customer").child(firebaseAuth.getUid()).child("name");
+        DatabaseReference referenceForName = firebaseDatabase.getReference().child("Users")
+                .child("Customer").child(Objects.requireNonNull(firebaseAuth.getUid())).child("name");
         referenceForName.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -96,7 +103,7 @@ public class Customer_HomeActivity extends AppCompatActivity implements Navigati
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
         databaseReference = firebaseDatabase.getReference().child("Documents").child("Receipt").child(Objects.requireNonNull(firebaseAuth.getUid()));
-        helloUser = (TextView) findViewById(R.id.helloUser); //to put yhe user name
+        helloUser = (TextView) findViewById(R.id.helloUser); //to put the user name
         navigationView.setNavigationItemSelectedListener(this);
     }
 
@@ -111,20 +118,20 @@ public class Customer_HomeActivity extends AppCompatActivity implements Navigati
         receipts = new ArrayList<>();
         receiptAdapter = new ReceiptAdapter(this, receipts);
         receiptAdapter.setOnItemClickListener(new ReceiptAdapter.OnItemClickListener() { // listen when clicked on receipt
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void OnItemClick(int position) {
                 openBillDialog(receipts.get(position));
             }
         });
         recyclerView.setAdapter(receiptAdapter);
-
         databaseReference.addValueEventListener(new ValueEventListener() { //TODO needed to be handle by FirebaseDatabaseHelper
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 receipts.clear();
                 progressBar.setVisibility(View.GONE);
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-                    Receipt receipt = dataSnapshot1.getValue(Receipt.class);
+                    Receipt receipt = (Receipt) dataSnapshot1.getValue(Receipt.class);
                     receipts.add(receipt);
                 }
                 receiptAdapter.notifyDataSetChanged();
@@ -141,6 +148,7 @@ public class Customer_HomeActivity extends AppCompatActivity implements Navigati
      * this function open the full receipt data
      * @param receipt the receipt to open
      */
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void openBillDialog(Receipt receipt) {
         final Dialog dialog = new Dialog(Customer_HomeActivity.this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -157,7 +165,7 @@ public class Customer_HomeActivity extends AppCompatActivity implements Navigati
         TextView notes = dialog.findViewById(R.id.notes);
         ListView productsList = dialog.findViewById(R.id.productsListBill);
 
-        businessName.setText(receipt.getBusiness());
+        businessName.setText(receipt.getBusinessName());
         businessAddress.setText(receipt.getBusinessAddress());
         businessPhone.setText(receipt.getBusinessPhone());
         businessTime.setText(receipt.getDate());

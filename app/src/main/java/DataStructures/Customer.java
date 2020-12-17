@@ -17,7 +17,7 @@ public class Customer extends User {
      * @param email the email of the customer.
      * @param password the password chosen by the user.
      */
-    public Customer( String name, String last_name, String email, String password , String phoneNumber){
+    public Customer( String name, String last_name, String email, String password, String phoneNumber){
         super(name, last_name, email, password, phoneNumber);
     }
 

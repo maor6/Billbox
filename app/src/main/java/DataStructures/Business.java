@@ -1,5 +1,6 @@
 package DataStructures;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.ArrayList;
 
@@ -74,9 +75,7 @@ public class Business extends User {
         this.billNotes = billNotes;
     }
 
-    public String getBusiness_name(){
-        return this.business_name;
-    }
+    public String getBusiness_name(){ return this.business_name; }
 
     public void setBusiness_name(String business_name) {
         this.business_name = business_name;

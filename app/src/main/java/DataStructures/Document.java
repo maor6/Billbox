@@ -1,63 +1,49 @@
 package DataStructures;
 
-import java.util.*;
+import java.io.Serializable;
 
 /**
  * This class represent a standard requirements in any Billbox DataStructures.document.
  */
-public abstract class Document {
+public abstract class Document implements Serializable {
 
-    private String business;
-    private String customer;
-    private Date date;
+    private String businessName;
+    private String date;
 
-    public Document(String business, String customer, Date date)
+    public Document(String businessName, String date)
     {
-        this.business = "" + business;
-        this.customer = "" + customer;
+        this.businessName = businessName;
         this.date = date;
     }
 
-    /**
-     * Copy constructor
-     * @param document
-     */
-    public Document(Document document)
-    {
-       this.date = document.date;
-       this.business = "" + document.business;
-       this.customer = "" + document.customer;
-    }
+    public Document() {}
+
+    //
+//    /**
+//     * Copy constructor
+//     * @param document
+//     */
+//    public Document(Document document)
+//    {
+//       this.date = document.date;
+//       this.business = document.business;
+//    }
 
     /*--------------Getters and Setters--------------*/
 
-    public String getCustomer() {
-        return customer;
+    public String getBusinessName() {
+        return businessName;
     }
 
-    public void setCustomer(String customer) {
-        this.customer = customer;
+    public void setBusinessName(String businessName) {
+        this.businessName = businessName;
     }
 
-    public String getBusiness() {
-        return business;
-    }
+    public String getDate() { return this.date; }
 
-    public void setBusiness(String business) {
-        this.business = business;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
-/*
-    public String toString(){
-        return "This DataStructures.document is between "+this.business+" and "+this.customer+" at "+this.date);
-    }*/
 }
 
 

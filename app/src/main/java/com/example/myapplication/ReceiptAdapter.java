@@ -47,8 +47,8 @@ public class ReceiptAdapter extends RecyclerView.Adapter<ReceiptAdapter.MyViewHo
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Receipt receipt = receipts.get(position);
         holder.price.setText(String.format("%.2f", receipt.getTotal_price())+"₪");
-        holder.date.setText(receipt.getDate() + "");
-        holder.bussinesname.setText(receipt.getBusiness());
+        holder.date.setText(receipt.getDate());
+        holder.bussinesname.setText(receipt.getBusinessName());
     }
 
     @Override

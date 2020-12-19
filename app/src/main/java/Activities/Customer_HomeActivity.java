@@ -118,8 +118,7 @@ public class Customer_HomeActivity extends AppCompatActivity implements Navigati
         receipts = new ArrayList<>();
         receiptAdapter = new ReceiptAdapter(this, receipts);
         receiptAdapter.setOnItemClickListener(new ReceiptAdapter.OnItemClickListener() { // listen when clicked on receipt
-            @RequiresApi(api = Build.VERSION_CODES.O)
-            @Override
+
             public void OnItemClick(int position) {
                 openBillDialog(receipts.get(position));
             }
@@ -148,7 +147,6 @@ public class Customer_HomeActivity extends AppCompatActivity implements Navigati
      * this function open the full receipt data
      * @param receipt the receipt to open
      */
-    @RequiresApi(api = Build.VERSION_CODES.O)
     private void openBillDialog(Receipt receipt) {
         final Dialog dialog = new Dialog(Customer_HomeActivity.this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);

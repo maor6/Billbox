@@ -2,31 +2,22 @@ package Activities;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
-
-import DataStructures.Product;
-import DataStructures.Receipt;
 
 import com.example.myapplication.ProductsListAdapter;
 import com.example.myapplication.ReceiptAdapter;
-import com.google.android.material.navigation.NavigationView;
+import com.example.myapplication.ReceiptBusinessAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -34,77 +25,43 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
-/**
- * This is an activity class which operate the customer-main screen.
- */
-public class Customer_HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+import DataStructures.Receipt;
 
-    Toolbar toolbar;
-    DrawerLayout drawerLayout;
-    NavigationView navigationView;
-    RecyclerView recyclerView;
-    ProgressBar progressBar;
-    TextView helloUser;
-    ReceiptAdapter receiptAdapter;
-    ArrayList<Receipt> receipts;
+public class AllDocumentsBusinessActivity extends AppCompatActivity {
+
+    ReceiptBusinessAdapter receiptBusinessAdapter;
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     ProductsListAdapter productsListAdapter;
     DatabaseReference databaseReference;
+    RecyclerView recyclerView;
+    ArrayList<Receipt> receipts;
+    Button searchDocument;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_customer__home);
+        setContentView(R.layout.activity_all_documents_business);
 
         initActivity();
-
-        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(
-                this,
-                drawerLayout,
-                toolbar,
-                R.string.NavigationDrawerOpen,
-                R.string.closeNavDrawer
-        );
-
-        drawerLayout.addDrawerListener(actionBarDrawerToggle);
-        actionBarDrawerToggle.syncState();
-        DatabaseReference referenceForName = firebaseDatabase.getReference().child("Users")
-                .child("Customer").child(Objects.requireNonNull(firebaseAuth.getUid())).child("name");
-        referenceForName.addValueEventListener(new ValueEventListener() {
+        getReceipts();
+        searchDocument.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                helloUser.setText("שלום " + dataSnapshot.getValue().toString());
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
+            public void onClick(View view) {
+                //TODO open the filter screen
             }
         });
-        //TODO use this ->FirebaseDatabaseHelper firebaseDatabaseHelper = new FirebaseDatabaseHelper();
-
-        getReceipts();
-
     }
 
     /**
      * this function initialize the variables in the activity
      */
     private void initActivity() {
-        progressBar = (ProgressBar) findViewById(R.id.progressBar3);
-        toolbar = findViewById(R.id.main_toolbar);
-        setSupportActionBar(toolbar);
-        drawerLayout = findViewById(R.id.drawer_layout);
-        navigationView = findViewById(R.id.nav_view);
+        searchDocument = (Button) findViewById(R.id.search_document_business);
         databaseReference = firebaseDatabase.getReference().child("Documents").child("Receipt").child(Objects.requireNonNull(firebaseAuth.getUid()));
-        helloUser = (TextView) findViewById(R.id.helloUser); //to put the user name
-        navigationView.setNavigationItemSelectedListener(this);
     }
 
     /**
@@ -112,28 +69,26 @@ public class Customer_HomeActivity extends AppCompatActivity implements Navigati
      and put it in the recycler view
      */
     private void getReceipts() {
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerview_reciepts);
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerview_receipts_business);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         receipts = new ArrayList<>();
-        receiptAdapter = new ReceiptAdapter(this, receipts);
-        receiptAdapter.setOnItemClickListener(new ReceiptAdapter.OnItemClickListener() { // listen when clicked on receipt
-
+        receiptBusinessAdapter = new ReceiptBusinessAdapter(this, receipts);
+        receiptBusinessAdapter.setOnItemClickListener(new ReceiptBusinessAdapter.OnItemClickListener() { // listen when clicked on receipt
             public void OnItemClick(int position) {
                 openBillDialog(receipts.get(position));
             }
         });
-        recyclerView.setAdapter(receiptAdapter);
+        recyclerView.setAdapter(receiptBusinessAdapter);
         databaseReference.addValueEventListener(new ValueEventListener() { //TODO needed to be handle by FirebaseDatabaseHelper
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 receipts.clear();
-                progressBar.setVisibility(View.GONE);
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                     Receipt receipt = (Receipt) dataSnapshot1.getValue(Receipt.class);
                     receipts.add(receipt);
                 }
-                receiptAdapter.notifyDataSetChanged();
+                receiptBusinessAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -148,7 +103,7 @@ public class Customer_HomeActivity extends AppCompatActivity implements Navigati
      * @param receipt the receipt to open
      */
     private void openBillDialog(Receipt receipt) {
-        final Dialog dialog = new Dialog(Customer_HomeActivity.this);
+        final Dialog dialog = new Dialog(AllDocumentsBusinessActivity.this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(true); //able to cancel the dialog by clicking outside the dialog
         dialog.setContentView(R.layout.dialog_full_reciept);
@@ -177,13 +132,4 @@ public class Customer_HomeActivity extends AppCompatActivity implements Navigati
         dialog.show();
     }
 
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        return false;
-    }
-
-    @Override
-    public void onPointerCaptureChanged(boolean hasCapture) {
-
-    }
 }

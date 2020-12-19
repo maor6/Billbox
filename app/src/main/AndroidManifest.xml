@@ -12,8 +12,9 @@ package="Activities">
     android:roundIcon="@mipmap/ic_launcher_round"
     android:supportsRtl="true"
     android:theme="@style/AppTheme.NoActionBar">
-    <activity
-        android:name=".InfoEditActivity"/>
+
+    <activity android:name=".AllDocumentsBusinessActivity"></activity>
+    <activity android:name=".InfoEditActivity" />
 
     <activity android:name=".WarrantyActivity" />
 
@@ -31,7 +32,7 @@ package="Activities">
         </intent-filter>
     </activity>
 
-    <activity android:name="Activities.InventoryManageActivity"/>
+    <activity android:name="Activities.InventoryManageActivity" />
 
     <activity
         android:name=".NFCBussinesActivity"
@@ -76,4 +77,5 @@ package="Activities">
     </activity>
 </application>
 </manifest>
+
 

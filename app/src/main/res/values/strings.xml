@@ -164,4 +164,6 @@
     <string name="password">Password</string>
     <string name="login">התחבר</string>
     <string name="loginwithgoogle">התחבר עם Google</string>
+    <string name="search_document">חיפוש מסמך</string>
+    <string name="data">נתונים</string>
 </resources>

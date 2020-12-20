@@ -9,10 +9,14 @@ public abstract class Document implements Serializable {
 
     private String businessName;
     private String date;
+    private String businessAddress;
+    private String businessPhone;
 
-    public Document(String businessName, String date)
+    public Document(String businessName, String businessAddress, String businessPhone, String date)
     {
         this.businessName = businessName;
+        this.businessAddress = businessAddress;
+        this.businessPhone = businessPhone;
         this.date = date;
     }
 

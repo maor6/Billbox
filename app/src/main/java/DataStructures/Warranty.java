@@ -1,11 +1,12 @@
 package DataStructures;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * This class represent DataStructures.warranty DataStructures.document.
  */
-public class Warranty extends Document {
+public class Warranty extends Document implements Serializable {
 
     private Product product;
     private String expiryDate;

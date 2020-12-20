@@ -166,4 +166,6 @@
     <string name="loginwithgoogle">התחבר עם Google</string>
     <string name="search_document">חיפוש מסמך</string>
     <string name="data">נתונים</string>
+    <string name="pick_date">בחר תאריך</string>
+    <string name="purchase_date">תאריך רכישה:</string>
 </resources>

@@ -13,26 +13,30 @@ package="Activities">
     android:supportsRtl="true"
     android:theme="@style/AppTheme.NoActionBar">
 
-    <activity android:name=".AllDocumentsBusinessActivity"></activity>
-    <activity android:name=".InfoEditActivity" />
+    <activity
+        android:name=".AllDocumentsBusinessActivity" />
 
-    <activity android:name=".WarrantyActivity" />
+    <activity
+        android:name=".InfoEditActivity" />
 
-    <activity android:name=".ChooseDocsActivity" />
+    <activity
+        android:name=".WarrantyActivity" />
+
+    <activity
+        android:name=".ChooseDocsActivity" />
 
     <activity
         android:name=".NFCDisplayActivity"
         android:label="NFC Data Display">
         <intent-filter>
             <action android:name="android.nfc.action.NDEF_DISCOVERED" />
-
             <category android:name="android.intent.category.DEFAULT" />
-
             <data android:mimeType="text/plain" />
         </intent-filter>
     </activity>
 
-    <activity android:name="Activities.InventoryManageActivity" />
+    <activity
+        android:name="Activities.InventoryManageActivity" />
 
     <activity
         android:name=".NFCBussinesActivity"
@@ -71,7 +75,6 @@ package="Activities">
         android:theme="@style/AppTheme.NoActionBar">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
-
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
     </activity>

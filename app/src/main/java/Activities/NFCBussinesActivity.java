@@ -2,6 +2,7 @@ package Activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.nfc.NdefMessage;
@@ -16,17 +17,22 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import DataStructures.Receipt;
+
 import com.example.myapplication.SendNotificationPack.ApiInterface;
 import com.example.myapplication.SendNotificationPack.Client;
 import com.example.myapplication.SendNotificationPack.Data;
 import com.example.myapplication.SendNotificationPack.MyNotification;
 import com.example.myapplication.SendNotificationPack.RootModel;
+import com.example.myapplication.SendNotificationPack.Token;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.iid.FirebaseInstanceId;
+
 import java.util.Objects;
 
 import okhttp3.ResponseBody;
@@ -35,7 +41,7 @@ import retrofit2.Callback;
 /**
  * This is an activity class to sent a receipt to costumer-user //TODO sent it with NFC
  */
-@SuppressLint("NewApi")
+
 public class NFCBussinesActivity extends AppCompatActivity implements NfcAdapter.CreateNdefMessageCallback {
 
     TextView mEditText;
@@ -53,7 +59,7 @@ public class NFCBussinesActivity extends AppCompatActivity implements NfcAdapter
 
         initActivity();
 
-        sendNotificationToUser(FirebaseAuth.getInstance().getCurrentUser().getUid()); // update my token
+        updateToken(FirebaseAuth.getInstance().getCurrentUser().getUid()); // update my token
 
         enter.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,15 +78,21 @@ public class NFCBussinesActivity extends AppCompatActivity implements NfcAdapter
             Toast.makeText(this, "Please enable NFC via Settings.", Toast.LENGTH_LONG).show();
             startActivity(new Intent(Settings.ACTION_NFC_SETTINGS));
         }
+
         mAdapter.setNdefPushMessageCallback(this, this);
     }
 
     /**
+     * function that create/update a token in the DB
+     */
     private void updateToken(String uid) {
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         String refreshToken = FirebaseInstanceId.getInstance().getToken();
         Token token = new Token(refreshToken);
         FirebaseDatabase.getInstance().getReference("Tokens").child(uid).setValue(token);
+    }
+
+    /**
      * this function initialize the variables in the activity
      */
     private void initActivity() {

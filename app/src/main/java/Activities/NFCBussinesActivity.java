@@ -17,6 +17,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import DataStructures.Receipt;
 import com.example.myapplication.SendNotificationPack.ApiInterface;
+import com.example.myapplication.SendNotificationPack.Client;
+import com.example.myapplication.SendNotificationPack.Data;
 import com.example.myapplication.SendNotificationPack.MyNotification;
 import com.example.myapplication.SendNotificationPack.RootModel;
 import com.google.firebase.auth.FirebaseAuth;
@@ -28,6 +30,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.Objects;
 
 import okhttp3.ResponseBody;
+import retrofit2.Callback;
 
 /**
  * This is an activity class to sent a receipt to costumer-user //TODO sent it with NFC
@@ -50,7 +53,7 @@ public class NFCBussinesActivity extends AppCompatActivity implements NfcAdapter
 
         initActivity();
 
-        updateToken(FirebaseAuth.getInstance().getCurrentUser().getUid()); // update my token
+        sendNotificationToUser(FirebaseAuth.getInstance().getCurrentUser().getUid()); // update my token
 
         enter.setOnClickListener(new View.OnClickListener() {
             @Override

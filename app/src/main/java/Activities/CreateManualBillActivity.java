@@ -74,7 +74,7 @@ public class CreateManualBillActivity extends AppCompatActivity {
         });
         dateSetListener = (datePicker, year, month, day) -> {
             month = month+1;
-            String date = day+"/"+month+"/"+year;
+            String date = day+"/"+month+"/"+(year-2000);
             purchaseDate.setText(date);
         };
         finishBt.setOnClickListener(view -> {
@@ -134,7 +134,7 @@ public class CreateManualBillActivity extends AppCompatActivity {
         DatabaseReference referenceDoc = FirebaseDatabase.getInstance().getReference("Documents")
                 .child("Receipt");
         referenceDoc.child(Objects.requireNonNull(firebaseAuth.getUid())).push().setValue(receipt);
-
+        finish();
     }
 
     /**

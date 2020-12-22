@@ -2,7 +2,6 @@ package Activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.nfc.NdefMessage;
 import android.nfc.NdefRecord;
@@ -10,22 +9,20 @@ import android.nfc.NfcAdapter;
 import android.nfc.NfcEvent;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import DataStructures.Receipt;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
 import java.util.Objects;
+
 
 /**
  * This is an activity class to sent a receipt to costumer-user //TODO sent it with NFC
@@ -63,10 +60,7 @@ public class NFCBussinesActivity extends AppCompatActivity implements NfcAdapter
             Toast.makeText(this, "Please enable NFC via Settings.", Toast.LENGTH_LONG).show();
             startActivity(new Intent(Settings.ACTION_NFC_SETTINGS));
         }
-
         mAdapter.setNdefPushMessageCallback(this, this);
-//        Intent intent = new Intent(this, getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-//        intent.putExtra("receipt", reciept);
     }
 
     /**
@@ -118,6 +112,19 @@ public class NFCBussinesActivity extends AppCompatActivity implements NfcAdapter
 
                     // add the receipt also to the Business
                     referenceCustomer.child(Objects.requireNonNull(firebaseAuth.getUid())).push().setValue(receipt);
+
+                    FirebaseDatabase.getInstance().getReference().child("Tokens").child(uid).child("token").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            String usertoken=dataSnapshot.getValue(String.class);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+
                     finish();
                 }
                 else { // we don't find the phoneNumber of the customer
@@ -132,4 +139,5 @@ public class NFCBussinesActivity extends AppCompatActivity implements NfcAdapter
             }
         });
     }
+
 }

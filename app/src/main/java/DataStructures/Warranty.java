@@ -1,47 +1,46 @@
 package DataStructures;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * This class represent DataStructures.warranty DataStructures.document.
  */
-public class Warranty extends Document {
+public class Warranty extends Document implements Serializable {
 
-
-    private String item;  //TODO change it to item data type.
-    private String expiration;
-    private ArrayList<String> rules;
+    private Product product;
+    private String expiryDate;
+    private String rules;
 
     /**
      * Constructor
      * @param businessName name as string
      * @param date purchase date
-     * @param item name as string
-     * @param expiration date which the item loses its DataStructures.warranty
+     * @param product the product with the warranty
+     * @param expiryDate which the item loses its DataStructures.warranty
      * @param rules paragraph which set the DataStructures.warranty rules as array list of string.
      */
-    public Warranty(String businessName, String date, String item, String expiration, ArrayList<String> rules)
+    public Warranty(String businessName, String businessAddress, String businessPhone, String date, Product product, String expiryDate, String rules)
     {
-        super(businessName, date);
-        this.expiration = expiration;
-        this.item = item;
+        super(businessName, businessAddress, businessPhone, date);
+        this.product = product;
+        this.expiryDate = expiryDate;
         this.rules = rules;
     }
     /*---------------Getters and Setters---------------*/
 
-    public String getItem() {
-        return item;
+    public Product getItem() {
+        return product;
     }
 
     public String getExpiration() {
-        return expiration;
+        return expiryDate;
     }
 
-    public void setItem(String item) {
-        this.item = item;
+    public void setProduct(Product product) {
+        this.product = product;
     }
-
-    public void setExpiration(String expiration) {
-        this.expiration = expiration;
+    public void setExpiration(String expiryDate) {
+        this.expiryDate = expiryDate;
     }
 }

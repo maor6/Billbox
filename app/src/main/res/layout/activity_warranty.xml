@@ -5,142 +5,161 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+        android:id="@+id/toolbarWarranty"
         android:layout_width="match_parent"
-        android:layout_height="75dp"
+        android:layout_height="60dp"
         android:background="#7DDA8A"
         app:layout_anchor="@+id/appBarLayout"
         app:popupTheme="@style/AppTheme.PopupOverlay">
 
+        <TextView
+            android:id="@+id/warrantyText"
+            android:layout_width="wrap_content"
+            android:layout_height="41dp"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="120dp"
+            android:gravity="center"
+            android:text="@string/warranty"
+            android:textSize="23sp"
+            android:textStyle="bold" />
+    </androidx.appcompat.widget.Toolbar>
+
+
+        <TextView
+            android:id="@+id/searchToWarranty"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/toolbarWarranty"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true"
+            android:drawableRight="@drawable/add_bt"
+            android:text="@string/add_product"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:textColor="#000"
+            android:background="@drawable/custom_button">
+
+        </TextView>
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom"
+        android:background="#7DDA8A"
+        app:layout_scrollFlags="scroll|enterAlways">
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:gravity="center">
 
             <Button
-                android:id="@+id/finishbt"
-                android:layout_width="75dp"
-                android:layout_height="50dp"
-                android:layout_margin="12dp"
+                android:id="@+id/finishbtWarranty"
+                android:layout_width="90dp"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
                 android:background="@drawable/finishbill"
                 android:text="@string/finishBill"
                 android:textSize="17sp"
                 android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/billText"
-                android:layout_width="wrap_content"
-                android:layout_height="41dp"
-                android:layout_centerInParent="true"
-                android:text="@string/warranty"
-                android:textSize="23sp"
-                android:textStyle="bold" />
         </RelativeLayout>
     </androidx.appcompat.widget.Toolbar>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardValues"
-        android:layout_width="350dp"
-        android:layout_height="30dp"
-        android:layout_above="@+id/scrollView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="-110dp">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/description"
-                android:layout_width="60dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="270dp"
-                android:text="@string/description"
-                android:textSize="17sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/amount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="180dp"
-                android:text="@string/amount"
-                android:textSize="17sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/cost"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="105dp"
-                android:text="@string/price"
-                android:textSize="17sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/total"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="40dp"
-                android:text="@string/total"
-                android:textSize="17sp"
-                android:textStyle="bold" />
-        </RelativeLayout>
-    </androidx.cardview.widget.CardView>
-
-
-    <ScrollView
-        android:id="@+id/scrollView"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="130dp"
-        android:layout_marginTop="110dp">
+        android:layout_height="480dp"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/searchToWarranty">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical" />
-    </ScrollView>
+            android:text="תיאור:"
+            android:textColor="#000"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.16"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.111" />
+
+        <TextView
+            android:id="@+id/product_name_warranty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="#000"
+            android:textSize="17sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.61"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.109" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ברקוד:"
+            android:textColor="#000"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.153"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.227" />
 
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/dateValues"
-        android:layout_width="350dp"
-        android:layout_height="30dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="250dp">
+        <TextView
+            android:id="@+id/product_barcode_warranty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="#000"
+            android:textSize="17sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.61"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.225" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="תוקף עד:"
+            android:textColor="#000"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.108"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.347" />
 
-            <TextView
-                android:id="@+id/purchaseDate"
-                android:layout_width="154dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_marginStart="181dp"
-                android:gravity="center"
-                android:text="@string/purchaseDate"
-                android:textSize="17sp"
-                android:textStyle="bold" />
+        <TextView
+            android:id="@+id/expiryDatePicker"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edt_back"
+            android:gravity="center"
+            android:hint="@string/pick_date"
+            android:textColor="#000"
+            android:textSize="17sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.612"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.345" />
 
-            <TextView
-                android:id="@+id/warrantyDuration"
-                android:layout_width="140dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="3dp"
-                android:gravity="center"
-                android:text="@string/warrantyDuration"
-                android:textSize="17sp"
-                android:textStyle="bold" />
-        </RelativeLayout>
 
-    </androidx.cardview.widget.CardView>
-
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.circularreveal.CircularRevealRelativeLayout>

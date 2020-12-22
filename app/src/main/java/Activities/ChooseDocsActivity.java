@@ -14,6 +14,7 @@ import android.widget.Button;
 public class ChooseDocsActivity extends AppCompatActivity implements View.OnClickListener {
 
     CardView receiptBtn;
+    CardView warrantyBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,12 +30,17 @@ public class ChooseDocsActivity extends AppCompatActivity implements View.OnClic
     private void initActivity() {
         receiptBtn = (CardView) findViewById(R.id.receiptChoose);
         receiptBtn.setOnClickListener(this);
+        warrantyBtn = (CardView) findViewById(R.id.warrantyChoose);
+        warrantyBtn.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         if (v.getId() == receiptBtn.getId()) {
             startActivity(new Intent(this, CreateBillActivity.class));
+        }
+        if(v.getId() == warrantyBtn.getId()){
+            startActivity(new Intent(this, WarrantyActivity.class));
         }
     }
 }

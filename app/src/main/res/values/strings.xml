@@ -166,4 +166,11 @@
     <string name="loginwithgoogle">התחבר עם Google</string>
     <string name="search_document">חיפוש מסמך</string>
     <string name="data">נתונים</string>
+    <string name="pick_date">בחר תאריך</string>
+    <string name="purchase_date">תאריך רכישה:</string>
+    <string name="create_manual_receipt">צור חשבונית ידנית</string>
+    <string name="take_picture_of_receipt">צלם את החשבונית</string>
+    <string name="enter_business_name">הכנס שם עסק</string>
+    <string name="paid">סכום ששולם</string>
+    <string name="pick_purchase_date">בחר תאריך קנייה</string>
 </resources>

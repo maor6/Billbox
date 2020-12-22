@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?><manifest xmlns:android="http://schemas.android.com/apk/res/android"
 package="Activities">
+
 <uses-permission android:name="android.permission.INTERNET" />
 <uses-permission android:name="android.permission.NFC" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
 
 <uses-feature android:name="android.hardware.nfc" />
 
 <application
+
     android:allowBackup="true"
     android:icon="@mipmap/ic_launcher"
     android:label="@string/app_name"
@@ -13,17 +17,15 @@ package="Activities">
     android:supportsRtl="true"
     android:theme="@style/AppTheme.NoActionBar">
 
-    <activity
-        android:name=".AllDocumentsBusinessActivity" />
+    <activity android:name=".AllDocumentsBusinessActivity" />
 
-    <activity
-        android:name=".InfoEditActivity" />
+    <activity android:name=".InfoEditActivity" />
 
-    <activity
-        android:name=".WarrantyActivity" />
+    <activity android:name=".WarrantyActivity" />
 
-    <activity
-        android:name=".ChooseDocsActivity" />
+    <activity android:name="Activities.CreateManualBillActivity"/>
+
+    <activity android:name=".ChooseDocsActivity" />
 
     <activity
         android:name=".NFCDisplayActivity"
@@ -35,8 +37,7 @@ package="Activities">
         </intent-filter>
     </activity>
 
-    <activity
-        android:name="Activities.InventoryManageActivity" />
+    <activity android:name="Activities.InventoryManageActivity" />
 
     <activity
         android:name=".NFCBussinesActivity"
@@ -80,5 +81,4 @@ package="Activities">
     </activity>
 </application>
 </manifest>
-
 

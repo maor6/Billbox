@@ -5,6 +5,7 @@ package com.example.myapplication.SendNotificationPack;
  */
 
 public class Token {
+
     private String token;
 
     public Token(String token) {

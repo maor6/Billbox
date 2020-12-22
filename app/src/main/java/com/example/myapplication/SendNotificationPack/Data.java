@@ -1,34 +1,32 @@
 package com.example.myapplication.SendNotificationPack;
 
 /**
- * this class represent the data of the notification
+ * The data we will sent with the message
  */
+
 public class Data {
-    private String Title;
-    private String Message;
 
-    public Data(String title, String message) {
-        Title = title;
-        Message = message;
+    private String businesssName;
+    private String totalPay;
+
+    public Data(String businesssName, String totalPay) {
+        this.businesssName = businesssName;
+        this.totalPay = totalPay;
     }
 
-    public Data() {
+    public String getName() {
+        return businesssName;
     }
 
-    public String getTitle() {
-        return Title;
+    public void setName(String businesssName) {
+        this.businesssName = businesssName;
     }
 
-    public void setTitle(String title) {
-        Title = title;
+    public String getAge() {
+        return totalPay;
     }
 
-    public String getMessage() {
-        return Message;
+    public void setAge(String totalPay) {
+        this.totalPay = totalPay;
     }
-
-    public void setMessage(String message) {
-        Message = message;
-    }
-
 }

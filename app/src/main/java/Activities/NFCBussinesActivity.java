@@ -17,11 +17,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 import DataStructures.Receipt;
 
-import com.example.myapplication.SendNotificationPack.APIService;
+import com.example.myapplication.SendNotificationPack.ApiInterface;
 import com.example.myapplication.SendNotificationPack.Client;
 import com.example.myapplication.SendNotificationPack.Data;
-import com.example.myapplication.SendNotificationPack.MyResponse;
-import com.example.myapplication.SendNotificationPack.NotificationSender;
+import com.example.myapplication.SendNotificationPack.MyNotification;
+import com.example.myapplication.SendNotificationPack.RootModel;
 import com.example.myapplication.SendNotificationPack.Token;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -34,9 +34,8 @@ import com.google.firebase.iid.FirebaseInstanceId;
 
 import java.util.Objects;
 
-import retrofit2.Call;
+import okhttp3.ResponseBody;
 import retrofit2.Callback;
-import retrofit2.Response;
 
 /**
  * This is an activity class to sent a receipt to costumer-user //TODO sent it with NFC
@@ -50,7 +49,6 @@ public class NFCBussinesActivity extends AppCompatActivity implements NfcAdapter
     DatabaseReference databaseReference = firebaseDatabase.getReference("Users").child("Customer");
     Receipt receipt;
     FirebaseAuth firebaseAuth;
-    APIService apiService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,8 +57,8 @@ public class NFCBussinesActivity extends AppCompatActivity implements NfcAdapter
 
         initActivity();
 
-        UpdateToken();
-        
+        updateToken(FirebaseAuth.getInstance().getCurrentUser().getUid()); // update my token
+
         enter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,6 +71,7 @@ public class NFCBussinesActivity extends AppCompatActivity implements NfcAdapter
             mEditText.setText("Sorry this device does not have NFC.");
             return;
         }
+
         if (!mAdapter.isEnabled()) { // go to NFC phone settings
             Toast.makeText(this, "Please enable NFC via Settings.", Toast.LENGTH_LONG).show();
             startActivity(new Intent(Settings.ACTION_NFC_SETTINGS));
@@ -84,12 +83,11 @@ public class NFCBussinesActivity extends AppCompatActivity implements NfcAdapter
     /**
      * function that create/update a token in the DB
      */
-    private void UpdateToken(){
-        FirebaseUser firebaseUser= FirebaseAuth.getInstance().getCurrentUser();
-        String refreshToken= FirebaseInstanceId.getInstance().getToken();
-        Token token= new Token(refreshToken);
-        FirebaseDatabase.getInstance().getReference("Tokens").child(FirebaseAuth.getInstance()
-                .getCurrentUser().getUid()).setValue(token);
+    private void updateToken(String uid) {
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        String refreshToken = FirebaseInstanceId.getInstance().getToken();
+        Token token = new Token(refreshToken);
+        FirebaseDatabase.getInstance().getReference("Tokens").child(uid).setValue(token);
     }
 
     /**
@@ -99,9 +97,8 @@ public class NFCBussinesActivity extends AppCompatActivity implements NfcAdapter
         phoneNumber = (EditText) findViewById(R.id.NFCBussinesPhoneNumber);
         enter = (Button) findViewById(R.id.NFC_bussines_continue);
         mEditText = (TextView) findViewById(R.id.test1);
-        receipt =  (Receipt) getIntent().getSerializableExtra("receipt");
+        receipt = (Receipt) getIntent().getSerializableExtra("receipt");
         firebaseAuth = FirebaseAuth.getInstance();
-        apiService = Client.getClient("https://fcm.googleapis.com/").create(APIService.class);
     }
 
     @Override
@@ -115,6 +112,7 @@ public class NFCBussinesActivity extends AppCompatActivity implements NfcAdapter
     /**
      * this method search the correct customer from the DB
      * and push the receipt to the customer
+     *
      * @param phoneToSearch
      * @param receipt
      */
@@ -143,11 +141,14 @@ public class NFCBussinesActivity extends AppCompatActivity implements NfcAdapter
                     // add the receipt also to the Business
                     referenceCustomer.child(Objects.requireNonNull(firebaseAuth.getUid())).push().setValue(receipt);
 
-                    FirebaseDatabase.getInstance().getReference().child("Tokens").child(uid).child("token").addListenerForSingleValueEvent(new ValueEventListener() {
+                    // send notification that the receipt is sent
+                    FirebaseDatabase.getInstance().getReference().child("Tokens")
+                            .child(Objects.requireNonNull(FirebaseAuth.getInstance().getUid()))
+                            .child("token").addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            String usertoken=dataSnapshot.getValue(String.class);
-                            sendNotifications(usertoken);
+                            String usertoken = dataSnapshot.getValue(String.class);
+                            sendNotificationToUser(usertoken);
                         }
 
                         @Override
@@ -157,8 +158,8 @@ public class NFCBussinesActivity extends AppCompatActivity implements NfcAdapter
                     });
 
                     finish();
-                }
-                else { // we don't find the phoneNumber of the customer
+
+                } else { // we don't find the phoneNumber of the customer
                     Toast.makeText(NFCBussinesActivity.this, "Send Failed.",
                             Toast.LENGTH_SHORT).show();
                 }
@@ -171,21 +172,23 @@ public class NFCBussinesActivity extends AppCompatActivity implements NfcAdapter
         });
     }
 
-    public void sendNotifications(String usertoken) {
-        Data data = new Data("Billbox", "התקבל מסמך");
-        NotificationSender sender = new NotificationSender(data, usertoken);
-        apiService.sendNotifcation(sender).enqueue(new Callback<MyResponse>() {
+    /**
+     * function to send notification to specific user
+     * @param token of the user that we want to sent it to
+     */
+    private void sendNotificationToUser(String token) {
+        RootModel rootModel = new RootModel(token, new MyNotification("Title", "Body"),
+                new Data("Name", "30"));
+        ApiInterface apiService = Client.getClient().create(ApiInterface.class);
+        retrofit2.Call<ResponseBody> responseBodyCall = apiService.sendNotification(rootModel);
+        responseBodyCall.enqueue(new Callback<ResponseBody>() {
             @Override
-            public void onResponse(Call<MyResponse> call, Response<MyResponse> response) {
-                if (response.code() == 200) {
-                    if (response.body().success != 1) {
-                        Toast.makeText(NFCBussinesActivity.this, "Failed ", Toast.LENGTH_LONG);
-                    }
-                }
+            public void onResponse(retrofit2.Call<ResponseBody> call, retrofit2.Response<ResponseBody> response) {
+
             }
 
             @Override
-            public void onFailure(Call<MyResponse> call, Throwable t) {
+            public void onFailure(retrofit2.Call<ResponseBody> call, Throwable t) {
 
             }
         });

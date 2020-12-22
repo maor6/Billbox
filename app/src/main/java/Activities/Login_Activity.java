@@ -22,7 +22,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
 import java.util.Objects;
 
 /**
@@ -83,7 +82,6 @@ public class Login_Activity extends AppCompatActivity implements View.OnClickLis
         loginbt.setOnClickListener(this);
         cardGoogle.setOnClickListener(this);
     }
-
 
     @Override
     public void onClick(View view) {

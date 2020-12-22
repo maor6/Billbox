@@ -123,7 +123,6 @@ public class WarrantyActivity extends AppCompatActivity {
         finishBt = findViewById(R.id.finishbtWarranty);
         firebaseAuth = FirebaseAuth.getInstance();
         ref = FirebaseDatabase.getInstance().getReference().child("Users").child("Bussines");
-
     }
 
     /**

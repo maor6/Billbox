@@ -101,7 +101,6 @@ public class Customer_HomeActivity extends AppCompatActivity implements Navigati
         helloUser = (TextView) findViewById(R.id.helloUser); //to put the user name
         navigationView.setNavigationItemSelectedListener(this);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerview_reciepts);
-
     }
 
     /**

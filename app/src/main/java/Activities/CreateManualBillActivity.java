@@ -138,7 +138,7 @@ public class CreateManualBillActivity extends AppCompatActivity {
     }
 
     /**
-     * upload receipt picture to storage in D
+     * upload receipt picture to storage in DB
      * @param bitmap the picture in bitmap
      * @return the imageKey
      */

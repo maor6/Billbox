@@ -18,7 +18,10 @@ public class Receipt extends Document implements Serializable {
     private String businessAddress;
     private String businessPhone;
     private String notes;
+    public Boolean isManual;
+    private String imageID;
     public static String id;
+
 
 //    /**
 //     * Constructor
@@ -55,6 +58,14 @@ public class Receipt extends Document implements Serializable {
       this.businessPhone = businessPhone;
       this.notes = notes;
       this.id = id;
+      this.isManual = false;
+  }
+
+  public Receipt(String businessName, String date, double total_price, String imageID){
+        super(businessName, date);
+        this.total_price = total_price;
+        this.imageID = imageID;
+        this.isManual = true;
   }
 
   /*---------------Getters and Setters---------------*/
@@ -116,6 +127,14 @@ public class Receipt extends Document implements Serializable {
     public ArrayList<Product> getItems() { return items; }
 
     public void setItems(ArrayList<Product> items) { this.items = items; }
+
+    public String getImageID() {
+        return imageID;
+    }
+
+    public void setImageID(String imageID) {
+        this.imageID = imageID;
+    }
 
 }
 

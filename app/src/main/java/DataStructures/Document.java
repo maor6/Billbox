@@ -20,6 +20,11 @@ public abstract class Document implements Serializable {
         this.date = date;
     }
 
+    public Document(String businessName, String date) {
+        this.businessName = businessName;
+        this.date = date;
+    }
+
     public Document() {}
 
     //

@@ -145,8 +145,7 @@ public class NFCBussinesActivity extends AppCompatActivity implements NfcAdapter
 
                     // send notification that the receipt is sent
                     FirebaseDatabase.getInstance().getReference().child("Tokens")
-                            .child(Objects.requireNonNull(FirebaseAuth.getInstance().getUid()))
-                            .child("token").addListenerForSingleValueEvent(new ValueEventListener() {
+                            .child(uid).child("token").addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             String usertoken = dataSnapshot.getValue(String.class);

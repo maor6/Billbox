@@ -91,7 +91,7 @@ package="Activities">
     <service
         android:name="com.example.myapplication.SendNotificationPack.MyFirebaseIdService"
         android:enabled="true"
-        android:exported="true">
+        android:exported="false">
         <intent-filter>
             <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
         </intent-filter>

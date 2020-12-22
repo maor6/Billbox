@@ -3,6 +3,7 @@ package Activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.nfc.NdefMessage;
 import android.nfc.NdefRecord;
@@ -40,6 +41,7 @@ import retrofit2.Callback;
 /**
  * This is an activity class to sent a receipt to costumer-user //TODO sent it with NFC
  */
+@SuppressLint("NewApi")
 public class NFCBussinesActivity extends AppCompatActivity implements NfcAdapter.CreateNdefMessageCallback {
 
     TextView mEditText;

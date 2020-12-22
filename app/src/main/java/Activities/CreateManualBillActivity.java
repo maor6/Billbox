@@ -62,7 +62,6 @@ public class CreateManualBillActivity extends AppCompatActivity {
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             startActivityForResult(intent,100);
         });
-
         purchaseDate.setOnClickListener(view -> {
             Calendar calendar = Calendar.getInstance();
             int year = calendar.get(Calendar.YEAR);
@@ -78,7 +77,6 @@ public class CreateManualBillActivity extends AppCompatActivity {
             String date = day+"/"+month+"/"+year;
             purchaseDate.setText(date);
         };
-
         finishBt.setOnClickListener(view -> {
             pushReceipt(); // push to DB
         });
@@ -162,8 +160,6 @@ public class CreateManualBillActivity extends AppCompatActivity {
                     getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
                     Toast.makeText(getApplicationContext(), "failed to save picture" , Toast.LENGTH_SHORT).show();
                 });
-
         return imageKey;
     }
-
 }

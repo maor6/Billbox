@@ -124,7 +124,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginHorizontal="160dp"
+        android:layout_marginHorizontal="130dp"
         android:background="@drawable/finishbill"
         android:text="@string/finishBill"
         android:textSize="17sp"

@@ -40,7 +40,7 @@ import DataStructures.Warranty;
 
 public class WarrantyActivity extends AppCompatActivity {
 
-    CardView searchProduct;
+    TextView searchProduct;
     TextView description;
     TextView barcode;
     TextView expiryDate;

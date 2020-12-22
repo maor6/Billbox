@@ -19,31 +19,29 @@
             android:layout_width="wrap_content"
             android:layout_height="41dp"
             android:layout_centerInParent="true"
-            android:layout_marginStart="110dp"
+            android:layout_marginStart="120dp"
             android:gravity="center"
             android:text="@string/warranty"
             android:textSize="23sp"
             android:textStyle="bold" />
     </androidx.appcompat.widget.Toolbar>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/searchToWarranty"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/toolbarWarranty"
-        android:layout_marginTop="10dp"
-        android:layout_centerHorizontal="true">
 
         <TextView
-            android:layout_width="150dp"
-            android:layout_height="match_parent"
+            android:id="@+id/searchToWarranty"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/toolbarWarranty"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true"
             android:drawableRight="@drawable/add_bt"
             android:text="@string/add_product"
             android:textSize="25sp"
             android:textStyle="bold"
             android:textColor="#000"
-            android:background="@drawable/custom_button"/>
-    </androidx.cardview.widget.CardView>
+            android:background="@drawable/custom_button">
+
+        </TextView>
 
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
@@ -96,13 +94,12 @@
             android:text=""
             android:textColor="#000"
             android:textSize="17sp"
-            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.526"
+            app:layout_constraintHorizontal_bias="0.61"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.111" />
+            app:layout_constraintVertical_bias="0.109" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -118,6 +115,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.227" />
 
+
         <TextView
             android:id="@+id/product_barcode_warranty"
             android:layout_width="wrap_content"
@@ -125,14 +123,12 @@
             android:text=""
             android:textColor="#000"
             android:textSize="17sp"
-            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.525"
+            app:layout_constraintHorizontal_bias="0.61"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.227" />
-
+            app:layout_constraintVertical_bias="0.225" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -143,24 +139,26 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.161"
+            app:layout_constraintHorizontal_bias="0.108"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.47" />
+            app:layout_constraintVertical_bias="0.347" />
 
         <TextView
             android:id="@+id/expiryDatePicker"
-            android:layout_width="wrap_content"
+            android:layout_width="140dp"
             android:layout_height="wrap_content"
+            android:background="@drawable/edt_back"
+            android:gravity="center"
             android:hint="@string/pick_date"
             android:textColor="#000"
             android:textSize="17sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.58"
+            app:layout_constraintHorizontal_bias="0.612"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.47" />
+            app:layout_constraintVertical_bias="0.345" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

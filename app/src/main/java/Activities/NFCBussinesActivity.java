@@ -68,7 +68,7 @@ public class NFCBussinesActivity extends AppCompatActivity implements NfcAdapter
         enter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                pushReceipt(phoneNumber.getText().toString(), document);
+                pushDocument(phoneNumber.getText().toString(), document);
             }
         });
 
@@ -122,7 +122,7 @@ public class NFCBussinesActivity extends AppCompatActivity implements NfcAdapter
      * @param phoneToSearch
      * @param receipt
      */
-    public void pushReceipt(String phoneToSearch, Document receipt) {
+    public void pushDocument(String phoneToSearch, Document receipt) {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -137,7 +137,7 @@ public class NFCBussinesActivity extends AppCompatActivity implements NfcAdapter
                         break;
                     }
                 }
-                if (found) { // Add the receipt to the correct customer by phone number
+                if (found) { // Add the document to the correct customer by phone number
                     DatabaseReference referenceCustomer = firebaseDatabase.getReference("Documents")
                             .child(documentType()); // get the reference of the correct customer
                     referenceCustomer.child(uid).push().setValue(receipt);
@@ -145,9 +145,11 @@ public class NFCBussinesActivity extends AppCompatActivity implements NfcAdapter
                             Toast.LENGTH_SHORT).show();
 
                     // add the receipt also to the Business
-                    referenceCustomer.child(Objects.requireNonNull(firebaseAuth.getUid())).push().setValue(receipt);
+                    if (documentType() == "Receipt") {
+                        referenceCustomer.child(Objects.requireNonNull(firebaseAuth.getUid())).push().setValue(receipt);
+                    }
 
-                    // send notification that the receipt is sent
+                    // send notification that the document is sent
                     FirebaseDatabase.getInstance().getReference().child("Tokens")
                             .child(uid).child("token").addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override

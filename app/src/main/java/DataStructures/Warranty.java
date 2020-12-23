@@ -27,6 +27,9 @@ public class Warranty extends Document implements Serializable {
         this.expiryDate = expiryDate;
         this.rules = rules;
     }
+
+    public Warranty(){}
+
     /*---------------Getters and Setters---------------*/
 
     public Product getProduct() {

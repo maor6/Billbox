@@ -80,9 +80,14 @@ public class Business_HomeActivity extends AppCompatActivity implements View.OnC
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        return false;
+        switch (item.getItemId()) {
+            case R.id.searchDocumentBusinessMenu:
+                startActivity(new Intent(Business_HomeActivity.this, AllDocumentsBusinessActivity.class));
+                return true;
+            default:
+                return false;
+        }
     }
-
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
 

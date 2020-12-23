@@ -190,10 +190,13 @@ public class Customer_HomeActivity extends AppCompatActivity implements Navigati
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch(item.getItemId()) {
             case R.id.searchDocumentCustomerMenu:
-                // TODO
+                startActivity(new Intent(Customer_HomeActivity.this, AllDocumentsCostumerActivity.class));
                 return true;
             case R.id.createDocumentCustomerMenu:
                 startActivity(new Intent(Customer_HomeActivity.this, CreateManualBillActivity.class));
+                return true;
+            case R.id.warranties:
+                startActivity(new Intent(Customer_HomeActivity.this, WarrantiesCustomerActivity.class));
                 return true;
             default:
                 return false;

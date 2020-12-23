@@ -6,7 +6,7 @@
             <item
                 android:id="@+id/searchDocumentBusinessMenu"
                 android:icon="@android:drawable/ic_menu_search"
-                android:title="@string/search_document" />
+                android:title="@string/search_receipt" />
             <item
                 android:id="@+id/data_menu_business"
                 android:icon="@drawable/data_ic"

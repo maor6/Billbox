@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?><manifest xmlns:android="http://schemas.android.com/apk/res/android"
 package="Activities">
 
 <uses-permission android:name="android.permission.INTERNET" />
 <uses-permission android:name="android.permission.CAMERA" />
 <uses-permission android:name="android.permission.NFC" />
+
 <uses-feature android:name="android.hardware.nfc" />
 
 <application
@@ -16,13 +16,17 @@ package="Activities">
     android:supportsRtl="true"
     android:theme="@style/AppTheme.NoActionBar">
 
+    <activity android:name=".WarrantiesCustomerActivity"/>
+
+    <activity android:name=".AllDocumentsCostumerActivity"/>
+
     <activity android:name=".AllDocumentsBusinessActivity" />
 
     <activity android:name=".InfoEditActivity" />
 
     <activity android:name=".WarrantyActivity" />
 
-    <activity android:name="Activities.CreateManualBillActivity"/>
+    <activity android:name="Activities.CreateManualBillActivity" />
 
     <activity android:name=".ChooseDocsActivity" />
 

@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.myapplication.ProductsListAdapter;
@@ -40,6 +41,7 @@ public class AllDocumentsBusinessActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     ArrayList<Receipt> receipts;
     Button searchDocument;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,8 +62,12 @@ public class AllDocumentsBusinessActivity extends AppCompatActivity {
      * this function initialize the variables in the activity
      */
     private void initActivity() {
-        searchDocument = (Button) findViewById(R.id.search_document_business);
-        databaseReference = firebaseDatabase.getReference().child("Documents").child("Receipt").child(Objects.requireNonNull(firebaseAuth.getUid()));
+        searchDocument = (Button) findViewById(R.id.filter_document);
+        databaseReference = firebaseDatabase.getReference().child("Documents")
+                .child("Receipt")
+                .child(Objects.requireNonNull(firebaseAuth.getUid()));
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerview_receipts);
+
     }
 
     /**
@@ -69,7 +75,7 @@ public class AllDocumentsBusinessActivity extends AppCompatActivity {
      and put it in the recycler view
      */
     private void getReceipts() {
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerview_receipts_business);
+        progressBar = (ProgressBar) findViewById(R.id.progressBarAllDocuments);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         receipts = new ArrayList<>();
@@ -84,6 +90,7 @@ public class AllDocumentsBusinessActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 receipts.clear();
+                progressBar.setVisibility(View.GONE);
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                     Receipt receipt = (Receipt) dataSnapshot1.getValue(Receipt.class);
                     receipts.add(receipt);

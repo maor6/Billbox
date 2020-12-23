@@ -15,7 +15,7 @@ import Activities.R;
 import DataStructures.Receipt;
 
 /**
- * This class assigned to fit a visual list of receipt to the screen
+ * This class assigned to fit a visual list of warranty to the screen
  */
 public class ReceiptAdapter extends RecyclerView.Adapter<ReceiptAdapter.MyViewHolder> {
 

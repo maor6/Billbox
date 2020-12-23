@@ -40,6 +40,22 @@ public abstract class Document implements Serializable {
 
     /*--------------Getters and Setters--------------*/
 
+    public String getBusinessAddress() {
+        return businessAddress;
+    }
+
+    public void setBusinessAddress(String businessAddress) {
+        this.businessAddress = businessAddress;
+    }
+
+    public String getBusinessPhone() {
+        return businessPhone;
+    }
+
+    public void setBusinessPhone(String businessPhone) {
+        this.businessPhone = businessPhone;
+    }
+
     public String getBusinessName() {
         return businessName;
     }

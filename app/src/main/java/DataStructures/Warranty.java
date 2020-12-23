@@ -29,18 +29,27 @@ public class Warranty extends Document implements Serializable {
     }
     /*---------------Getters and Setters---------------*/
 
-    public Product getItem() {
+    public Product getProduct() {
         return product;
-    }
-
-    public String getExpiration() {
-        return expiryDate;
     }
 
     public void setProduct(Product product) {
         this.product = product;
     }
-    public void setExpiration(String expiryDate) {
+
+    public String getExpiryDate() {
+        return expiryDate;
+    }
+
+    public void setExpiryDate(String expiryDate) {
         this.expiryDate = expiryDate;
+    }
+
+    public String getRules() {
+        return rules;
+    }
+
+    public void setRules(String rules) {
+        this.rules = rules;
     }
 }

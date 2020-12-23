@@ -43,7 +43,7 @@ public class WarrantiesAdapter extends RecyclerView.Adapter<WarrantiesAdapter.My
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Warranty warranty = warranties.get(position);
-        holder.expiryDate.setText(warranty.getExpiration());
+        holder.expiryDate.setText(warranty.getExpiryDate());
         holder.purchaseDate.setText(warranty.getDate());
         holder.businessName.setText(warranty.getBusinessName());
     }

@@ -106,7 +106,7 @@ public class WarrantyActivity extends AppCompatActivity {
                 Intent intent = new Intent(WarrantyActivity.this, NFCBussinesActivity.class);
                 Warranty warranty = new Warranty(business.getBusiness_name(), dtf.format(localDate),
                         business.getAddress(), business.getPhoneNumber(), product, expiryDate.toString(),"nothing");
-                intent.putExtra("warranty", warranty);
+                intent.putExtra("document", warranty);
                 startActivity(intent);
             }
         });

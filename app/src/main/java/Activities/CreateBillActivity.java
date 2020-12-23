@@ -82,7 +82,7 @@ public class CreateBillActivity extends AppCompatActivity {
                         business.getAddress(), business.getPhoneNumber(), business.getBillNotes(), String.valueOf(receiptID));
                 receiptID++;
                 receipt.setItems(products);
-                intent.putExtra("receipt", receipt);
+                intent.putExtra("document", receipt);
                 startActivity(intent);
             }
         });

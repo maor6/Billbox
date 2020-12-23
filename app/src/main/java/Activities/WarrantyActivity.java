@@ -81,7 +81,7 @@ public class WarrantyActivity extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 month = month+1;
-                String date = day+"/"+month+"/"+year;
+                String date = day+"/"+month+"/"+(year-2000);
                 expiryDate.setText(date);
 
             }

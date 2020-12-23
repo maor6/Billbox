@@ -14,7 +14,7 @@ import retrofit2.http.POST;
 public interface ApiInterface {
     @Headers(
                 {
-                    "Authorization: key=" + "SERVICE_KEY",
+                    "Authorization: key=" + "SERVER_KEY",
                     "Content-Type:application/json"
                 }
             )

@@ -104,10 +104,9 @@ public class WarrantyActivity extends AppCompatActivity {
                 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yy");
                 LocalDate localDate = LocalDate.now();
                 Intent intent = new Intent(WarrantyActivity.this, NFCBussinesActivity.class);
-                Warranty warranty = new Warranty(business.getBusiness_name(), business.getAddress(),
-                        business.getPhoneNumber(), dtf.format(localDate),  product,
-                        expiryDate.getText().toString(),"לא כולל שבירת מסך");
-                intent.putExtra("warranty", warranty);
+                Warranty warranty = new Warranty(business.getBusiness_name(), dtf.format(localDate),
+                        business.getAddress(), business.getPhoneNumber(), product, expiryDate.toString(),"nothing");
+                intent.putExtra("document", warranty);
                 startActivity(intent);
             }
         });

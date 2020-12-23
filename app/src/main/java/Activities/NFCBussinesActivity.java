@@ -11,11 +11,14 @@ import android.nfc.NfcAdapter;
 import android.nfc.NfcEvent;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import DataStructures.Document;
 import DataStructures.Receipt;
 
 import com.example.myapplication.SendNotificationPack.ApiInterface;
@@ -35,6 +38,7 @@ import com.google.firebase.iid.FirebaseInstanceId;
 
 import java.util.Objects;
 
+import DataStructures.Warranty;
 import okhttp3.ResponseBody;
 import retrofit2.Callback;
 
@@ -49,7 +53,7 @@ public class NFCBussinesActivity extends AppCompatActivity implements NfcAdapter
     EditText phoneNumber;
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     DatabaseReference databaseReference = firebaseDatabase.getReference("Users").child("Customer");
-    Receipt receipt;
+    Document document;
     FirebaseAuth firebaseAuth;
 
     @Override
@@ -64,7 +68,7 @@ public class NFCBussinesActivity extends AppCompatActivity implements NfcAdapter
         enter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                pushReceipt(phoneNumber.getText().toString(), receipt);
+                pushDocument(phoneNumber.getText().toString(), document);
             }
         });
 
@@ -99,14 +103,14 @@ public class NFCBussinesActivity extends AppCompatActivity implements NfcAdapter
         phoneNumber = (EditText) findViewById(R.id.NFCBussinesPhoneNumber);
         enter = (Button) findViewById(R.id.NFC_bussines_continue);
         mEditText = (TextView) findViewById(R.id.test1);
-        receipt = (Receipt) getIntent().getSerializableExtra("receipt");
         firebaseAuth = FirebaseAuth.getInstance();
+        document = (Document) getIntent().getSerializableExtra("document");
     }
 
     @Override
     public NdefMessage createNdefMessage(NfcEvent nfcEvent) {
         String message = mEditText.getText().toString();
-        NdefRecord ndefRecord = NdefRecord.createMime("text/plain", receipt.toString().getBytes());
+        NdefRecord ndefRecord = NdefRecord.createMime("text/plain", document.toString().getBytes());
         NdefMessage ndefMessage = new NdefMessage(ndefRecord);
         return ndefMessage;
     }
@@ -118,7 +122,7 @@ public class NFCBussinesActivity extends AppCompatActivity implements NfcAdapter
      * @param phoneToSearch
      * @param receipt
      */
-    public void pushReceipt(String phoneToSearch, Receipt receipt) {
+    public void pushDocument(String phoneToSearch, Document receipt) {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -133,20 +137,21 @@ public class NFCBussinesActivity extends AppCompatActivity implements NfcAdapter
                         break;
                     }
                 }
-                if (found) { // Add the receipt to the correct customer by phone number
+                if (found) { // Add the document to the correct customer by phone number
                     DatabaseReference referenceCustomer = firebaseDatabase.getReference("Documents")
-                            .child("Receipt"); // get the reference of the correct customer
+                            .child(documentType()); // get the reference of the correct customer
                     referenceCustomer.child(uid).push().setValue(receipt);
                     Toast.makeText(NFCBussinesActivity.this, "Send Complete.",
                             Toast.LENGTH_SHORT).show();
 
                     // add the receipt also to the Business
-                    referenceCustomer.child(Objects.requireNonNull(firebaseAuth.getUid())).push().setValue(receipt);
+                    if (documentType() == "Receipt") {
+                        referenceCustomer.child(Objects.requireNonNull(firebaseAuth.getUid())).push().setValue(receipt);
+                    }
 
-                    // send notification that the receipt is sent
+                    // send notification that the document is sent
                     FirebaseDatabase.getInstance().getReference().child("Tokens")
-                            .child(Objects.requireNonNull(FirebaseAuth.getInstance().getUid()))
-                            .child("token").addListenerForSingleValueEvent(new ValueEventListener() {
+                            .child(uid).child("token").addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             String usertoken = dataSnapshot.getValue(String.class);
@@ -179,7 +184,7 @@ public class NFCBussinesActivity extends AppCompatActivity implements NfcAdapter
      * @param token of the user that we want to sent it to
      */
     private void sendNotificationToUser(String token) {
-        RootModel rootModel = new RootModel(token, new MyNotification("Title", "Body"),
+        RootModel rootModel = new RootModel(token, new MyNotification("Billbox", "מסמך חדש התקבל"),
                 new Data("Name", "30"));
         ApiInterface apiService = Client.getClient().create(ApiInterface.class);
         retrofit2.Call<ResponseBody> responseBodyCall = apiService.sendNotification(rootModel);
@@ -194,5 +199,20 @@ public class NFCBussinesActivity extends AppCompatActivity implements NfcAdapter
 
             }
         });
+    }
+
+    String documentType() {
+        String root = null;
+        if (document instanceof Receipt) {
+            Log.d("mytag", "im a receipt");
+            root = "Receipt";
+        }
+
+        if (document instanceof Warranty) {
+            Log.d("mytag", "im a warranty");
+            root = "Warranty";
+        }
+
+        return root;
     }
 }

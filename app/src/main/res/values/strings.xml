@@ -173,4 +173,8 @@
     <string name="enter_business_name">הכנס שם עסק</string>
     <string name="paid">סכום ששולם</string>
     <string name="pick_purchase_date">בחר תאריך קנייה</string>
+    <string name="search_or_sort_docs">חפש או סנן מסמכים</string>
+    <string name="filter">סינון</string>
+    <string name="warranties">תעודות אחריות</string>
+    <string name="search_receipt">חפש חשבונית</string>
 </resources>

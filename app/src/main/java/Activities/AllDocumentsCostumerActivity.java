@@ -1,28 +1,22 @@
 package Activities;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.app.Dialog;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-import DataStructures.Receipt;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.myapplication.ProductsListAdapter;
 import com.example.myapplication.ReceiptAdapter;
-import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -33,79 +27,52 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import java.util.ArrayList;
 import java.util.Objects;
+import DataStructures.Receipt;
 
 /**
- * This is an activity class which operate the customer-main screen.
+ *
  */
-public class Customer_HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class AllDocumentsCostumerActivity extends AppCompatActivity {
 
-    Toolbar toolbar;
-    DrawerLayout drawerLayout;
-    NavigationView navigationView;
-    RecyclerView recyclerView;
-    ProgressBar progressBar;
-    TextView helloUser;
-    ReceiptAdapter receiptAdapter;
-    ArrayList<Receipt> receipts;
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     ProductsListAdapter productsListAdapter;
     DatabaseReference databaseReference;
+    RecyclerView recyclerView;
+    ArrayList<Receipt> receipts;
+    Button searchDocument;
+    ReceiptAdapter receiptAdapter;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_customer__home);
+        setContentView(R.layout.activity_all_documents_business);
 
         initActivity();
-
-        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(
-                this,
-                drawerLayout,
-                toolbar,
-                R.string.NavigationDrawerOpen,
-                R.string.closeNavDrawer
-        );
-
-        drawerLayout.addDrawerListener(actionBarDrawerToggle);
-        actionBarDrawerToggle.syncState();
-        DatabaseReference referenceForName = firebaseDatabase.getReference().child("Users")
-                .child("Customer").child(Objects.requireNonNull(firebaseAuth.getUid())).child("name");
-        referenceForName.addValueEventListener(new ValueEventListener() {
+        getReceipts();
+        searchDocument.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                helloUser.setText("שלום " + dataSnapshot.getValue().toString());
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
+            public void onClick(View view) {
+                //TODO open the filter screen
             }
         });
-        //TODO use this ->FirebaseDatabaseHelper firebaseDatabaseHelper = new FirebaseDatabaseHelper();
-
-        getReceipts();
-
     }
 
     /**
      * this function initialize the variables in the activity
      */
     private void initActivity() {
-        progressBar = (ProgressBar) findViewById(R.id.progressBar3);
-        toolbar = findViewById(R.id.main_toolbar);
-        setSupportActionBar(toolbar);
-        drawerLayout = findViewById(R.id.drawer_layout);
-        navigationView = findViewById(R.id.nav_view);
-        databaseReference = firebaseDatabase.getReference().child("Documents").child("Receipt").child(Objects.requireNonNull(firebaseAuth.getUid()));
-        helloUser = (TextView) findViewById(R.id.helloUser); //to put the user name
-        navigationView.setNavigationItemSelectedListener(this);
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerview_reciepts);
+        progressBar = (ProgressBar) findViewById(R.id.progressBarAllDocuments);
+        searchDocument = (Button) findViewById(R.id.filter_document);
+        databaseReference = firebaseDatabase.getReference()
+                .child("Documents").child("Receipt")
+                .child(Objects.requireNonNull(firebaseAuth.getUid()));
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerview_receipts);
     }
 
     /**
-     this method will get the receipt from the database
-     and put it in the recycler view
+     * retrieve the receipts from DB
      */
     private void getReceipts() {
         recyclerView.setHasFixedSize(true);
@@ -138,12 +105,8 @@ public class Customer_HomeActivity extends AppCompatActivity implements Navigati
         });
     }
 
-    /**
-     * this function open the full receipt data
-     * @param receipt the receipt to open
-     */
-    private void openBillDialog(Receipt receipt) {
-        final Dialog dialog = new Dialog(Customer_HomeActivity.this);
+    public void openBillDialog(Receipt receipt) {
+        final Dialog dialog = new Dialog(AllDocumentsCostumerActivity.this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(true); //able to cancel the dialog by clicking outside the dialog
 
@@ -152,7 +115,7 @@ public class Customer_HomeActivity extends AppCompatActivity implements Navigati
             ImageView image = dialog.findViewById(R.id.receiptPictureView);
             try{
                 StorageReference storageReference =  FirebaseStorage.getInstance().getReference().child("images/"+firebaseAuth.getUid()+"/"+receipt.getImageID());
-                Glide.with(Customer_HomeActivity.this)
+                Glide.with(AllDocumentsCostumerActivity.this)
                         .load(storageReference)
                         .into(image);
             }catch (Exception e){
@@ -186,25 +149,4 @@ public class Customer_HomeActivity extends AppCompatActivity implements Navigati
         dialog.show();
     }
 
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch(item.getItemId()) {
-            case R.id.searchDocumentCustomerMenu:
-                startActivity(new Intent(Customer_HomeActivity.this, AllDocumentsCostumerActivity.class));
-                return true;
-            case R.id.createDocumentCustomerMenu:
-                startActivity(new Intent(Customer_HomeActivity.this, CreateManualBillActivity.class));
-                return true;
-            case R.id.warranties:
-                startActivity(new Intent(Customer_HomeActivity.this, WarrantiesCustomerActivity.class));
-                return true;
-            default:
-                return false;
-        }
-    }
-
-    @Override
-    public void onPointerCaptureChanged(boolean hasCapture) {
-
-    }
 }

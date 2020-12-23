@@ -5,21 +5,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.ArrayList;
-
 import Activities.R;
-import DataStructures.Receipt;
+import DataStructures.Warranty;
 
 /**
- * This class assigned to fit a visual list of warranty to the screen
+ * This class assigned to fit a visual list of receipt to the screen
  */
-public class ReceiptAdapter extends RecyclerView.Adapter<ReceiptAdapter.MyViewHolder> {
+public class WarrantiesAdapter extends RecyclerView.Adapter<WarrantiesAdapter.MyViewHolder> {
 
-    ArrayList<Receipt> receipts;
+    ArrayList<Warranty> warranties;
     Context context;
     private OnItemClickListener mListener;
 
@@ -31,8 +28,8 @@ public class ReceiptAdapter extends RecyclerView.Adapter<ReceiptAdapter.MyViewHo
         mListener = listener;
     }
 
-    public ReceiptAdapter(Context context, ArrayList<Receipt> receipts) {
-        this.receipts = receipts;
+    public WarrantiesAdapter(Context context, ArrayList<Warranty> warranties) {
+        this.warranties = warranties;
         this.context = context;
     }
 
@@ -45,25 +42,25 @@ public class ReceiptAdapter extends RecyclerView.Adapter<ReceiptAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        Receipt receipt = receipts.get(position);
-        holder.price.setText(String.format("%.2f", receipt.getTotal_price())+"₪");
-        holder.date.setText(receipt.getDate());
-        holder.bussinesname.setText(receipt.getBusinessName());
+        Warranty warranty = warranties.get(position);
+        holder.expiryDate.setText(warranty.getExpiration());
+        holder.purchaseDate.setText(warranty.getDate());
+        holder.businessName.setText(warranty.getBusinessName());
     }
 
     @Override
-    public int getItemCount() { return receipts.size(); }
+    public int getItemCount() { return warranties.size(); }
 
 
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView bussinesname, date, price;
+        TextView businessName, purchaseDate, expiryDate;
 
         public MyViewHolder(@NonNull View itemView, OnItemClickListener listener) {
             super(itemView);
-            bussinesname = (TextView) itemView.findViewById(R.id.receiptbussinesname);
-            date = (TextView) itemView.findViewById(R.id.receiptDate);
-            price = (TextView) itemView.findViewById(R.id.recieptPrice);
+            businessName = (TextView) itemView.findViewById(R.id.receiptbussinesname);
+            purchaseDate = (TextView) itemView.findViewById(R.id.receiptDate);
+            expiryDate = (TextView) itemView.findViewById(R.id.recieptPrice);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

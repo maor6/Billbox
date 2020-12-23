@@ -101,11 +101,14 @@ public class WarrantyActivity extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
+                Product p =  new Product(description.getText().toString(),
+                        Integer.parseInt(barcode.getText().toString()));
                 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yy");
                 LocalDate localDate = LocalDate.now();
                 Intent intent = new Intent(WarrantyActivity.this, NFCBussinesActivity.class);
-                Warranty warranty = new Warranty(business.getBusiness_name(), dtf.format(localDate),
-                        business.getAddress(), business.getPhoneNumber(), product, expiryDate.toString(),"nothing");
+                Warranty warranty = new Warranty(business.getBusiness_name(), business.getAddress(),
+                        business.getPhoneNumber(), dtf.format(localDate), p,
+                        expiryDate.getText().toString(),"nothing");
                 intent.putExtra("document", warranty);
                 startActivity(intent);
             }

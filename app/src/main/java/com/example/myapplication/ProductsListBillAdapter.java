@@ -53,10 +53,10 @@ public class ProductsListBillAdapter extends RecyclerView.Adapter<ProductsListBi
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Product product = products.get(position);
-        holder.price.setText(String.format("%.2f", product.getPrice()));
+        holder.price.setText(String.format("%.1f", product.getPrice()));
         //holder.amount.setText(product.getAmount());
         holder.productName.setText(product.getName());
-        holder.total_price.setText(String.format("%.2f", product.getPrice() * product.getAmount()));
+        holder.total_price.setText(String.format("%.1f", product.getPrice() * product.getAmount()));
     }
 
     @Override

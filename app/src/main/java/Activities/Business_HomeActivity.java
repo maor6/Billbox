@@ -75,7 +75,9 @@ public class Business_HomeActivity extends AppCompatActivity implements View.OnC
         if(v.getId() == new_doc_bt.getId()){
             startActivity(new Intent(Business_HomeActivity.this, ChooseDocsActivity.class));
         }
-        if(v.getId() == info_bt.getId()){}
+        if(v.getId() == info_bt.getId()){
+            startActivity(new Intent(Business_HomeActivity.this, BusinessProfileActivity.class));
+        }
     }
 
     @Override

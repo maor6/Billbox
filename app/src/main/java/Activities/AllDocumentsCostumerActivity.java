@@ -30,7 +30,7 @@ import java.util.Objects;
 import DataStructures.Receipt;
 
 /**
- *
+ *This is an activity class to watch and search receipts by the customer user
  */
 public class AllDocumentsCostumerActivity extends AppCompatActivity {
 

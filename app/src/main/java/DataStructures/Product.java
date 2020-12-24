@@ -1,8 +1,5 @@
 package DataStructures;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
 import java.io.Serializable;
 
 /**
@@ -26,13 +23,6 @@ public class Product implements Serializable {
     public Product(String name, int barCode){
         this.name = name;
         this.barCode = barCode;
-    }
-
-    protected Product(Parcel in) {
-        name = in.readString();
-        barCode = in.readInt();
-        price = in.readDouble();
-        amount = in.readInt();
     }
 
 

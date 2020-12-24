@@ -5,14 +5,21 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ListView;
+
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.myapplication.ProductsListAdapter;
+import com.example.myapplication.ProductsListBillAdapter;
+import com.example.myapplication.ReceiptAdapter;
+import com.example.myapplication.SwipeToDeleteProductBill;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -37,8 +44,8 @@ public class CreateBillActivity extends AppCompatActivity {
     CardView search;
     Button finishBt;
     ArrayList<Product> products;
-    ListView itemsList;
-    ProductsListAdapter productsListAdapter;
+    RecyclerView itemsList;
+    ProductsListBillAdapter ProductsListBillAdapter;
     TextView totalPriceView;
     double totalToPay;
     DatabaseReference ref;
@@ -52,6 +59,7 @@ public class CreateBillActivity extends AppCompatActivity {
         setContentView(R.layout.activity_create_bill);
 
         initActivity();
+
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,6 +79,7 @@ public class CreateBillActivity extends AppCompatActivity {
 
             }
         });
+
         finishBt.setOnClickListener(new View.OnClickListener() { // on "סיים" clicked
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
@@ -86,6 +95,13 @@ public class CreateBillActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        ProductsListBillAdapter.setOnItemClickListener(new ProductsListBillAdapter.OnItemClickListener() {
+            @Override
+            public void OnItemClick(int position) {
+
+            }
+        });
     }
 
     /**
@@ -94,12 +110,18 @@ public class CreateBillActivity extends AppCompatActivity {
     private void initActivity() {
         firebaseAuth = FirebaseAuth.getInstance();
         ref = FirebaseDatabase.getInstance().getReference().child("Users").child("Bussines");
-        products = new ArrayList<>();
-        itemsList = (ListView) findViewById(R.id.productsList);
+        itemsList = (RecyclerView) findViewById(R.id.productsList);
         totalToPay = 0;
         totalPriceView = (TextView) findViewById(R.id.totalToPay);
         search = (CardView) findViewById(R.id.search);
         finishBt = (Button) findViewById(R.id.finishbt);
+        itemsList.setHasFixedSize(true);
+        itemsList.setLayoutManager(new LinearLayoutManager(this));
+        products = new ArrayList<>();
+        ProductsListBillAdapter = new ProductsListBillAdapter(this, products);
+        itemsList.setAdapter(ProductsListBillAdapter);
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new SwipeToDeleteProductBill(ProductsListBillAdapter));
+        itemTouchHelper.attachToRecyclerView(itemsList);
     }
 
     /**
@@ -115,11 +137,10 @@ public class CreateBillActivity extends AppCompatActivity {
             if(resultCode == RESULT_OK) {
                 String strEditText = data.getStringExtra("editTextValue");
                 Product product = (Product) data.getSerializableExtra("product");
-                this.products.add(product);
                 totalToPay += product.getPrice();
                 totalPriceView.setText("סה\"כ לתשלום: " + String.format("%.2f", totalToPay)+"₪");
-                productsListAdapter = new ProductsListAdapter(this, R.layout.bill_products_list, products);
-                itemsList.setAdapter(productsListAdapter);
+                products.add(product);
+                ProductsListBillAdapter.notifyDataSetChanged();
             }
         }
     }

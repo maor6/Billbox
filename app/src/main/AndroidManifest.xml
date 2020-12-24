@@ -16,9 +16,11 @@ package="Activities">
     android:supportsRtl="true"
     android:theme="@style/AppTheme.NoActionBar">
 
-    <activity android:name=".WarrantiesCustomerActivity"/>
+    <activity android:name="Activities.BusinessProfileActivity"/>
 
-    <activity android:name=".AllDocumentsCostumerActivity"/>
+    <activity android:name=".WarrantiesCustomerActivity" />
+
+    <activity android:name=".AllDocumentsCostumerActivity" />
 
     <activity android:name=".AllDocumentsBusinessActivity" />
 

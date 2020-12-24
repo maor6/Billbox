@@ -178,4 +178,7 @@
     <string name="warranties">תעודות אחריות</string>
     <string name="search_receipt">חפש חשבונית</string>
     <string name="validity_until">תוקף עד</string>
+    <string name="barcode">ברקוד</string>
+    <string name="phone">טלפון</string>
+    <string name="save">שמור</string>
 </resources>

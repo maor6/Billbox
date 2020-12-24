@@ -138,7 +138,7 @@ public class CreateBillActivity extends AppCompatActivity {
                 String strEditText = data.getStringExtra("editTextValue");
                 Product product = (Product) data.getSerializableExtra("product");
                 totalToPay += product.getPrice();
-                totalPriceView.setText("סה\"כ לתשלום: " + String.format("%.2f", totalToPay)+"₪");
+                totalPriceView.setText("סה\"כ לתשלום: " + String.format("%.1f", totalToPay)+"₪");
                 products.add(product);
                 ProductsListBillAdapter.notifyDataSetChanged();
             }

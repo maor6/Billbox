@@ -23,6 +23,11 @@ public class Product implements Serializable {
         this.amount = amount;
     }
 
+    public Product(String name, int barCode){
+        this.name = name;
+        this.barCode = barCode;
+    }
+
     protected Product(Parcel in) {
         name = in.readString();
         barCode = in.readInt();

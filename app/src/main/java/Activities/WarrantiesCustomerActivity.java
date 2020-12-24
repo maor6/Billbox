@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -61,7 +62,6 @@ public class WarrantiesCustomerActivity extends AppCompatActivity {
      * retrieve the warranties from DB
      */
     private void getWarranties() {
-
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         warranties = new ArrayList<>();
@@ -72,6 +72,7 @@ public class WarrantiesCustomerActivity extends AppCompatActivity {
             }
         });
         recyclerView.setAdapter(warrantiesAdapter);
+        Log.d("mytag", "i got here");
 
         databaseReference.addValueEventListener(new ValueEventListener() { //TODO needed to be handle by FirebaseDatabaseHelper
             @Override
@@ -80,6 +81,8 @@ public class WarrantiesCustomerActivity extends AppCompatActivity {
                 progressBar.setVisibility(View.GONE);
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                     Warranty warranty = (Warranty) dataSnapshot1.getValue(Warranty.class);
+                    Log.d("mytag", warranty.getBusinessName());
+                    Log.d("mytag", warranty.getExpiryDate());
                     warranties.add(warranty);
                 }
                 warrantiesAdapter.notifyDataSetChanged();

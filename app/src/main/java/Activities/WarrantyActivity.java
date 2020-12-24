@@ -23,6 +23,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -101,11 +102,14 @@ public class WarrantyActivity extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
+                Product product =  new Product(description.getText().toString(),
+                        Integer.parseInt(barcode.getText().toString()));
                 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yy");
                 LocalDate localDate = LocalDate.now();
                 Intent intent = new Intent(WarrantyActivity.this, NFCBussinesActivity.class);
-                Warranty warranty = new Warranty(business.getBusiness_name(), dtf.format(localDate),
-                        business.getAddress(), business.getPhoneNumber(), product, expiryDate.toString(),"nothing");
+                Warranty warranty = new Warranty(business.getBusiness_name(), business.getAddress(),
+                        business.getPhoneNumber(), dtf.format(localDate), product,
+                        expiryDate.getText().toString(),"nothing");
                 intent.putExtra("document", warranty);
                 startActivity(intent);
             }

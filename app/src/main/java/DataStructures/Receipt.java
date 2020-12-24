@@ -15,8 +15,6 @@ public class Receipt extends Document implements Serializable {
     private double left_over;
     private int four_digits;
     private enum paying_method {CREDIT ,CASH ,TRANSFER ,CHEQUE};
-    private String businessAddress;
-    private String businessPhone;
     private String notes;
     public Boolean isManual;
     private String imageID;
@@ -35,8 +33,6 @@ public class Receipt extends Document implements Serializable {
   public Receipt(String businessName, String date, double total_price, String businessAddress, String businessPhone, String notes, String id) {
       super(businessName, businessAddress, businessPhone, date);
       this.total_price = total_price;
-      this.businessAddress = businessAddress;
-      this.businessPhone = businessPhone;
       this.notes = notes;
       this.id = id;
       this.isManual = false;
@@ -63,20 +59,6 @@ public class Receipt extends Document implements Serializable {
 
     public int getFour_digits() {
         return four_digits;
-    }
-
-    public String getBusinessAddress() {
-        return businessAddress;
-    }
-
-    public void setBusinessAddress(String businessAddress) { this.businessAddress = businessAddress; }
-
-    public String getBusinessPhone() {
-        return businessPhone;
-    }
-
-    public void setBusinessPhone(String businessPhone) {
-        this.businessPhone = businessPhone;
     }
 
     public String getNotes() {

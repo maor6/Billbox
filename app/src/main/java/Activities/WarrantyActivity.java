@@ -39,6 +39,9 @@ import DataStructures.Product;
 import DataStructures.Receipt;
 import DataStructures.Warranty;
 
+/**
+ * This is an activity class to create new warranty by the business user.
+ */
 public class WarrantyActivity extends AppCompatActivity {
 
     TextView searchProduct;

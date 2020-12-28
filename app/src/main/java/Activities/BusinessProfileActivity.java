@@ -32,6 +32,7 @@ public class BusinessProfileActivity extends AppCompatActivity implements View.O
     TextView email;
     TextView location;
     TextView businessName;
+    TextView billNotes;
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     DatabaseReference databaseReference;
@@ -52,6 +53,7 @@ public class BusinessProfileActivity extends AppCompatActivity implements View.O
                 email.setText(business.getEmail());
                 location.setText(business.getAddress());
                 businessName.setText(business.getBusiness_name());
+                billNotes.setText(business.getBillNotes());
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -74,6 +76,8 @@ public class BusinessProfileActivity extends AppCompatActivity implements View.O
         databaseReference = firebaseDatabase.getReference().child("Users").child("Bussines").child(Objects.requireNonNull(firebaseAuth.getUid()));
         saveBt = (Button) findViewById(R.id.saveBt);
         saveBt.setOnClickListener(this);
+        billNotes = findViewById(R.id.notesProfile);
+        billNotes.setOnClickListener(this);
     }
 
     @Override
@@ -99,10 +103,18 @@ public class BusinessProfileActivity extends AppCompatActivity implements View.O
             businessName.requestFocus();
             saveBt.setVisibility(View.VISIBLE);
         }
+        if(view == billNotes){
+            billNotes.setCursorVisible(true);
+            billNotes.setFocusableInTouchMode(true);
+            billNotes.setInputType(InputType.TYPE_CLASS_TEXT);
+            billNotes.requestFocus();
+            saveBt.setVisibility(View.VISIBLE);
+        }
         if(view == saveBt){
             databaseReference.child("address").setValue(location.getText().toString());
             databaseReference.child("business_name").setValue(businessName.getText().toString());
             databaseReference.child("phoneNumber").setValue(phoneNumber.getText().toString());
+            databaseReference.child("billNotes").setValue(billNotes.getText().toString());
             finish();
         }
 

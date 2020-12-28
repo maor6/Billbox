@@ -55,19 +55,21 @@
       app:layout_constraintTop_toTopOf="parent"
       app:layout_constraintVertical_bias="0.575">
 
+
     <TextView
         android:id="@+id/workplace_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:textSize="18sp"
+        android:text="@string/you_can_edit_info"
+        android:textSize="13sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.377"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.072" />
-
+        app:layout_constraintVertical_bias="0.048" />
 
     <ImageView
         android:layout_width="73dp"
@@ -93,14 +95,12 @@
         android:textColor="#000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.437"
+        app:layout_constraintHorizontal_bias="0.366"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.291" />
+        app:layout_constraintVertical_bias="0.307" />
 
     <ImageView
-
-        android:id="@+id/imageView5"
         android:layout_width="78dp"
         android:layout_height="32dp"
         android:layout_gravity="center"
@@ -122,10 +122,10 @@
         android:textColor="#000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.406"
+        app:layout_constraintHorizontal_bias="0.339"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.629" />
+        app:layout_constraintVertical_bias="0.633" />
 
     <ImageView
         android:layout_width="49dp"
@@ -155,21 +155,64 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.468" />
 
-    <Button
-        android:id="@+id/saveBt"
-        android:layout_width="130dp"
-        android:layout_height="wrap_content"
+    <ImageView
+        android:layout_width="78dp"
+        android:layout_height="32dp"
+        android:layout_gravity="center"
         android:layout_weight="1"
-        android:background="@drawable/btn_background"
-        android:text="@string/save"
-        android:textStyle="bold"
-        android:textSize="19dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.051"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.946"
-        android:visibility="gone"/>
-  </androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_constraintVertical_bias="0.808"
+        app:srcCompat="@drawable/ic_comment" />
+
+    <TextView
+        android:id="@+id/notesProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:drawableLeft="@drawable/create"
+        android:text="@string/textview"
+        android:textColor="#000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.588"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.897" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/notes"
+        android:textColor="#000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.265"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.801" />
 
   </androidx.constraintlayout.widget.ConstraintLayout>
+
+  <Button
+      android:id="@+id/saveBt"
+      android:layout_width="130dp"
+      android:layout_height="wrap_content"
+      android:layout_weight="1"
+      android:background="@drawable/btn_background"
+      android:text="@string/save"
+      android:textSize="19dp"
+      android:textStyle="bold"
+      android:visibility="gone"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.512"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.934" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

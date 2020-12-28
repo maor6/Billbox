@@ -25,10 +25,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center|right"
-            android:layout_marginTop="-180dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="-160dp"
             android:layout_marginBottom="10dp"
-            android:text="@string/my_last_docs"
-            android:textColor="#000"/>
+            android:text="@string/my_last_docs" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview_reciepts"

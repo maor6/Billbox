@@ -47,7 +47,7 @@ public class CreateBillActivity extends AppCompatActivity {
     RecyclerView itemsList;
     ProductsListBillAdapter ProductsListBillAdapter;
     TextView totalPriceView;
-    double totalToPay;
+    public static double totalToPay;
     DatabaseReference ref;
     FirebaseAuth firebaseAuth;
     Business business;
@@ -118,7 +118,7 @@ public class CreateBillActivity extends AppCompatActivity {
         itemsList.setHasFixedSize(true);
         itemsList.setLayoutManager(new LinearLayoutManager(this));
         products = new ArrayList<>();
-        ProductsListBillAdapter = new ProductsListBillAdapter(this, products);
+        ProductsListBillAdapter = new ProductsListBillAdapter(this, products, totalPriceView);
         itemsList.setAdapter(ProductsListBillAdapter);
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new SwipeToDeleteProductBill(ProductsListBillAdapter));
         itemTouchHelper.attachToRecyclerView(itemsList);
@@ -137,7 +137,7 @@ public class CreateBillActivity extends AppCompatActivity {
             if(resultCode == RESULT_OK) {
                 String strEditText = data.getStringExtra("editTextValue");
                 Product product = (Product) data.getSerializableExtra("product");
-                totalToPay += product.getPrice();
+                CreateBillActivity.totalToPay += product.getPrice();
                 totalPriceView.setText("סה\"כ לתשלום: " + String.format("%.1f", totalToPay)+"₪");
                 products.add(product);
                 ProductsListBillAdapter.notifyDataSetChanged();

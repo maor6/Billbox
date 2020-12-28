@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
+import Activities.CreateBillActivity;
 import Activities.R;
 import DataStructures.Product;
 
@@ -20,6 +21,7 @@ import DataStructures.Product;
  */
 public class ProductsListBillAdapter extends RecyclerView.Adapter<ProductsListBillAdapter.MyViewHolder> {
 
+    TextView totalView;
     ArrayList<Product> products;
     Context context;
     private OnItemClickListener mListener;
@@ -38,9 +40,10 @@ public class ProductsListBillAdapter extends RecyclerView.Adapter<ProductsListBi
         mListener = listener;
     }
 
-    public ProductsListBillAdapter(Context context, ArrayList<Product> products) {
+    public ProductsListBillAdapter(Context context, ArrayList<Product> products, TextView totalView) {
         this.products = products;
         this.context = context;
+        this.totalView = totalView;
     }
 
     @NonNull
@@ -93,6 +96,9 @@ public class ProductsListBillAdapter extends RecyclerView.Adapter<ProductsListBi
      * @param position
      */
     public void deleteItem(int position) {
+        Product product = products.get(position);
+        CreateBillActivity.totalToPay -= product.getPrice();
+        totalView.setText("סה\"כ לתשלום: " + String.format("%.1f", CreateBillActivity.totalToPay)+"₪");
         mRecentlyDeletedProduct = products.get(position);
         mRecentlyDeletedProductIndex = position;
         products.remove(position);

@@ -188,6 +188,8 @@
     <string name="insert_credit_date">הכנס תוקף</string>
     <string name="insert_credit_cvv">CVV</string>
     <string name="choose_payment_method">בחר שיטת תשלום</string>
+    <string name="logout">התנתק</string>
+    <string name="settings">הגדרות</string>
     <string-array name="payment_method">
         <item>"מזומן"</item>
         <item>"אשראי"</item>

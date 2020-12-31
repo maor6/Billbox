@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-<item android:title="STORAGAE">
+<item android:title="@string/storage">
     <menu>
         <item
             android:id="@+id/searchDocumentCustomerMenu"
@@ -22,7 +22,7 @@
     </menu>
 </item>
     
-<item android:title="APP">
+<item android:title="@string/app">
     <menu>
         <item android:title="@string/settings"
             android:icon="@drawable/settings_ic" />

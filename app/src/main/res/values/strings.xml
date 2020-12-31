@@ -190,6 +190,8 @@
     <string name="choose_payment_method">בחר שיטת תשלום</string>
     <string name="logout">התנתק</string>
     <string name="settings">הגדרות</string>
+    <string name="app">APP</string>
+    <string name="storage">STORAGE</string>
     <string-array name="payment_method">
         <item>"מזומן"</item>
         <item>"אשראי"</item>

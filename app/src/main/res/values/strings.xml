@@ -192,6 +192,8 @@
     <string name="settings">הגדרות</string>
     <string name="app">APP</string>
     <string name="storage">STORAGE</string>
+    <string name="filter_by">סנן לפי:</string>
+    <string name="search">חפש</string>
     <string-array name="payment_method">
         <item>"מזומן"</item>
         <item>"אשראי"</item>

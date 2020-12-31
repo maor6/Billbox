@@ -6,12 +6,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -27,6 +32,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Objects;
 
 import DataStructures.Receipt;
@@ -56,7 +62,7 @@ public class AllDocumentsBusinessActivity extends AppCompatActivity {
         searchDocument.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO open the filter screen
+                openFilterDialog();
             }
         });
     }
@@ -71,6 +77,75 @@ public class AllDocumentsBusinessActivity extends AppCompatActivity {
                 .child(Objects.requireNonNull(firebaseAuth.getUid()));
         recyclerView = (RecyclerView) findViewById(R.id.recyclerview_receipts);
 
+    }
+
+    private void openFilterDialog() {
+        final Dialog dialog = new Dialog(AllDocumentsBusinessActivity.this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(true); //able to cancel the dialog by clicking outside the dialog
+        dialog.setContentView(R.layout.dialog_filter_documents);
+        EditText filterByBusinessName = dialog.findViewById(R.id.filterByBusiness);
+        TextView filterByBusinessDate = dialog.findViewById(R.id.filterByDate);
+        Button filterBt = dialog.findViewById(R.id.doneFilter);
+
+        DatePickerDialog.OnDateSetListener dateSetListener;
+        dateSetListener = (datePicker, year, month, day) -> {
+            month = month+1;
+            String date = day+"/"+month+"/"+(year-2000);
+            filterByBusinessDate.setText(date);
+        };
+        filterByBusinessDate.setOnClickListener(view -> {
+            Calendar calendar = Calendar.getInstance();
+            int year = calendar.get(Calendar.YEAR);
+            int month = calendar.get(Calendar.MONTH);
+            int day = calendar.get(Calendar.DAY_OF_MONTH);
+            DatePickerDialog dateDialog = new DatePickerDialog(AllDocumentsBusinessActivity.this,
+                    android.R.style.Theme_Holo_Light_Dialog_MinWidth,dateSetListener,year,month,day);
+            Objects.requireNonNull(dateDialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            dateDialog.show();
+        });
+        filterBt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                databaseReference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        receipts.clear();
+                        for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                            Receipt receipt = (Receipt) dataSnapshot1.getValue(Receipt.class);
+                            if(!TextUtils.isEmpty(filterByBusinessName.getText().toString()) &&
+                                    !TextUtils.isEmpty(filterByBusinessDate.getText().toString())){
+                                String businessName = filterByBusinessName.getText().toString();
+                                String businessDate = filterByBusinessDate.getText().toString();
+                                if (receipt.getBusinessName().equals(businessName) &&
+                                        receipt.getDate().equals(businessDate)) {
+                                    receipts.add(receipt);
+                                }
+                            }
+                            else if(!TextUtils.isEmpty(filterByBusinessName.getText().toString())) {
+                                String businessName = filterByBusinessName.getText().toString();
+                                if (receipt.getBusinessName().equals(businessName)) {
+                                    receipts.add(receipt);
+                                }
+                            }
+                            else if(!TextUtils.isEmpty(filterByBusinessDate.getText().toString())) {
+                                String businessDate = filterByBusinessDate.getText().toString();
+                                if (receipt.getDate().equals(businessDate)) {
+                                    receipts.add(receipt);
+                                }
+                            }
+                        }
+                        receiptBusinessAdapter.notifyDataSetChanged();
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
     }
 
     /**

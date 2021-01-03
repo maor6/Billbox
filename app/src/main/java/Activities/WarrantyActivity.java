@@ -7,9 +7,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 
-import com.example.myapplication.ProductsListAdapter;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -20,10 +17,7 @@ import com.google.firebase.database.ValueEventListener;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.cardview.widget.CardView;
 
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -36,7 +30,6 @@ import java.util.Objects;
 
 import DataStructures.Business;
 import DataStructures.Product;
-import DataStructures.Receipt;
 import DataStructures.Warranty;
 
 /**
@@ -109,7 +102,7 @@ public class WarrantyActivity extends AppCompatActivity {
                         Integer.parseInt(barcode.getText().toString()));
                 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yy");
                 LocalDate localDate = LocalDate.now();
-                Intent intent = new Intent(WarrantyActivity.this, NFCBussinesActivity.class);
+                Intent intent = new Intent(WarrantyActivity.this, SendDocumentActivity.class);
                 Warranty warranty = new Warranty(business.getBusiness_name(), business.getAddress(),
                         business.getPhoneNumber(), dtf.format(localDate), product,
                         expiryDate.getText().toString(),"nothing");

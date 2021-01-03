@@ -3,9 +3,6 @@ package="Activities">
 
 <uses-permission android:name="android.permission.INTERNET" />
 <uses-permission android:name="android.permission.CAMERA" />
-<uses-permission android:name="android.permission.NFC" />
-
-<uses-feature android:name="android.hardware.nfc" />
 
 <application
 
@@ -23,8 +20,6 @@ package="Activities">
     <activity android:name=".AllDocumentsCostumerActivity" />
 
     <activity android:name=".AllDocumentsBusinessActivity" />
-
-    <activity android:name=".InfoEditActivity" />
 
     <activity android:name=".WarrantyActivity" />
 
@@ -45,7 +40,7 @@ package="Activities">
     <activity android:name="Activities.InventoryManageActivity" />
 
     <activity
-        android:name=".NFCBussinesActivity"
+        android:name=".SendDocumentActivity"
         android:theme="@style/AppTheme.NoActionBar" />
 
     <activity

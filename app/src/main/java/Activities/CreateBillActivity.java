@@ -16,9 +16,7 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.myapplication.ProductsListAdapter;
 import com.example.myapplication.ProductsListBillAdapter;
-import com.example.myapplication.ReceiptAdapter;
 import com.example.myapplication.SwipeToDeleteProductBill;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -86,7 +84,7 @@ public class CreateBillActivity extends AppCompatActivity {
             public void onClick(View v) {
                 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yy");
                 LocalDate localDate = LocalDate.now();
-                Intent intent = new Intent(CreateBillActivity.this, NFCBussinesActivity.class);
+                Intent intent = new Intent(CreateBillActivity.this, SendDocumentActivity.class);
                 Receipt receipt = new Receipt(business.getBusiness_name(), dtf.format(localDate), totalToPay,
                         business.getAddress(), business.getPhoneNumber(), business.getBillNotes(), String.valueOf(receiptID));
                 receiptID++;

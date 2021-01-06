@@ -22,7 +22,7 @@ You can access and view documents and keep track of your income easily.
 ## From the customer side
 You can receive documents related to your purchases.<br/>
 You can photocopy your receipts if necessary.<br/>
-You can keep track of financial expenses in cash and credit easily.
+You can keep track of financial expenses in cash and credit easily.<br/>
 All your transactions related documents will be organized in one place.
 
 ![WhatsApp Image 2021-01-06 at 13 17 03](https://user-images.githubusercontent.com/57867811/103762852-aa864080-5021-11eb-9ba2-de4c0910d912.jpeg)

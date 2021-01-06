@@ -1,5 +1,5 @@
 # billbox
-![build pass](https://img.shields.io/badge/build-pass-brightgreen)
+![build pass](https://img.shields.io/badge/build-pass-brightgreen)  ![platform Android](https://img.shields.io/badge/platform-Android-red)
 
 
 An android application project in software engineering course

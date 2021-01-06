@@ -1,5 +1,5 @@
 # billbox
-https://camo.githubusercontent.com/81e5ec0b8c29abd60c2200675d89c852aa8188e383fc3bc5b1a68b7cd0eb75f8/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6275696c642d706173732d627269676874677265656e
+![build pass](https://img.shields.io/badge/build-pass-brightgreen)
 
 
 An android application project in software engineering course

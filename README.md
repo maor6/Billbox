@@ -2,7 +2,6 @@
 # Billbox
 ![build pass](https://img.shields.io/badge/build-pass-brightgreen)  ![platform Android](https://img.shields.io/badge/platform-Android-red)
 
-
 An android application project in software engineering course
 
 The main purpose of the application is to replace the receipts and business documents from paper - to digital.<br/>
